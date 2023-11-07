@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   imports: [MatToolbarModule, MatButtonModule, MatButtonToggleModule],
   selector: 'app-home',
   template: `
-    <mat-toolbar color="accent">
+    <mat-toolbar color="accent" class="mt-3">
       <span>Home</span>
       <mat-button-toggle-group>
         <button mat-button (click)="redirectTo('venta/index')">Iniciar Proceso Venta</button>
@@ -22,9 +22,8 @@ import { Router } from '@angular/router';
       </mat-button-toggle-group>
       <button mat-flat-button (click)="logOut()">Log out</button>
     </mat-toolbar>
-    
-    <div class="centered-div mb-3">
-      <h1>Bienvenidos a nuestra tienda de artículos deportivos</h1>
+    <div class="centered-div mt-3">
+      <h1 class="mt-3">Bienvenidos a nuestra tienda de artículos deportivos</h1>
       <p>Encuentra lo que necesitas para tus deportes favoritos</p>
       <a href="#" class="btn btn-primary">Explorar productos</a>
     </div>
