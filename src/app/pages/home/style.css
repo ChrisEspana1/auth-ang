@@ -291,3 +291,6 @@ margin-bottom: 40px;
     margin: 0 auto; 
     width: 50%; 
   }
+  .mat-toolbar-button-spacing {
+    margin-right: 10px;
+}

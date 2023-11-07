@@ -1,6 +1,8 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { authGuard, publicGuard } from './core/guards';
+import { ProductoComponent } from './pages/producto/producto.component';
+import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
   {
@@ -22,5 +24,14 @@ export const routes: Routes = [
       },
     ],
   },
+  { path: 'producto',
+   component: ProductoComponent 
+  },
 ];
 
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+
+export class AppRouting {}
