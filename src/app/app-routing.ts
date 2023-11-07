@@ -1,8 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { authGuard, publicGuard } from './core/guards';
-import { ProductoComponent } from './pages/producto/producto.component';
 import { NgModule } from '@angular/core';
+import ProductoComponent from './pages/producto/producto.component';
 
 export const routes: Routes = [
   {
