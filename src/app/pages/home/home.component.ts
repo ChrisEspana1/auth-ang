@@ -4,10 +4,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
+import { VentaComponent } from '../venta/venta.component';
 
 @Component({
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatButtonToggleModule],
+  imports: [MatToolbarModule, MatButtonModule, MatButtonToggleModule, VentaComponent],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./style.css'],
@@ -44,4 +45,8 @@ export default class HomeComponent {
   redirectToProducto() {
     this._router.navigate(['/producto']);
   }
+  redirectToVenta() {
+    this._router.navigate(['/venta']);
+  }
+
 }
