@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import HomeComponent from '../home/home.component';
 
 @Component({
+  standalone: true,
   selector: 'app-producto',
+  imports: [HomeComponent],
   templateUrl: './producto.component.html',
   styleUrls: ['./style.css']
 })

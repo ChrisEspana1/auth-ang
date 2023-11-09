@@ -5,10 +5,11 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { VentaComponent } from '../venta/venta.component';
+import { TicketssComponent } from '../ticketss/ticketss.component';
 
 @Component({
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatButtonToggleModule, VentaComponent],
+  imports: [MatToolbarModule, MatButtonModule, MatButtonToggleModule, VentaComponent, TicketssComponent],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./style.css'],
@@ -47,6 +48,9 @@ export default class HomeComponent {
   }
   redirectToVenta() {
     this._router.navigate(['/venta']);
+  }
+  redirectToTickets() {
+    this._router.navigate(['/tickets']);
   }
 
 }

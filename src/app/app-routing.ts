@@ -1,9 +1,9 @@
 import { RouterModule, Routes } from '@angular/router';
-
 import { authGuard, publicGuard } from './core/guards';
 import { NgModule } from '@angular/core';
 import ProductoComponent from './pages/producto/producto.component';
 import { VentaComponent } from './pages/venta/venta.component';
+import { TicketssComponent } from './pages/ticketss/ticketss.component';
 
 export const routes: Routes = [
   {
@@ -26,11 +26,17 @@ export const routes: Routes = [
     ],
   },
   { path: 'producto',
+    canActivate: [authGuard],
    component: ProductoComponent 
   },
   { path: 'venta',
+    canActivate: [authGuard],
    component: VentaComponent
   },
+  { path: 'tickets',
+    canActivate: [authGuard],
+    component: TicketssComponent
+ },
 
 ];
 
