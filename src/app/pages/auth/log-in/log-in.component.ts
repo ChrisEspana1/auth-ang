@@ -37,6 +37,7 @@ interface LogInForm {
   ],
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
+  styleUrls: ['./log-in.component.css'],
   providers: [],
 })
 export default class LogInComponent {
@@ -97,7 +98,7 @@ export default class LogInComponent {
 
   openSnackBar() {
     return this._snackBar.open('Succesfully Log in 😀', 'Close', {
-      duration: 2500,
+      duration: 3500,
       verticalPosition: 'top',
       horizontalPosition: 'end',
     });

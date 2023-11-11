@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import ProductoComponent from './pages/producto/producto.component';
 import { VentaComponent } from './pages/venta/venta.component';
 import { TicketssComponent } from './pages/ticketss/ticketss.component';
+import { CompraComponent } from './pages/compra/compra.component';
+import { ProveedorComponent } from './pages/proveedor/proveedor.component';
 
 export const routes: Routes = [
   {
@@ -39,7 +41,11 @@ export const routes: Routes = [
  },
  { path: 'proveedor',
  canActivate: [authGuard],
- component: ProductoComponent
+ component: ProveedorComponent
+},
+{ path: 'compras',
+canActivate: [authGuard],
+component: CompraComponent
 },
 
 ];

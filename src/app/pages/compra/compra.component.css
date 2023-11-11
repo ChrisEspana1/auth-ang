@@ -3,31 +3,40 @@
 body {
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
-    line-height: 1.7;
     color: #ffeba7;
-
-    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.container {
+.form-container {
+    max-width: 950px;
+    margin: auto;
     padding: 60px;
-    border-radius: 10px;   
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
-    display: flex;  
-    flex-direction: column;
-    align-items: center; /* Centra horizontalmente */
-    justify-content: center; /* Centra verticalmente */
-    
 }
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 60px;
+    background-color: #0f111e;
+    
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+
+
+}
+
 
 .form-group {
     margin-top: 10px; /* Espacio entre los grupos de input */
     width: 100%; /* Ancho al 100% para centrar los inputs */
     display: flex; /* Flexbox para alinear horizontalmente */
     align-items: center; /* Alinear verticalmente */
-    
 }
 .form-group label {
     width: 120px; /* Ajusta este valor según tu preferencia */
@@ -44,8 +53,9 @@ body {
     letter-spacing: 0.5px;
     outline: none;
     color: #c4c3ca;
-     border: none;
-       transition: all 200ms linear;
+    background-color: #1f2029;
+    border: none;
+    transition: all 200ms linear;
     box-shadow: 0 4px 8px 0 rgba(21, 21, 21, 0.2);
     text-align: center; /* Centra el contenido */
 }
@@ -60,19 +70,53 @@ body {
     text-transform: uppercase;
     transition: all 200ms linear;
     letter-spacing: 1px;
-    background-color: #69f0ae;
+    background-color: #ffeba7;
     color: #000000;
 }
 
 .btn:hover {
     background-color: #000000;
-    color: #69f0ae;
+    color: #ffeba7;
     box-shadow: 0 8px 24px 0 rgba(16, 39, 112, 0.2);
 }
 .success-message {
     background-color: #d4edda;
-    color: #155724;
+    color: #21df4d;
     padding: 10px;
     border: 1px solid #c3e6cb;
     margin-top: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+input, select, textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.confirmation {
+    color: green;
+    margin-top: 10px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid #ccc;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
 }

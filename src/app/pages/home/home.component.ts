@@ -7,10 +7,11 @@ import { Router } from '@angular/router';
 import { VentaComponent } from '../venta/venta.component';
 import { TicketssComponent } from '../ticketss/ticketss.component';
 import { ProveedorComponent } from '../proveedor/proveedor.component';
+import { CompraComponent } from '../compra/compra.component';
 
 @Component({
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatButtonToggleModule, VentaComponent, TicketssComponent, ProveedorComponent],
+  imports: [MatToolbarModule, MatButtonModule, MatButtonToggleModule, VentaComponent, TicketssComponent, ProveedorComponent, CompraComponent],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./style.css'],
@@ -55,5 +56,8 @@ export default class HomeComponent {
   }
   redirectToProveedor(){
     this._router.navigate(['/proveedor']);
+  }
+  redirectToCompras(){
+    this._router.navigate(['/compras']);
   }
 }

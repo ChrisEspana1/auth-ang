@@ -1,0 +1,29 @@
+<app-home></app-home>
+<body>   
+    <div class="container">
+        <h1>Ingreso de Pedidos de Compras</h1>        
+        <form action="" method="POST">
+            <label for="nombre_cliente">Nombre del Cliente:</label>
+            <input type="text" name="nombre_cliente" required>
+            
+            <label for="producto">Producto o Servicio:</label>
+            <input type="text" name="producto" required>
+            
+            <label for="descripcion">Descripción:</label>
+            <textarea name="descripcion" rows="4" required></textarea>
+            
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" name="cantidad" required>
+
+            <label for="precio">Precio:</label>
+            <input type="number" name="precio" step="0.01" required>
+
+            <label for="tipo">Tipo de Pedido:</label>
+            <select name="tipo">
+                <option value="pedido">Pedido</option>
+                <option value="compra">Compra</option>
+            </select>
+            <button class="btn" type="submit" name="submit">Ingrese Orden</button>
+        </form>
+    </div>
+</body>

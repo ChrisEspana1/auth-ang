@@ -1,2 +1,58 @@
+<app-home></app-home>
+<body>
+<div class="form-container">
+    <h2>Ingreso de Proveedores y Pedido</h2>
+    <!-- Formulario para ingresar proveedores y pedidos -->
+    <form id="proveedorPedidoForm">
+        <label>Proveedor:</label>
+            <div>
+                <label for="nombre">Nombre:</label> 
+                <input type="text" name="nombre">
+            </div>
+            <div>
+                <label for="direccion">Dirección: </label>
+                <input type="text" name="direccion">
+            </div>
+           <div>
+            <label for="telefono"> Teléfono:</label> 
+            <input type="text" name="telefono">
+           </div>
+            <div>
+                <label>Pedido:</label><br>
+                <label for="id_proveedor">Proveedor ID: </label>
+                <input type="text" name="id_proveedor">
+            </div>
+            <div>
+                <label for="Fecha">Fecha:</label>
+                <input type="date" name="fecha">
+            </div>
+            <div>
+                <label for="descripcion">Descripción:</label>
+                <input type="text" name="descripcion">
+            </div>
+           
+            <button type="button" class="btn" onclick="guardarDatos()">Guardar</button>
+    </form>
 
-<p>proveedor works!</p>
+    <table id="tablaDatos">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Proveedor ID</th>
+                <th>Fecha</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ... (Datos de la tabla) ... -->
+        </tbody>
+    </table>
+
+    <script>
+        
+    </script>
+</div>
+</body>

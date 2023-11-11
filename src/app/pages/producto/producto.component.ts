@@ -7,7 +7,7 @@ import HomeComponent from '../home/home.component';
   selector: 'app-producto',
   imports: [HomeComponent],
   templateUrl: './producto.component.html',
-  styleUrls: ['./style.css']
+  styleUrls: ['./producto.style.css']
 })
 export default class ProductoComponent {
   
