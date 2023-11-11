@@ -37,6 +37,10 @@ export const routes: Routes = [
     canActivate: [authGuard],
     component: TicketssComponent
  },
+ { path: 'proveedor',
+ canActivate: [authGuard],
+ component: ProductoComponent
+},
 
 ];
 

@@ -6,10 +6,11 @@ import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { VentaComponent } from '../venta/venta.component';
 import { TicketssComponent } from '../ticketss/ticketss.component';
+import { ProveedorComponent } from '../proveedor/proveedor.component';
 
 @Component({
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatButtonToggleModule, VentaComponent, TicketssComponent],
+  imports: [MatToolbarModule, MatButtonModule, MatButtonToggleModule, VentaComponent, TicketssComponent, ProveedorComponent],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./style.css'],
@@ -52,5 +53,7 @@ export default class HomeComponent {
   redirectToTickets() {
     this._router.navigate(['/tickets']);
   }
-
+  redirectToProveedor(){
+    this._router.navigate(['/proveedor']);
+  }
 }

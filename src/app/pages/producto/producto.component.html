@@ -1,21 +1,20 @@
 <app-home></app-home>
-
 <div class="container">
-    <h2>Ingreso de Productos</h2>
-    <form class="form-style">
+    <h1>Ingreso de Productos</h1>
+    <form id="productoForm" class="form-style">
       <div class="form-group">
         <label for="nombre">Nombre del Producto:</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre del producto" >
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre del producto" #producto required>
       </div>
       <div class="form-group">
         <label for="stock">Stock del Producto:</label>
-        <input type="text" class="form-control" id="stock" name="stock" placeholder="Ingrese el stock del producto">
+        <input type="text" class="form-control" id="stock" name="stock" placeholder="Ingrese el stock del producto" #stock required>
       </div>
       <div class="form-group">
         <label for="prov">Proveedor del Producto:</label>
-        <input type="text" class="form-control" id="prov" name="prov" placeholder="Ingrese el proveedor del producto">
+        <input type="text" class="form-control" id="prov" name="prov" placeholder="Ingrese el proveedor del producto" #idprov required>
       </div>
-      <button type="submit" class="btn btn-primary">Agregar Producto</button>
+      <button class="btn btn-primary">Agregar Producto</button>
     </form>
   </div>
   
@@ -31,11 +30,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let producto of productos">
-          <td>{{ producto.Producto_id }}</td>
-          <td>{{ producto.Producto_nombre }}</td>
-          <td>{{ producto.Producto_stock }}</td>
-          <td>{{ producto.Producto_Proveedor_id }}</td>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
         </tr>
       </tbody>
     </table>

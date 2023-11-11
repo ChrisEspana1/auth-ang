@@ -10,12 +10,19 @@ import HomeComponent from '../home/home.component';
   styleUrls: ['./style.css']
 })
 export default class ProductoComponent {
-    
-  constructor(private router: Router) { }
+  
+    constructor(private router: Router) { }
 
-  agregarProducto(): void {
-    // Aquí puedes agregar la lógica para agregar un producto
-    // Debes enviar los datos al servidor o almacenarlos en tu base de datos
+  agregarProducto(
+    producto: string,
+    stock: string,
+    idprov: string) {
+      console.log('Producto: ' + producto + stock + idprov);
+  //    this.producto.producto = producto;
+    //  this.producto.existencia = existencia;
+      //this.producto.id_categoria = categoria;
+
+
   }
 
   regresar(): void {
