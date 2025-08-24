@@ -1,5 +1,9 @@
 <mat-toolbar color="accent">
-    <span class="mat-toolbar-button-spacing">Inicio |</span>
+    <div class="logo">
+      <!-- Logotipo conceptual: Placeholder de imagen con referencia a una hoja -->
+      <img src="https://www.shutterstock.com/image-vector/green-leaf-icons-leaves-trees-260nw-2478074383.jpg" alt="Logotipo AgroConecta">
+      <span>AgroConecta</span>
+    </div>
     <mat-button-toggle-group>
       <button mat-flat-button (click)="redirectToVenta()" class="mat-toolbar-button-spacing">Iniciar Proceso Venta</button>
       <button mat-flat-button (click)="redirectToProducto()" class="mat-toolbar-button-spacing">Ingreso de Productos</button>

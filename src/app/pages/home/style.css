@@ -294,3 +294,16 @@ margin-bottom: 40px;
   .mat-toolbar-button-spacing {
     margin-right: 10px;
 }
+.logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      width: 50px;
+      height: 50px;
+    }
+    .logo span {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
