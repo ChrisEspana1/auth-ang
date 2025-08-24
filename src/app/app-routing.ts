@@ -8,6 +8,7 @@ import { CompraComponent } from './pages/compra/compra.component';
 import { ProveedorComponent } from './pages/proveedor/proveedor.component';
 import { CursosComponent } from './pages/cursos/cursos.component';
 import { ForosComponent } from './pages/foros/foros.component';
+import { CursoSiembraCafeComponent } from './pages/curso-siembra-cafe/curso-siembra-cafe.component';
 
 export const routes: Routes = [
   {
@@ -56,6 +57,10 @@ component: CursosComponent
 { path: 'foros',
 canActivate: [authGuard],
 component: ForosComponent
+},
+{ path: 'curso-siembra-cafe',
+canActivate: [authGuard],
+component: CursoSiembraCafeComponent
 }
 
 ];

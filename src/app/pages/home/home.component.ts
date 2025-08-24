@@ -4,16 +4,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
-import { VentaComponent } from '../venta/venta.component';
-import { TicketssComponent } from '../ticketss/ticketss.component';
-import { ProveedorComponent } from '../proveedor/proveedor.component';
-import { CompraComponent } from '../compra/compra.component';
-import { CursosComponent } from '../cursos/cursos.component';
-import { ForosComponent } from '../foros/foros.component';
+
 
 @Component({
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatButtonToggleModule, VentaComponent, TicketssComponent, ProveedorComponent, CompraComponent, CursosComponent, ForosComponent],
+  imports: [MatToolbarModule, MatButtonModule, MatButtonToggleModule],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./style.css'],
