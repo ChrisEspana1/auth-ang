@@ -8,10 +8,12 @@ import { VentaComponent } from '../venta/venta.component';
 import { TicketssComponent } from '../ticketss/ticketss.component';
 import { ProveedorComponent } from '../proveedor/proveedor.component';
 import { CompraComponent } from '../compra/compra.component';
+import { CursosComponent } from '../cursos/cursos.component';
+import { ForosComponent } from '../foros/foros.component';
 
 @Component({
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatButtonToggleModule, VentaComponent, TicketssComponent, ProveedorComponent, CompraComponent],
+  imports: [MatToolbarModule, MatButtonModule, MatButtonToggleModule, VentaComponent, TicketssComponent, ProveedorComponent, CompraComponent, CursosComponent, ForosComponent],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./style.css'],
@@ -59,5 +61,11 @@ export default class HomeComponent {
   }
   redirectToCompras(){
     this._router.navigate(['/compras']);
+  }
+  redirectToCursos(){
+    this._router.navigate(['/cursos']);
+  }
+  redirectToForos(){
+    this._router.navigate(['/foros']);
   }
 }

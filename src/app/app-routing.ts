@@ -6,6 +6,8 @@ import { VentaComponent } from './pages/venta/venta.component';
 import { TicketssComponent } from './pages/ticketss/ticketss.component';
 import { CompraComponent } from './pages/compra/compra.component';
 import { ProveedorComponent } from './pages/proveedor/proveedor.component';
+import { CursosComponent } from './pages/cursos/cursos.component';
+import { ForosComponent } from './pages/foros/foros.component';
 
 export const routes: Routes = [
   {
@@ -47,6 +49,14 @@ export const routes: Routes = [
 canActivate: [authGuard],
 component: CompraComponent
 },
+{ path: 'cursos',
+canActivate: [authGuard],
+component: CursosComponent
+},
+{ path: 'foros',
+canActivate: [authGuard],
+component: ForosComponent
+}
 
 ];
 

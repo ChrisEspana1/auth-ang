@@ -307,3 +307,9 @@ margin-bottom: 40px;
       font-weight: 600;
       margin-left: 0.5rem;
     }
+    .spacer {
+  flex: 2 2 auto;
+}
+.mat-toolbar-button-spacing {
+  margin-right: 10px;
+}

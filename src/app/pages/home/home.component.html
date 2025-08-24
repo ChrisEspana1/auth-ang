@@ -2,14 +2,15 @@
     <div class="logo">
       <!-- Logotipo conceptual: Placeholder de imagen con referencia a una hoja -->
       <img src="https://www.shutterstock.com/image-vector/green-leaf-icons-leaves-trees-260nw-2478074383.jpg" alt="Logotipo AgroConecta">
-      <span>AgroConecta</span>
+      <span class="spacer">AgroConecta</span>
     </div>
     <mat-button-toggle-group>
-      <button mat-flat-button (click)="redirectToVenta()" class="mat-toolbar-button-spacing">Iniciar Proceso Venta</button>
+      <button mat-flat-button (click)="redirectToForos()" class="mat-toolbar-button-spacing">Foros</button>
+      <button mat-flat-button (click)="redirectToCursos()" class="mat-toolbar-button-spacing">Ingreso de Cursos</button>
       <button mat-flat-button (click)="redirectToProducto()" class="mat-toolbar-button-spacing">Ingreso de Productos</button>
       <button mat-flat-button (click)="redirectToTickets()" class="mat-toolbar-button-spacing">Reimpresion de ticket</button>
       <button mat-flat-button (click)="redirectToProveedor()" class="mat-toolbar-button-spacing">Ingreso de Proveedores y Pedido</button>
-      <button mat-flat-button (click)="redirectToCompras()" class="mat-toolbar-button-spacing">Ingreso de Pedidos de Compras</button>
+      <button mat-flat-button (click)="redirectToCompras()" class="mat-toolbar-button-spacing">Ingreso de Pedidos de Compras</button>      
     </mat-button-toggle-group>
     <button mat-flat-button (click)="logOut()" class="mat-toolbar-button-spacing">Log out</button>
   </mat-toolbar>
