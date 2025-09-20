@@ -63,4 +63,7 @@ export default class HomeComponent {
   redirectToForos(){
     this._router.navigate(['/foros']);
   }
+  goHome(){
+    this._router.navigateByUrl('/home');
+  }
 }

@@ -1,8 +1,9 @@
 <mat-toolbar color="accent">
     <div class="logo">
       <!-- Logotipo conceptual: Placeholder de imagen con referencia a una hoja -->
-      <img src="https://www.shutterstock.com/image-vector/green-leaf-icons-leaves-trees-260nw-2478074383.jpg" alt="Logotipo AgroConecta">
-      <span class="spacer">AgroConecta</span>
+      <img src="assets\images\agroconecta.png" alt="Logotipo AgroConecta" (click)="goHome()"style="cursor:pointer;">
+    <!--<span class="spacer">AgroConecta</span>-->
+    <span class="spacer" (click)="goHome()" style="cursor:pointer;">AgroConecta</span>
     </div>
     <mat-button-toggle-group>
       <button mat-flat-button (click)="redirectToForos()" class="mat-toolbar-button-spacing">Foros</button>
@@ -14,3 +15,4 @@
     </mat-button-toggle-group>
     <button mat-flat-button (click)="logOut()" class="mat-toolbar-button-spacing">Log out</button>
   </mat-toolbar>
+ 
