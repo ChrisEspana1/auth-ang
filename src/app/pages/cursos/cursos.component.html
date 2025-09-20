@@ -1,6 +1,5 @@
 <app-home></app-home>
 <body>
-
   <!-- Banner de la sección de cursos -->
   <section class="courses-header">
     <h1>Cursos Agropecuarios</h1>
@@ -16,16 +15,17 @@
         <label for="categoria">Categoría</label>
         <select id="categoria">
           <option value="todos">Todos</option>
-          <option value="cafe">Café</option>
-          <option value="organicos">Cultivos Orgánicos</option>
-          <option value="riego">Riego Eficiente</option>
+          <option value="cultivo">Cultivo</option>
+          <option value="riego">Riego</option>
+          <option value="fumigacion">Fumigación</option>
+          <option value="cosecha">Cosecha</option>
         </select>
       </div>
       <div class="filter-group">
         <label for="nivel">Nivel</label>
         <select id="nivel">
           <option value="todos">Todos</option>
-          <option value="basico">Básico</option>
+          <option value="principiante">Principiante</option>
           <option value="intermedio">Intermedio</option>
           <option value="avanzado">Avanzado</option>
         </select>
@@ -36,48 +36,27 @@
       </div>
     </aside>
     
-    <!-- Listado de cursos -->
+    <!-- Listado de cursos dinámico -->
     <section class="courses-list">
-      <div class="course-card">
-        <h3>Siembra y Cuidado del Café</h3>
-        <p>Conoce las mejores técnicas para el cultivo y manejo del café, a través de material didáctico y videos.</p>
-        <a class="btn" (click)="redirectToCursoSiembraCafe()">Ver Más</a>
-      </div>
-      <div class="course-card">
-        <h3>Manejo de Cultivos Orgánicos</h3>
-        <p>Descubre prácticas sostenibles para la producción de cultivos orgánicos en entornos rurales.</p>
-        <a href="#" class="btn">Ver Más</a>
-      </div>
-      <div class="course-card">
-        <h3>Técnicas de Riego Eficiente</h3>
-        <p>Optimiza el uso del agua en tus cultivos mediante métodos probados y recomendaciones prácticas.</p>
-        <a href="#" class="btn">Ver Más</a>
-      </div>
-      <div class="course-card">
-        <h3>Innovación en Agricultura</h3>
-        <p>Explora nuevas tecnologías y enfoques modernos que están transformando la producción agropecuaria.</p>
-        <a href="#" class="btn">Ver Más</a>
+      <div class="course-card" *ngFor="let curso of cursosPaginados">
+        <h3>{{ curso.titulo }}</h3>
+        <p>{{ curso.descripcion }}</p>
+        <a class="btn" (click)="verCurso(curso.id)">Ver Más</a>
       </div>
     </section>
+  </div>
+
+  <!-- Paginación estilo Google -->
+  <div class="pagination">
+    <button *ngFor="let page of paginas"
+            (click)="cambiarPagina(page)"
+            [class.active]="paginaActual === page">
+      {{ page }}
+    </button>
   </div>
   
   <footer>
     <p>&copy; 2025 AgroConecta. Todos los derechos reservados.</p>
   </footer>
-  
-  <script>
-    // JavaScript opcional para el menú en dispositivos móviles
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav');
-    menuToggle.addEventListener('click', () => {
-      nav.classList.toggle('active');
-    });
-    
-    // Ejemplo de listener para el filtro de búsqueda (placeholder para futura implementación)
-    const buscarInput = document.getElementById('buscar');
-    buscarInput.addEventListener('input', function() {
-      console.log('Buscar: ' + this.value);
-      // Aquí podrías implementar la lógica de filtrado de cursos
-    });
-  </script>
+
 </body>
