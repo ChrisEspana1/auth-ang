@@ -1,7 +1,9 @@
-.form {
-  background-color: #f5f5f5;
-  min-height: 100vh; /* para que ocupe toda la pantalla */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+:host {
+  display: block;
+  min-height: 100vh;
+  background-image: url('assets/images/agroconecta.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
 }

@@ -1,18 +1,22 @@
 <mat-toolbar color="accent">
     <div class="logo">
       <!-- Logotipo conceptual: Placeholder de imagen con referencia a una hoja -->
-      <img src="assets\images\agroconecta.png" alt="Logotipo AgroConecta" (click)="goHome()"style="cursor:pointer;">
+      <img src="assets/images/agroconecta.png" alt="Logotipo AgroConecta" (click)="goHome()"style="cursor:pointer;">
     <!--<span class="spacer">AgroConecta</span>-->
     <span class="spacer" (click)="goHome()" style="cursor:pointer;">AgroConecta</span>
     </div>
-    <mat-button-toggle-group>
+    <div class="toolbar-buttons">
+        <mat-button-toggle-group>
       <button mat-flat-button (click)="redirectToForos()" class="mat-toolbar-button-spacing">Foros</button>
       <button mat-flat-button (click)="redirectToCursos()" class="mat-toolbar-button-spacing">Ingreso de Cursos</button>
-     <!-- <button mat-flat-button (click)="redirectToProducto()" class="mat-toolbar-button-spacing">Ingreso de Productos</button>-->
-     <!-- <button mat-flat-button (click)="redirectToTickets()" class="mat-toolbar-button-spacing">Reimpresion de ticket</button>-->
-     <!-- <button mat-flat-button (click)="redirectToProveedor()" class="mat-toolbar-button-spacing">Ingreso de Proveedores y Pedido</button>-->
-      <!--<button mat-flat-button (click)="redirectToCompras()" class="mat-toolbar-button-spacing">Ingreso de Pedidos de Compras</button>     --> 
-    </mat-button-toggle-group>
-    <button mat-flat-button (click)="logOut()" class="mat-toolbar-button-spacing">Log out</button>
+       </mat-button-toggle-group>
+       <button mat-flat-button (click)="logOut()" class="mat-toolbar-button-spacing">Log out</button>
+      </div>
   </mat-toolbar>
+        <!-- <button mat-flat-button (click)="redirectToProducto()" class="mat-toolbar-button-spacing">Ingreso de Productos</button>-->
+      <!-- <button mat-flat-button (click)="redirectToTickets()" class="mat-toolbar-button-spacing">Reimpresion de ticket</button>-->
+      <!-- <button mat-flat-button (click)="redirectToProveedor()" class="mat-toolbar-button-spacing">Ingreso de Proveedores y Pedido</button>-->
+      <!--<button mat-flat-button (click)="redirectToCompras()" class="mat-toolbar-button-spacing">Ingreso de Pedidos de Compras</button>     -->
+
+
  
