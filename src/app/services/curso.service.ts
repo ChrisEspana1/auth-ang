@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Curso } from '../models/cursos.model';
 import { Contenido } from '../models/contenido.model';
+import { Proveedor } from '../models/proveedor.model';
 
 @Injectable({ providedIn: 'root' })
 export class CursoService {
@@ -18,5 +19,9 @@ export class CursoService {
 }
 getContenidosPorCurso(id: string): Observable<Contenido[]> {
   return this.http.get<Contenido[]>(`${this.apiUrl}/${id}/contenidos`);
+}
+
+getProveedoresPorCurso(id: string): Observable<Proveedor[]> {
+  return this.http.get<Proveedor[]>(`${this.apiUrl}/${id}/proveedores`);
 }
 }

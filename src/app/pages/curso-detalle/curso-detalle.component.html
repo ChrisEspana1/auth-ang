@@ -16,11 +16,7 @@
     <!-- Video tutorial -->
     <section class="course-video">
       <h2>Video Tutorial</h2>
-      <iframe
-        [src]="curso.url_video | safeUrl"
-        allowfullscreen
-        title="Video del curso"
-      ></iframe>
+      <iframe [src]="curso.url_video | safeUrl" allowfullscreen title="Video del curso"></iframe>
     </section>
 
     <!-- Tabla de Contenidos -->
@@ -42,11 +38,12 @@
     <p>
       Si deseas asesoría o productos para el cultivo, inicia un chat directo con proveedores asociados al curso.
     </p>
-    <button class="btn btn-chat">Iniciar Chat</button>
+
+    <!-- Componente que lista los proveedores -->
+    <app-curso-proveedores></app-curso-proveedores>
   </aside>
 </div>
 
 <footer>
   <p>© 2025 AgroConecta. Todos los derechos reservados.</p>
 </footer>
-

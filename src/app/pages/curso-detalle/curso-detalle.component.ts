@@ -7,10 +7,14 @@ import { CommonModule } from '@angular/common';
 import HomeComponent from '../home/home.component';
 import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
 import { Contenido } from 'src/app/models/contenido.model';
+import { ProveedorChatService } from '../../services/proveedor-chat.service';
+import { Proveedor } from '../../models/proveedor.model';
+import { CursoProveedoresComponent } from '../curso-proveedores/curso-proveedores.component';
+
 
 @Component({
   standalone: true,
-  imports: [CommonModule, HomeComponent, SafeUrlPipe],
+  imports: [CommonModule, HomeComponent, SafeUrlPipe, CursoProveedoresComponent],
   selector: 'app-curso-detalle',
   templateUrl: './curso-detalle.component.html',
   styleUrls: ['./curso-detalle.component.css']
@@ -19,11 +23,13 @@ import { Contenido } from 'src/app/models/contenido.model';
 export class CursoDetalleComponent implements OnInit {
   curso: Curso | null = null;
   contenidos: Contenido[];
+  proveedorSeleccionado: Proveedor | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private cursoService: CursoService,
-    private http: HttpClient
+    private http: HttpClient,
+    private proveedorChatService: ProveedorChatService
   ) {
     this.contenidos = [];
   }
@@ -39,6 +45,20 @@ export class CursoDetalleComponent implements OnInit {
         this.contenidos = data;
       });
 
+      this.proveedorChatService.proveedor$.subscribe(proveedor => {
+        this.proveedorSeleccionado = proveedor;
+      });
     }
   }
+  
+abrirWhatsapp(numero: string): void {
+  const url = `https://wa.me/${numero}`;
+  window.open(url, '_blank');
+}
+
+enviarEmail(correo: string): void {
+  const url = `mailto:${correo}`;
+  window.open(url, '_blank');
+}
+
 }
