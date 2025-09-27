@@ -1,1 +1,23 @@
-<p>curso-detalle works!</p>
+<app-home></app-home>
+<div class="curso-detalle" *ngIf="curso">
+  <section class="curso-info">
+    <h2>{{ curso.titulo }}</h2>
+    <p>{{ curso.descripcion }}</p>
+    <div class="video">
+      <iframe [src]="curso.url_video | safeUrl" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <h3>Tabla de Contenidos</h3>
+    <ul>
+      <li>Preparación del Terreno</li>
+      <li>Selección de Semillas</li>
+      <li>Riego y Fertilización</li>
+      <li>Control de Plagas</li>
+      <li>Cosecha y Post-Cosecha</li>
+    </ul>
+
+    <button class="btn-chat">Iniciar Chat con Proveedores</button>
+  </section>
+
+  <footer>
+    © 2025 AgroConecta. Todos los derechos reservados.
+  </footer>
