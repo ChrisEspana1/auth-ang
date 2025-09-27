@@ -1,23 +1,52 @@
 <app-home></app-home>
-<div class="curso-detalle" *ngIf="curso">
-  <section class="curso-info">
-    <h2>{{ curso.titulo }}</h2>
-    <p>{{ curso.descripcion }}</p>
-    <div class="video">
-      <iframe [src]="curso.url_video | safeUrl" frameborder="0" allowfullscreen></iframe>
-    </div>
-    <h3>Tabla de Contenidos</h3>
-    <ul>
-      <li>Preparación del Terreno</li>
-      <li>Selección de Semillas</li>
-      <li>Riego y Fertilización</li>
-      <li>Control de Plagas</li>
-      <li>Cosecha y Post-Cosecha</li>
-    </ul>
+<section class="course-header" *ngIf="curso">
+  <h1>{{ curso.titulo }}</h1>
+  <p>{{ curso.descripcion }}</p>
+</section>
 
-    <button class="btn-chat">Iniciar Chat con Proveedores</button>
-  </section>
+<div class="container" *ngIf="curso">
+  <!-- Contenido principal del curso -->
+  <div class="course-content">
+    <!-- Descripción del curso -->
+    <section class="course-description">
+      <h2>Descripción del Curso</h2>
+      <p>{{ curso.descripcion }}</p>
+    </section>
 
-  <footer>
-    © 2025 AgroConecta. Todos los derechos reservados.
-  </footer>
+    <!-- Video tutorial -->
+    <section class="course-video">
+      <h2>Video Tutorial</h2>
+      <iframe
+        [src]="curso.url_video | safeUrl"
+        allowfullscreen
+        title="Video del curso"
+      ></iframe>
+    </section>
+
+    <!-- Tabla de Contenidos -->
+    <section class="course-toc">
+      <h2>Tabla de Contenidos</h2>
+      <ul>
+        <li *ngFor="let item of contenidos">
+          <a [href]="item.url_recurso" target="_blank" title="{{ item.descripcion }}">
+            {{ item.titulo }}
+          </a>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- Panel lateral: Contactar a Proveedores -->
+  <aside class="course-sidebar">
+    <h2>Contacta Proveedores</h2>
+    <p>
+      Si deseas asesoría o productos para el cultivo, inicia un chat directo con proveedores asociados al curso.
+    </p>
+    <button class="btn btn-chat">Iniciar Chat</button>
+  </aside>
+</div>
+
+<footer>
+  <p>© 2025 AgroConecta. Todos los derechos reservados.</p>
+</footer>
+

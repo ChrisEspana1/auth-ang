@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import HomeComponent from '../home/home.component';
 import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
+import { Contenido } from 'src/app/models/contenido.model';
 
 @Component({
   standalone: true,
@@ -17,12 +18,15 @@ import { SafeUrlPipe } from '../../pipes/safe-url.pipe';
 
 export class CursoDetalleComponent implements OnInit {
   curso: Curso | null = null;
+  contenidos: Contenido[];
 
   constructor(
     private route: ActivatedRoute,
     private cursoService: CursoService,
     private http: HttpClient
-  ) {}
+  ) {
+    this.contenidos = [];
+  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -30,6 +34,11 @@ export class CursoDetalleComponent implements OnInit {
       this.cursoService.getCursoPorId(id).subscribe(data => {
         this.curso = data;
       });
+
+      this.cursoService.getContenidosPorCurso(id).subscribe(data => {
+        this.contenidos = data;
+      });
+
     }
   }
 }

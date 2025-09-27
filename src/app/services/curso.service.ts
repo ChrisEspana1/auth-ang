@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Curso } from '../models/cursos.model';
+import { Contenido } from '../models/contenido.model';
 
 @Injectable({ providedIn: 'root' })
 export class CursoService {
@@ -14,5 +15,8 @@ export class CursoService {
   }
   getCursoPorId(id: string): Observable<Curso> {
   return this.http.get<Curso>(`${this.apiUrl}/${id}`);
+}
+getContenidosPorCurso(id: string): Observable<Contenido[]> {
+  return this.http.get<Contenido[]>(`${this.apiUrl}/${id}/contenidos`);
 }
 }
