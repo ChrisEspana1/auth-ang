@@ -3,7 +3,6 @@ import { authGuard, publicGuard } from './core/guards';
 import { NgModule } from '@angular/core';
 import { CursosComponent } from './pages/cursos/cursos.component';
 import { ForosComponent } from './pages/foros/foros.component';
-import { CursoSiembraCafeComponent } from './pages/curso-siembra-cafe/curso-siembra-cafe.component';
 import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
 
 export const routes: Routes = [
@@ -40,10 +39,6 @@ component: CursosComponent
 { path: 'foros',
 canActivate: [authGuard],
 component: ForosComponent
-},
-{ path: 'curso-siembra-cafe',
-canActivate: [authGuard],
-component: CursoSiembraCafeComponent
 },
 { path: 'curso/:id', 
   component: CursoDetalleComponent 
