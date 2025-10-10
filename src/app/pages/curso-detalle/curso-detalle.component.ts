@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CursoService } from '../../services/curso.service';
 import { Curso } from '../../models/cursos.model';
 import { HttpClient } from '@angular/common/http';
@@ -27,6 +27,7 @@ export class CursoDetalleComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private cursoService: CursoService,
     private http: HttpClient,
     private proveedorChatService: ProveedorChatService
@@ -61,4 +62,7 @@ enviarEmail(correo: string): void {
   window.open(url, '_blank');
 }
 
+volver(){
+  this.router.navigate(['/cursos']);
+}
 }

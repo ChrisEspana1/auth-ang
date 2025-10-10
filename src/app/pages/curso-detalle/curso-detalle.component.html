@@ -5,13 +5,17 @@
 </section>
 
 <div class="container" *ngIf="curso">
-  <!-- Contenido principal del curso -->
+    <!-- Contenido principal del curso -->
   <div class="course-content">
     <!-- Descripción del curso -->
-    <section class="course-description">
-      <h2>Descripción del Curso</h2>
-      <p>{{ curso.descripcion }}</p>
-    </section>
+
+<section class="course-description">
+  <div class="descripcion-header">
+    <button class="btn-volver" (click)="volver()">← Volver a Cursos</button>
+    <h2>Descripción del Curso</h2>
+  </div>
+  <p>{{ curso.descripcion }}</p>
+</section>
 
     <!-- Video tutorial -->
     <section class="course-video">
