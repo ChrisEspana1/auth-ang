@@ -46,7 +46,7 @@ aplicarFiltros(): void {
       const coincideTexto = this.filtroTexto.trim() === '' || curso.titulo.toLowerCase().includes(this.filtroTexto.toLowerCase()) || curso.descripcion.toLowerCase().includes(this.filtroTexto.toLowerCase());
       return coincideCategoria && coincideNivel && coincideTexto;
     });
-    console.log('Cursos filtrados:', this.cursosFiltrados);
+    
     this.generarPaginas();
     this.actualizarCursosPaginados();
   }
