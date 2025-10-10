@@ -30,6 +30,26 @@
   font-size: 1.3rem;
   margin-bottom: 1rem;
 }
+
+.sidebar .btn {
+  background-color: #fff;
+  color: #222;
+  border: 2px solid #ccc;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+
+
+.sidebar .btn:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
 .filter-group {
   margin-bottom: 1.2rem;
 }
