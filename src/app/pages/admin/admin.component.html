@@ -1,16 +1,21 @@
 <app-home></app-home>
+
 <div class="admin-dashboard">
   <aside class="sidebar">
     <h2>Panel de Administración</h2>
     <nav>
       <ul>
-        <li><a routerLink="/admin/users">Gestión de Usuarios</a></li>
-        <li><a routerLink="/admin/courses">Gestión de Cursos</a></li>
-        <li><a routerLink="/admin/providers">Gestión de Proveedores</a></li>
+        <li><button (click)="navigateTo('users')">Gestión de Usuarios</button></li>
+        <li><button (click)="navigateTo('courses')">Gestión de Cursos</button></li>
+        <li><button (click)="navigateTo('providers')">Gestión de Proveedores</button></li>
       </ul>
     </nav>
   </aside>
 
   <main class="content">
+    <router-outlet></router-outlet>
   </main>
 </div>
+<footer>
+    <p>&copy; 2025 AgroConecta. Todos los derechos reservados.</p>
+  </footer>

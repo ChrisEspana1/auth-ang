@@ -5,6 +5,9 @@ import { CursosComponent } from './pages/cursos/cursos.component';
 import { ForosComponent } from './pages/foros/foros.component';
 import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { ProvidersComponent } from './pages/admin/providers/providers.component';
+import { CoursesComponent } from './pages/admin/courses/courses.component';
+import { UsersComponent } from './pages/admin/users/users.component';
 
 export const routes: Routes = [
   {
@@ -46,8 +49,14 @@ component: ForosComponent
 },
 {
   path: 'admin',
+  component: AdminComponent,
   canActivate: [authGuard],
-  component: AdminComponent
+  children: [
+      { path: 'users', component: UsersComponent },
+      { path: 'courses', component: CoursesComponent },
+      { path: 'providers', component: ProvidersComponent },
+      { path: '', redirectTo: 'users', pathMatch: 'full' }
+  ]
 }
 ];
 
