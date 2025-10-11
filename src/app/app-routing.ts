@@ -1,5 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
-import { authGuard, publicGuard } from './core/guards';
+import { adminGuard, authGuard, publicGuard } from './core/guards';
 import { NgModule } from '@angular/core';
 import { CursosComponent } from './pages/cursos/cursos.component';
 import { ForosComponent } from './pages/foros/foros.component';
@@ -50,7 +50,7 @@ component: ForosComponent
 {
   path: 'admin',
   component: AdminComponent,
-  canActivate: [authGuard],
+  canActivate: [adminGuard],
   children: [
       { path: 'users', component: UsersComponent },
       { path: 'courses', component: CoursesComponent },
