@@ -4,14 +4,28 @@ import { firebaseProviders } from './firebase.config';
 import { routes } from './app-routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-const NO_NG_MODULES = importProvidersFrom([BrowserAnimationsModule]);
+const UI_MODULES = importProvidersFrom([
+  BrowserAnimationsModule,
+  CommonModule, // ← necesario para el pipe async
+  FormsModule,
+  MatTableModule,
+  MatSelectModule,
+  MatSlideToggleModule,
+  MatFormFieldModule
+]);
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     firebaseProviders,
-    NO_NG_MODULES,
+    UI_MODULES,
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {

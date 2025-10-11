@@ -1,3 +1,39 @@
-<h2>Gestión de Usuarios</h2>
-<p>Aquí podrás ver, editar y administrar los usuarios registrados en la plataforma.</p>
-<!-- Aquí se colocarán las tablas y formularios -->
+<div class="tabla-usuarios">
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Rol</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usuarios$ | async">
+        <td>
+          <span *ngIf="!editando[user.id]">{{ user.name || 'Sin nombre' }}</span>
+          <input *ngIf="editando[user.id]" [(ngModel)]="ediciones[user.id].name" />
+        </td>
+        <td>{{ user.email }}</td>
+        <td>
+          <span *ngIf="!editando[user.id]">{{ user.rol }}</span>
+          <select *ngIf="editando[user.id]" [(ngModel)]="ediciones[user.id].rol">
+            <option *ngFor="let rol of roles" [value]="rol">{{ rol }}</option>
+          </select>
+        </td>
+        <td>
+          <span *ngIf="!editando[user.id]">{{ user.activo ? 'Activo' : 'Inactivo' }}</span>
+          <input *ngIf="editando[user.id]" type="checkbox" [(ngModel)]="ediciones[user.id].activo" />
+        </td>
+        <td>
+          <button *ngIf="!editando[user.id]" (click)="activarEdicion(user.id)">Editar</button>
+          <div *ngIf="editando[user.id]">
+            <button (click)="guardarCambios(user.id)">Guardar</button>
+            <button (click)="cancelarEdicion(user.id)">Cancelar</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
