@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CursosComponent } from './pages/cursos/cursos.component';
 import { ForosComponent } from './pages/foros/foros.component';
 import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 export const routes: Routes = [
   {
@@ -42,6 +43,11 @@ component: ForosComponent
 },
 { path: 'curso/:id', 
   component: CursoDetalleComponent 
+},
+{
+  path: 'admin',
+  canActivate: [authGuard],
+  component: AdminComponent
 }
 ];
 

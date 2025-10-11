@@ -1,0 +1,41 @@
+.admin-dashboard {
+  display: flex;
+  height: 100vh;
+font-family: 'Open Sans', sans-serif;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #69f0ae;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 15px 0;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+.content {
+  flex: 1;
+  padding: 30px;
+  background-color: #f5f5f5;
+}
