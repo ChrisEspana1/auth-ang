@@ -51,8 +51,23 @@
   background-color: #f5f5f5;
 }
 footer {
-      background-color: #69f0ae;
-      color: #fff;
-      text-align: center;
-      padding: 1rem;
-    }
+  background-color: #69f0ae;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: auto;
+}
+
+/* Asegura que el contenedor principal tenga flex para empujar el footer al final */
+.admin-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* El contenido principal debe crecer para empujar el footer */
+.admin-content {
+  flex: 1;
+}

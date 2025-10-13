@@ -3,13 +3,16 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { UserFormDialogComponent } from 'src/app/components/user-form-dialog/user-form-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, MatDialogModule]
 })
 
 export class UsersComponent implements OnInit {
@@ -28,7 +31,10 @@ export class UsersComponent implements OnInit {
   };
 
 
-  constructor(private usuariosService: UsuariosService) { }
+  constructor(
+    private usuariosService: UsuariosService,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.usuarios$ = this.usuariosService.getUsuarios();
@@ -82,5 +88,16 @@ crearUsuario() {
       };
     })
     .catch(err => console.error('Error al crear usuario', err));
+}
+
+abrirModalNuevoUsuario() {
+  const dialogRef = this.dialog.open(UserFormDialogComponent);
+
+  dialogRef.afterClosed().subscribe(resultado => {
+    if (resultado) {
+      this.mensajeExito = 'Usuario creado correctamente';
+      setTimeout(() => this.mensajeExito = null, 3000);
+    }
+  });
 }
 }

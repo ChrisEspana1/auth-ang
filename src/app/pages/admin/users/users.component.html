@@ -3,6 +3,7 @@
 </div>
 <div>
   <h2>Creacion de Usuarios</h2>
+
 <button class="boton-principal" (click)="mostrarFormularioNuevoUsuario = true">Nuevo usuario</button>
 </div>
 
@@ -30,7 +31,7 @@
   </form>
 </div>
 
-<div class="tabla-usuarios">
+<div class="tabla-usuarios" *ngIf="!mostrarFormularioNuevoUsuario">
   <h2>Lista de Usuarios</h2>
   <table>
     <thead>
