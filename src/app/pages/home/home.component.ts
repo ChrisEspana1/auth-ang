@@ -41,21 +41,9 @@ export default class HomeComponent {
 
   redirectTo(url: string): void {
     this._router.navigateByUrl(url);
-  }
-  redirectToProducto() {
-    this._router.navigate(['/producto']);
-  }
-  redirectToVenta() {
-    this._router.navigate(['/venta']);
-  }
-  redirectToTickets() {
-    this._router.navigate(['/tickets']);
-  }
+  }  
   redirectToProveedor(){
     this._router.navigate(['/proveedor']);
-  }
-  redirectToCompras(){
-    this._router.navigate(['/compras']);
   }
   redirectToCursos(){
     this._router.navigate(['/cursos']);

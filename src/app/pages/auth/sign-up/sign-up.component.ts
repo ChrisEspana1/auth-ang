@@ -34,10 +34,9 @@ interface SignUpForm {
     MatButtonModule,
     ReactiveFormsModule,
     RouterModule,
-    NgIf,
     MatSnackBarModule,
-    ButtonProviders,
-  ],
+    ButtonProviders
+],
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   providers: [],

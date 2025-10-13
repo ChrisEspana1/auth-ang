@@ -31,10 +31,9 @@ interface LogInForm {
     MatButtonModule,
     ReactiveFormsModule,
     RouterModule,
-    NgIf,
     MatSnackBarModule,
-    ButtonProviders,
-  ],
+    ButtonProviders
+],
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.css'],

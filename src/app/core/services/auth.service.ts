@@ -74,7 +74,7 @@ export class AuthService {
         name: user.displayName || '',
         email: user.email || '',
         rol: 'estudiante', // rol por defecto
-        activo: true // estado por defecto
+        activo: false // estado por defecto
       });
     }
 
