@@ -26,7 +26,9 @@ export default class HomeComponent {
   redirectTo(url: string): void {
     this._router.navigateByUrl(url);
   }
-
+  redirectToInicio() {
+    this._router.navigate(['/home']);
+  }
   goHome() {
     this._router.navigateByUrl('/home');
   }

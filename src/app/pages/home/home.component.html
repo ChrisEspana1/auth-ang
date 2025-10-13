@@ -9,6 +9,7 @@
   </div>
 
   <div class="toolbar-buttons desktop-only">
+    <button mat-flat-button (click)="redirectToInicio()">Inicio</button>
     <button mat-flat-button (click)="redirectToForos()">Foros</button>
     <button mat-flat-button (click)="redirectToCursos()">Ingreso de Cursos</button>
     <button mat-flat-button (click)="logOut()">Log out</button>
@@ -17,6 +18,7 @@
 
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="over" class="mobile-menu">
+    <button mat-button (click)="redirectToInicio()">Inicio</button>
     <button mat-button (click)="redirectToForos()">Foros</button>
     <button mat-button (click)="redirectToCursos()">Ingreso de Cursos</button>
     <button mat-button (click)="logOut()">Log out</button>
