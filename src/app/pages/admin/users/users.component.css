@@ -1,22 +1,42 @@
 /* Estructura general */
 .tabla-usuarios {
   padding: 1rem;
+  overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
 }
+
 
 table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 600px; /* Asegura que la tabla no se comprima demasiado */
 }
 
 th, td {
   padding: 0.5rem;
   border: 1px solid #ccc;
   text-align: left;
+  color: #006400;
 }
 
 thead {
   background-color: #f0f0f0;
 }
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 600px) {
+  .tabla-usuarios {
+    padding: 0.5rem;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 0.4rem;
+  }
+}
+
 
 /* Botones base */
 .boton {
@@ -147,4 +167,8 @@ thead {
   .boton-inactivar {
     width: 100%;
   }
+}
+/* Estilo para títulos h2 */
+h2 {
+  color: #006400;
 }
