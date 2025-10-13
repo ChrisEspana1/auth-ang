@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CursoService } from '../../services/curso.service';
 import { Curso } from '../../models/cursos.model';
 import { Router } from '@angular/router';
-import HomeComponent from '../home/home.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
-  imports: [HomeComponent, CommonModule, HttpClientModule, FormsModule],
+  imports: [CommonModule, HttpClientModule, FormsModule],
   selector: 'app-cursos',
   templateUrl: './cursos.component.html',
   styleUrls: ['./cursos.component.css']

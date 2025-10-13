@@ -1,2 +1,98 @@
 <h2>Gestión de Cursos</h2>
-<p>Administra los cursos disponibles, agrega nuevos contenidos y edita los existentes.</p>
+
+<button class="boton-principal" (click)="mostrarFormularioNuevo = true">Nuevo curso</button>
+
+<div *ngIf="mostrarFormularioNuevo" class="formulario-curso">
+  <h2>Crear nuevo curso</h2>
+  <form (ngSubmit)="crearCurso()">
+    <label for="titulo">Título:</label>
+    <input id="titulo" [(ngModel)]="nuevoCurso.titulo" name="titulo" required />
+
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" [(ngModel)]="nuevoCurso.descripcion" name="descripcion" required></textarea>
+
+    <label for="categoria">Categoría:</label>
+    <input id="categoria" [(ngModel)]="nuevoCurso.categoria" name="categoria" required />
+
+    <label for="nivel">Nivel:</label>
+    <select id="nivel" [(ngModel)]="nuevoCurso.nivel" name="nivel" required>
+      <option value="">Selecciona un nivel</option>
+      <option value="principiante">Principiante</option>
+      <option value="intermedio">Intermedio</option>
+      <option value="avanzado">Avanzado</option>
+    </select>
+
+    <label for="url_video">URL del video:</label>
+    <input id="url_video" [(ngModel)]="nuevoCurso.url_video" name="url_video" required />
+
+    <button type="submit" class="boton-principal">Guardar curso</button>
+    <button type="button" class="boton-secundario" (click)="mostrarFormularioNuevo = false">Cancelar</button>
+  </form>
+</div>
+
+<!-- Tabla de cursos solo visible si NO se está creando un nuevo curso -->
+<div class="tabla-cursos" *ngIf="!mostrarFormularioNuevo">
+  <table>
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Descripción</th>
+        <th>Categoría</th>
+        <th>Nivel</th>
+        <th>Video</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let curso of cursosPaginados">
+        <td>{{ curso.titulo }}</td>
+        <td>{{ curso.descripcion }}</td>
+        <td>{{ curso.categoria }}</td>
+        <td>{{ curso.nivel }}</td>
+        <td><a [href]="curso.url_video" target="_blank">Ver video</a></td>
+        <td>
+          <button class="boton-secundario" (click)="editarCurso(curso)">Editar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Paginación -->
+  <div class="paginacion">
+    <button *ngFor="let pagina of paginas"
+            [class.activa]="pagina === paginaActual"
+            (click)="cambiarPagina(pagina)">
+      {{ pagina }}
+    </button>
+  </div>
+</div>
+
+<!-- Formulario de edición de curso -->
+<div *ngIf="cursoEditando" class="formulario-curso">
+  <h2>Editar curso</h2>
+  <form (ngSubmit)="guardarEdicion()">
+    <label for="tituloEditado">Título:</label>
+    <input id="tituloEditado" [(ngModel)]="cursoEditando.titulo" name="tituloEditado" required />
+
+    <label for="descripcionEditada">Descripción:</label>
+    <textarea id="descripcionEditada" [(ngModel)]="cursoEditando.descripcion" name="descripcionEditada" required></textarea>
+
+    <label for="categoriaEditada">Categoría:</label>
+    <input id="categoriaEditada" [(ngModel)]="cursoEditando.categoria" name="categoriaEditada" required />
+
+    <label for="nivelEditado">Nivel:</label>
+    <select id="nivelEditado" [(ngModel)]="cursoEditando.nivel" name="nivelEditado" required>
+      <option value="">Selecciona un nivel</option>
+      <option value="principiante">Principiante</option>
+      <option value="intermedio">Intermedio</option>
+      <option value="avanzado">Avanzado</option>
+    </select>
+
+    <label for="url_videoEditada">URL del video:</label>
+    <input id="url_videoEditada" [(ngModel)]="cursoEditando.url_video" name="url_videoEditada" required />
+
+    <button type="submit" class="boton-principal">Guardar cambios</button>
+    <button type="button" class="boton-secundario" (click)="cancelarEdicion()">Cancelar</button>
+  </form>
+</div>
+

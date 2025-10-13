@@ -24,4 +24,13 @@ getContenidosPorCurso(id: string): Observable<Contenido[]> {
 getProveedoresPorCurso(id: string): Observable<Proveedor[]> {
   return this.http.get<Proveedor[]>(`${this.apiUrl}/${id}/proveedores`);
 }
+
+createCurso(curso: Curso): Observable<Curso> {
+  return this.http.post<Curso>(this.apiUrl, curso);
+}
+
+updateCurso(id: string, curso: Curso): Observable<Curso> {
+  return this.http.put<Curso>(`${this.apiUrl}/${id}`, curso);
+}
+
 }

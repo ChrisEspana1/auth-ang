@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { RouterOutlet } from '@angular/router';
 import { Firestore, doc, getDoc } from '@angular/fire/firestore';
-import { inject } from '@angular/core';
 import { NgIf } from '@angular/common';
 
 @Component({
