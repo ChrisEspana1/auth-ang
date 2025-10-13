@@ -18,7 +18,17 @@ export class UsersComponent implements OnInit {
   ediciones: { [uid: string]: { name: string; rol: string; activo: boolean } } = {};
   editando: { [uid: string]: boolean } = {};
 
-  constructor(private usuariosService: UsuariosService) {}
+  mostrarFormularioNuevoUsuario = false;
+  nuevoUsuario = {
+    name: '',
+    email: '',
+    password: '',
+    rol: 'estudiante',
+    activo: true
+  };
+
+
+  constructor(private usuariosService: UsuariosService) { }
 
   ngOnInit(): void {
     this.usuarios$ = this.usuariosService.getUsuarios();
@@ -43,13 +53,34 @@ export class UsersComponent implements OnInit {
     this.editando[uid] = false;
   }
 
-  guardarCambios(uid: string) {
-    const datos = this.ediciones[uid];
-    this.usuariosService.actualizarUsuario(uid, datos)
-      .then(() => {
-        console.log('Usuario actualizado');
-        this.cancelarEdicion(uid);
-      })
-      .catch(err => console.error('Error al actualizar usuario', err));
-  }
+mensajeExito: string | null = null;
+
+guardarCambios(uid: string) {
+  const datos = this.ediciones[uid];
+  this.usuariosService.actualizarUsuario(uid, datos)
+    .then(() => {
+      this.mensajeExito = 'Cambios guardados correctamente';
+      this.cancelarEdicion(uid);
+      setTimeout(() => {
+        this.mensajeExito = null;
+      }, 3000);
+    })
+    .catch(err => console.error('Error al actualizar usuario', err));
+}
+  
+crearUsuario() {
+  this.usuariosService.crearUsuario(this.nuevoUsuario)
+    .then(() => {
+      console.log('Usuario creado');
+      this.mostrarFormularioNuevoUsuario = false;
+      this.nuevoUsuario = {
+        name: '',
+        email: '',
+        password: '',
+        rol: 'estudiante',
+        activo: true
+      };
+    })
+    .catch(err => console.error('Error al crear usuario', err));
+}
 }
