@@ -1,17 +1,32 @@
-<mat-toolbar color="accent">
-    <div class="logo">
-      <!-- Logotipo conceptual: Placeholder de imagen con referencia a una hoja -->
-      <img src="assets/images/agroconecta.png" alt="Logotipo AgroConecta" (click)="goHome()"style="cursor:pointer;">
-    <!--<span class="spacer">AgroConecta</span>-->
-    <span class="spacer" (click)="goHome()" style="cursor:pointer;">AgroConecta</span>
-    </div>
-    <div class="toolbar-buttons">
-        <mat-button-toggle-group>
-      <button mat-flat-button (click)="redirectToForos()" class="mat-toolbar-button-spacing">Foros</button>
-      <button mat-flat-button (click)="redirectToCursos()" class="mat-toolbar-button-spacing">Ingreso de Cursos</button>
-       </mat-button-toggle-group>
-       <button mat-flat-button (click)="logOut()" class="mat-toolbar-button-spacing">Log out</button>
-      </div>
-  </mat-toolbar>
+<mat-toolbar color="accent" class="toolbar">
+  <button mat-icon-button (click)="toggleMenu()" class="menu-button">
+    <mat-icon>menu</mat-icon>
+  </button>
 
-      
+  <div class="logo" (click)="goHome()">
+    <img src="assets/images/agroconecta.png" alt="Logotipo AgroConecta" (click)="goHome()"style="cursor:pointer;">
+    <span class="spacer">AgroConecta</span>
+  </div>
+
+  <div class="toolbar-buttons desktop-only">
+    <button mat-flat-button (click)="redirectToForos()">Foros</button>
+    <button mat-flat-button (click)="redirectToCursos()">Ingreso de Cursos</button>
+    <button mat-flat-button (click)="logOut()">Log out</button>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over" class="mobile-menu">
+    <button mat-button (click)="redirectToForos()">Foros</button>
+    <button mat-button (click)="redirectToCursos()">Ingreso de Cursos</button>
+    <button mat-button (click)="logOut()">Log out</button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+  <footer>
+    <p>&copy; 2025 AgroConecta. Todos los derechos reservados.</p>
+  </footer>
+
