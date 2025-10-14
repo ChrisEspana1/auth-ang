@@ -178,3 +178,26 @@ td a:hover {
   color: white;
   border-color: #006400;
 }
+/* Formulario de curso: adaptar ancho y altura */
+.formulario-curso {
+  width: 100%; /* ocupa el mismo ancho que la tabla */
+  max-width: none; /* elimina el límite de 600px */
+  height: 100%; /* ocupa todo el alto disponible */
+  max-height: calc(100vh - 100px); /* ajusta según el alto del asidebar */
+  overflow-y: auto; /* permite scroll si el contenido excede */
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  box-shadow: 0 2px 6px rgba(0, 100, 0, 0.1);
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 768px) {
+  .formulario-curso {
+    padding: 1rem;
+    max-height: calc(100vh - 80px); /* ajusta para móviles */
+  }
+}

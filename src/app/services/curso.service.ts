@@ -7,7 +7,7 @@ import { Proveedor } from '../models/proveedor.model';
 
 @Injectable({ providedIn: 'root' })
 export class CursoService {
-  private apiUrl = 'http://localhost:3000/api/cursos';
+  private apiUrl = 'http://192.168.1.209:3000/api/cursos';
 
   constructor(private http: HttpClient) {}
 

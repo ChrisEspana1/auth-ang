@@ -1,7 +1,7 @@
 <h2>Gestión de Cursos</h2>
-
 <button class="boton-principal" (click)="mostrarFormularioNuevo = true">Nuevo curso</button>
 
+<!-- Formulario de creación -->
 <div *ngIf="mostrarFormularioNuevo" class="formulario-curso">
   <h2>Crear nuevo curso</h2>
   <form (ngSubmit)="crearCurso()">
@@ -30,8 +30,8 @@
   </form>
 </div>
 
-<!-- Tabla de cursos solo visible si NO se está creando un nuevo curso -->
-<div class="tabla-cursos" *ngIf="!mostrarFormularioNuevo">
+<!-- Tabla de cursos solo visible si NO se está creando NI editando un curso -->
+<div class="tabla-cursos" *ngIf="!mostrarFormularioNuevo && !cursoEditando">
   <table>
     <thead>
       <tr>
@@ -94,5 +94,3 @@
     <button type="submit" class="boton-principal">Guardar cambios</button>
     <button type="button" class="boton-secundario" (click)="cancelarEdicion()">Cancelar</button>
   </form>
-</div>
-
