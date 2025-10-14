@@ -92,5 +92,10 @@
     <input id="url_videoEditada" [(ngModel)]="cursoEditando.url_video" name="url_videoEditada" required />
 
     <button type="submit" class="boton-principal">Guardar cambios</button>
+    <button class="boton-secundario"
+        *ngIf="cursoEditando"
+        (click)="irAGestionContenido(cursoEditando.id)">
+  Gestionar contenido
+</button>
     <button type="button" class="boton-secundario" (click)="cancelarEdicion()">Cancelar</button>
   </form>

@@ -78,7 +78,9 @@ cambiarPagina(pagina: number): void {
       alert('Por favor completa todos los campos obligatorios.');
     }
   }
-
+irAGestionContenido(id: string): void {
+  this.router.navigate(['/admin/content', id]);
+}
   editarCurso(curso: Curso): void {
     this.cursoEditando = { ...curso };
     this.mostrarFormularioEdicion = true;

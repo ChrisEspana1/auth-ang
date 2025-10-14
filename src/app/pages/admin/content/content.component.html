@@ -1,0 +1,32 @@
+<h2>Gestión de Contenidos del Curso</h2>
+
+<!-- Lista de contenidos existentes -->
+<div *ngIf="contenidos.length > 0; else sinContenidos">
+  <div *ngFor="let contenido of contenidos; let i = index" class="contenido-card">
+    <h3>{{ contenido.titulo }}</h3>
+    <p><strong>Descripción:</strong> {{ contenido.descripcion }}</p>
+    <p><strong>Recurso: </strong> <a [href]="contenido.url_recurso" target="_blank">{{ contenido.url_recurso }}</a></p>
+    <button class="boton-secundario" (click)="modificarContenido(i)">Modificar</button>
+  </div>
+</div>
+
+<ng-template #sinContenidos>
+  <p>No hay contenidos registrados para este curso.</p>
+</ng-template>
+
+<hr />
+
+<!-- Formulario para agregar nuevo contenido -->
+<h3>Agregar nuevo contenido</h3>
+<form (ngSubmit)="agregarContenido()" class="formulario-curso">
+  <label for="titulo">Título:</label>
+  <input id="titulo" [(ngModel)]="nuevoContenido.titulo" name="titulo" required />
+
+  <label for="descripcion">Descripción:</label>
+  <textarea id="descripcion" [(ngModel)]="nuevoContenido.descripcion" name="descripcion" required></textarea>
+
+  <label for="url_recurso">URL del recurso:</label>
+  <input id="url_recurso" [(ngModel)]="nuevoContenido.url_recurso" name="url_recurso" required />
+
+  <button type="submit" class="boton-principal">Agregar contenido</button>
+</form>
