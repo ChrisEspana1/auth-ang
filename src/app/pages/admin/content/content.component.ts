@@ -74,6 +74,7 @@ guardarCambios(indice: number): void {
 toggleFormularioNuevo(): void {
   this.mostrarFormularioNuevo = !this.mostrarFormularioNuevo;
 }
-
-
+volverEdicionCurso(): void {
+  window.history.back();
+}
 }

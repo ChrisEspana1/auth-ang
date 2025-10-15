@@ -130,28 +130,6 @@ td a:hover {
   border-color: #006400;
   outline: none;
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-  .formulario-curso {
-    padding: 1rem;
-  }
-
-  .boton-principal,
-  .boton-secundario,
-  .boton-inactivar {
-    width: 100%;
-    margin-top: 0.5rem;
-  }
-
-  table {
-    font-size: 14px;
-  }
-
-  th, td {
-    padding: 0.5rem;
-  }
-}
 .paginacion {
   margin-top: 1rem;
   text-align: center;
@@ -193,11 +171,36 @@ td a:hover {
   margin: 2rem auto;
   box-shadow: 0 2px 6px rgba(0, 100, 0, 0.1);
 }
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
 
-/* Ajuste para pantallas pequeñas */
+
+/* Responsive */
 @media (max-width: 768px) {
   .formulario-curso {
     padding: 1rem;
-    max-height: calc(100vh - 80px); /* ajusta para móviles */
+     max-height: calc(100vh - 80px); /* ajusta para móviles */
+  }
+
+  .boton-principal,
+  .boton-secundario,
+  .boton-inactivar {
+    font-size: 14px;       /* Reduce el tamaño del texto */
+    padding: 0.4rem 0.8rem; /* Reduce el padding para hacerlo más compacto */
+    width: auto;      
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 0.5rem;
   }
 }

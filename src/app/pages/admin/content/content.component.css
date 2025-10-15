@@ -10,7 +10,12 @@ p, label{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+.botones-acciones {
+  display: flex;
+  gap: 6px; /* Espacio reducido entre botones */
 }
 .contenido-card {
   background-color: #f9f9f9;

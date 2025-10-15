@@ -1,5 +1,8 @@
+<div class="cabecera">
 <h2>Gestión de Cursos</h2>
 <button class="boton-principal" (click)="mostrarFormularioNuevo = true">Nuevo curso</button>
+
+</div>
 
 <!-- Formulario de creación -->
 <div *ngIf="mostrarFormularioNuevo" class="formulario-curso">
@@ -12,7 +15,15 @@
     <textarea id="descripcion" [(ngModel)]="nuevoCurso.descripcion" name="descripcion" required></textarea>
 
     <label for="categoria">Categoría:</label>
-    <input id="categoria" [(ngModel)]="nuevoCurso.categoria" name="categoria" required />
+    <select id="categoria" [(ngModel)]="nuevoCurso.categoria" name="categoria" required>
+      <option value="">Selecciona una categoría</option>
+      <option value="cultivo">Cultivo</option>
+      <option value="riego">Riego</option>
+      <option value="fumigacion">Fumigación</option>
+      <option value="cosecha">Cosecha</option>
+      <option value="plagas">Plagas</option>
+    </select>
+
 
     <label for="nivel">Nivel:</label>
     <select id="nivel" [(ngModel)]="nuevoCurso.nivel" name="nivel" required>
@@ -32,6 +43,7 @@
 
 <!-- Tabla de cursos solo visible si NO se está creando NI editando un curso -->
 <div class="tabla-cursos" *ngIf="!mostrarFormularioNuevo && !cursoEditando">
+  <h2>Lista de Cursos</h2>
   <table>
     <thead>
       <tr>
@@ -78,7 +90,14 @@
     <textarea id="descripcionEditada" [(ngModel)]="cursoEditando.descripcion" name="descripcionEditada" required></textarea>
 
     <label for="categoriaEditada">Categoría:</label>
-    <input id="categoriaEditada" [(ngModel)]="cursoEditando.categoria" name="categoriaEditada" required />
+    <select id="categoria" [(ngModel)]="cursoEditando.categoria" name="categoriaEditada" required>
+      <option value="">Selecciona una categoría</option>
+      <option value="cultivo">Cultivo</option>
+      <option value="riego">Riego</option>
+      <option value="fumigacion">Fumigación</option>
+      <option value="cosecha">Cosecha</option>
+      <option value="plagas">Plagas</option>
+    </select>
 
     <label for="nivelEditado">Nivel:</label>
     <select id="nivelEditado" [(ngModel)]="cursoEditando.nivel" name="nivelEditado" required>

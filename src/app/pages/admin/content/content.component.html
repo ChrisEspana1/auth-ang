@@ -1,10 +1,13 @@
 <div class="cabecera">
   <h2>Gestión de Contenidos del Curso</h2>
-  <!-- Botón para mostrar/ocultar el formulario -->
-<button class="boton-principal" (click)="toggleFormularioNuevo()">
-  {{ mostrarFormularioNuevo ? 'Ocultar formulario' : 'Agregar nuevo contenido' }}
-</button>
-
+  <div class="botones-acciones">
+    <button class="boton-principal" (click)="toggleFormularioNuevo()">
+      {{ mostrarFormularioNuevo ? 'Ocultar formulario' : 'Agregar nuevo contenido' }}
+    </button>
+    <button class="boton-principal" (click)="volverEdicionCurso()">
+      Regresar a la edición del curso
+    </button>
+  </div>
 </div>
 <!-- Formulario de nuevo contenido -->
 <div *ngIf="mostrarFormularioNuevo" class="formulario-curso">

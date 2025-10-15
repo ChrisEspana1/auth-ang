@@ -23,13 +23,13 @@ export class CoursesComponent implements OnInit {
   mostrarFormularioEdicion = false;
   cursosPaginados: Curso[] = [];
   paginaActual = 1;
-  cursosPorPagina = 8;
+  cursosPorPagina = 6;
   paginas: number[] = [];
 
   constructor(private cursoService: CursoService, private router: Router) {}
 
   ngOnInit(): void {
-      this.cursosPorPagina = window.innerWidth <= 768 ? 3 : 8;
+      this.cursosPorPagina = window.innerWidth <= 768 ? 3 : 6;
       this.obtenerCursos();
   }
 
