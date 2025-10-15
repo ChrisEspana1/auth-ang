@@ -1,14 +1,31 @@
 <h2>Gestión de Contenidos del Curso</h2>
 
 <!-- Lista de contenidos existentes -->
-<div *ngIf="contenidos.length > 0; else sinContenidos">
-  <div *ngFor="let contenido of contenidos; let i = index" class="contenido-card">
+<div *ngFor="let contenido of contenidos; let i = index" class="contenido-card">
+  <ng-container *ngIf="editandoIndice === i; else vistaContenido">
+    <form (ngSubmit)="guardarCambios(i)">
+      <label>Título:</label>
+      <input [(ngModel)]="contenido.titulo" name="titulo{{i}}" required />
+
+      <label>Descripción:</label>
+      <textarea [(ngModel)]="contenido.descripcion" name="descripcion{{i}}" required></textarea>
+
+      <label>URL Recurso:</label>
+      <input [(ngModel)]="contenido.url_recurso" name="url{{i}}" required />
+
+      <button type="submit" class="boton-primario">Guardar</button>
+      <button type="button" class="boton-secundario" (click)="cancelarEdicion()">Cancelar</button>
+    </form>
+  </ng-container>
+
+  <ng-template #vistaContenido>
     <h3>{{ contenido.titulo }}</h3>
     <p><strong>Descripción:</strong> {{ contenido.descripcion }}</p>
-    <p><strong>Recurso: </strong> <a [href]="contenido.url_recurso" target="_blank">{{ contenido.url_recurso }}</a></p>
+    <p><strong>Recurso:</strong> <a [href]="contenido.url_recurso" target="_blank">{{ contenido.url_recurso }}</a></p>
     <button class="boton-secundario" (click)="modificarContenido(i)">Modificar</button>
-  </div>
+  </ng-template>
 </div>
+``
 
 <ng-template #sinContenidos>
   <p>No hay contenidos registrados para este curso.</p>

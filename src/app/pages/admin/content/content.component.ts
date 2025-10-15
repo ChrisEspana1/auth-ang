@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 export class ContentComponent implements OnInit {
   cursoId!: string;
   contenidos: Contenido[] = [];
+  editandoIndice: number | null = null;
   nuevoContenido: Contenido = {
     id: 0,
     curso_id: '',
@@ -51,9 +52,22 @@ export class ContentComponent implements OnInit {
     };
   }
 
-  modificarContenido(index: number): void {
-    // Aquí se agregaría la lógica PUT cuando el backend esté listo
-    alert(`Contenido modificado: ${this.contenidos[index].titulo}`);
+  modificarContenido(indice: number): void {
+  this.editandoIndice = indice;
+  }
+  cancelarEdicion(): void {
+    this.editandoIndice = null;
   }
   
+guardarCambios(indice: number): void {
+  const contenido = this.contenidos[indice];
+  this.cursoService.actualizarContenido(contenido.curso_id, contenido.id, contenido).subscribe({
+    next: () => {
+      console.log('Contenido actualizado');
+      this.editandoIndice = null;
+    },
+    error: (err) => console.error('Error al actualizar contenido', err)
+  });
+}
+
 }

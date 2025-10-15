@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
-  imports: [HomeComponent, RouterOutlet]
+  imports: [RouterOutlet]
 })
 export class AdminComponent {
 
