@@ -40,18 +40,29 @@ export class ContentComponent implements OnInit {
     });
   }
 
-  agregarContenido(): void {
-    // Aquí se agregaría la lógica POST cuando el backend esté listo
-    const nuevo = { ...this.nuevoContenido, curso_id: this.cursoId.toString() };
-    this.contenidos.push(nuevo);
-    this.nuevoContenido = {
-      id: 0,
-      curso_id: this.cursoId.toString(),
-      titulo: '',
-      descripcion: '',
-      url_recurso: ''
-    };
+agregarContenido(): void {
+  if (!this.nuevoContenido.titulo || !this.nuevoContenido.descripcion || !this.nuevoContenido.url_recurso) {
+    alert('Todos los campos son obligatorios');
+    return;
   }
+
+  const nuevo = {
+    curso_id: this.cursoId, // importante para el backend
+    titulo: this.nuevoContenido.titulo,
+    descripcion: this.nuevoContenido.descripcion,
+    url_recurso: this.nuevoContenido.url_recurso
+  };
+
+  this.cursoService.crearContenido(this.cursoId, nuevo).subscribe({
+    next: (res) => {
+      console.log('Contenido agregado:', res);
+      this.cargarContenidos();
+      this.nuevoContenido = { id: 0, curso_id: this.cursoId, titulo: '', descripcion: '', url_recurso: '' };
+      this.mostrarFormularioNuevo = false;
+    },
+    error: (err) => console.error('Error al agregar contenido', err)
+  });
+}
 
   modificarContenido(indice: number): void {
   this.editandoIndice = indice;

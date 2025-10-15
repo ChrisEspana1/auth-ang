@@ -36,4 +36,8 @@ actualizarContenido(cursoId: string, contenidoId: number, contenido: Contenido):
   return this.http.put(`${this.apiUrl}/${cursoId}/contenidos/${contenidoId}`, contenido);
 }
 
+crearContenido(cursoId: string, contenido: Partial<Contenido>): Observable<any> {
+  return this.http.post(`${this.apiUrl}/${cursoId}/contenidos`, contenido);
+}
+
 }
