@@ -56,6 +56,18 @@ cambiarPagina(pagina: number): void {
   this.paginaActual = pagina;
   this.actualizarCursosPaginados();
 }
+  crearCurso(): void {
+    if (this.validarCurso(this.nuevoCurso)) {
+      this.cursoService.createCurso(this.nuevoCurso).subscribe(() => {
+        this.obtenerCursos();
+        this.nuevoCurso = this.getCursoVacio();
+        this.mostrarFormularioNuevo = false;
+        alert('Curso creado correctamente');
+      });
+    } else {
+      alert('Por favor completa todos los campos obligatorios.');
+    }
+  }
   getCursoVacio(): Curso {
     return {
       id: '',
@@ -67,17 +79,6 @@ cambiarPagina(pagina: number): void {
     };
   }
 
-  crearCurso(): void {
-    if (this.validarCurso(this.nuevoCurso)) {
-      this.cursoService.createCurso(this.nuevoCurso).subscribe(() => {
-        this.obtenerCursos();
-        this.nuevoCurso = this.getCursoVacio();
-        this.mostrarFormularioNuevo = false;
-      });
-    } else {
-      alert('Por favor completa todos los campos obligatorios.');
-    }
-  }
 irAGestionContenido(id: string): void {
   this.router.navigate(['/admin/content', id]);
 }

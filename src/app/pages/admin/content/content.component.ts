@@ -56,6 +56,7 @@ agregarContenido(): void {
   this.cursoService.crearContenido(this.cursoId, nuevo).subscribe({
     next: (res) => {
       console.log('Contenido agregado:', res);
+      alert('Contenido agregado correctamente');
       this.cargarContenidos();
       this.nuevoContenido = { id: 0, curso_id: this.cursoId, titulo: '', descripcion: '', url_recurso: '' };
       this.mostrarFormularioNuevo = false;
@@ -76,6 +77,7 @@ guardarCambios(indice: number): void {
   this.cursoService.actualizarContenido(contenido.curso_id, contenido.id, contenido).subscribe({
     next: () => {
       console.log('Contenido actualizado');
+      alert('Contenido actualizado correctamente');
       this.editandoIndice = null;
     },
     error: (err) => console.error('Error al actualizar contenido', err)
