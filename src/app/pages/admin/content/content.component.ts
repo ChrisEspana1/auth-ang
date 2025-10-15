@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule]
 })
 export class ContentComponent implements OnInit {
+  mostrarFormularioNuevo: boolean = false;
   cursoId!: string;
   contenidos: Contenido[] = [];
   editandoIndice: number | null = null;
@@ -69,5 +70,10 @@ guardarCambios(indice: number): void {
     error: (err) => console.error('Error al actualizar contenido', err)
   });
 }
+
+toggleFormularioNuevo(): void {
+  this.mostrarFormularioNuevo = !this.mostrarFormularioNuevo;
+}
+
 
 }
