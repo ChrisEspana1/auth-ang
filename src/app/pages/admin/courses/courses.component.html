@@ -53,6 +53,7 @@
   <table>
     <thead>
       <tr>
+        <th>No.</th>
         <th>Título</th>
         <th>Descripción</th>
         <th>Categoría</th>
@@ -64,6 +65,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let curso of cursosPaginados">
+        <td>{{ curso.id }}</td>
         <td>{{ curso.titulo }}</td>
         <td>{{ curso.descripcion }}</td>
         <td>{{ curso.categoria }}</td>

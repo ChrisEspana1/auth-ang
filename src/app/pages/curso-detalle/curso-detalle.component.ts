@@ -14,7 +14,7 @@ import { CursoProveedoresComponent } from '../curso-proveedores/curso-proveedore
 
 @Component({
   standalone: true,
-  imports: [CommonModule, HomeComponent, SafeUrlPipe, CursoProveedoresComponent],
+  imports: [CommonModule, SafeUrlPipe, CursoProveedoresComponent],
   selector: 'app-curso-detalle',
   templateUrl: './curso-detalle.component.html',
   styleUrls: ['./curso-detalle.component.css']
