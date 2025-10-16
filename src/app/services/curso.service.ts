@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Curso } from '../models/cursos.model';
 import { Contenido } from '../models/contenido.model';
 import { Proveedor } from '../models/proveedor.model';
+import { Keyword } from '../models/keyword.model';
 
 @Injectable({ providedIn: 'root' })
 export class CursoService {
@@ -38,6 +39,18 @@ actualizarContenido(cursoId: string, contenidoId: number, contenido: Partial<Con
 
 crearContenido(cursoId: string, contenido: Partial<Contenido>): Observable<any> {
   return this.http.post(`${this.apiUrl}/${cursoId}/contenidos`, contenido);
+}
+
+getKeywordsPorCurso(id: string): Observable<Keyword[]> {
+  return this.http.get<Keyword[]>(`${this.apiUrl}/${id}/keywords`);
+}
+
+crearKeyword(cursoId: string, keyword: Partial<Keyword>): Observable<any> {
+  return this.http.post(`${this.apiUrl}/${cursoId}/keywords`, keyword);
+}
+
+actualizarKeyword(cursoId: string, keywordId: number, keyword: Partial<Keyword>): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${cursoId}/keywords/${keywordId}`, keyword);
 }
 
 }

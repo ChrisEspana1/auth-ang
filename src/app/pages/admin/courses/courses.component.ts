@@ -26,11 +26,11 @@ export class CoursesComponent implements OnInit {
   cursosPorPagina = 6;
   paginas: number[] = [];
 
-  constructor(private cursoService: CursoService, private router: Router) {}
+  constructor(private cursoService: CursoService, private router: Router) { }
 
   ngOnInit(): void {
-      this.cursosPorPagina = window.innerWidth <= 768 ? 3 : 6;
-      this.obtenerCursos();
+    this.cursosPorPagina = window.innerWidth <= 768 ? 3 : 6;
+    this.obtenerCursos();
   }
 
   obtenerCursos(): void {
@@ -41,21 +41,22 @@ export class CoursesComponent implements OnInit {
     });
   }
 
-generarPaginas(): void {
-  const totalPaginas = Math.ceil(this.cursos.length / this.cursosPorPagina);
-  this.paginas = Array.from({ length: totalPaginas }, (_, i) => i + 1);
-}
+  generarPaginas(): void {
+    const totalPaginas = Math.ceil(this.cursos.length / this.cursosPorPagina);
+    this.paginas = Array.from({ length: totalPaginas }, (_, i) => i + 1);
+  }
 
-actualizarCursosPaginados(): void {
-  const inicio = (this.paginaActual - 1) * this.cursosPorPagina;
-  const fin = inicio + this.cursosPorPagina;
-  this.cursosPaginados = this.cursos.slice(inicio, fin);
-}
+  actualizarCursosPaginados(): void {
+    const inicio = (this.paginaActual - 1) * this.cursosPorPagina;
+    const fin = inicio + this.cursosPorPagina;
+    this.cursosPaginados = this.cursos.slice(inicio, fin);
+  }
 
-cambiarPagina(pagina: number): void {
-  this.paginaActual = pagina;
-  this.actualizarCursosPaginados();
-}
+  cambiarPagina(pagina: number): void {
+    this.paginaActual = pagina;
+    this.actualizarCursosPaginados();
+  }
+
   crearCurso(): void {
     if (this.validarCurso(this.nuevoCurso)) {
       this.cursoService.createCurso(this.nuevoCurso).subscribe(() => {
@@ -80,25 +81,30 @@ cambiarPagina(pagina: number): void {
     };
   }
 
-irAGestionContenido(id: string): void {
-  this.router.navigate(['/admin/content', id]);
-}
+  irAGestionContenido(id: string): void {
+    this.router.navigate(['/admin/content', id]);
+  }
+
+  irAGestionKeywords(id: string): void {
+    this.router.navigate(['/admin/keywords', id]);
+  }
+
   editarCurso(curso: Curso): void {
     this.cursoEditando = { ...curso };
     this.mostrarFormularioEdicion = true;
   }
-guardarEdicion(): void {
+  guardarEdicion(): void {
   if (this.cursoEditando && this.validarCurso(this.cursoEditando)) {
     this.cursoService.updateCurso(this.cursoEditando.id, this.cursoEditando).subscribe({
       next: () => {
         this.obtenerCursos();
         this.cursoEditando = null;
         this.mostrarFormularioEdicion = false;
-        alert('Curso actualizado correctamente');
+        alert('✅ Curso actualizado correctamente');
       },
       error: (err) => {
         console.error('Error al actualizar curso:', err);
-        alert('No se pudo actualizar el curso. Verifica la conexión o el servidor.');
+        alert('❌ No se pudo actualizar el curso. Verifica la conexión o el servidor.');
       }
     });
   } else {
@@ -113,10 +119,10 @@ guardarEdicion(): void {
 
   validarCurso(curso: Curso): boolean {
     return curso.titulo.trim() !== '' &&
-           curso.descripcion.trim() !== '' &&
-           curso.categoria.trim() !== '' &&
-           curso.nivel.trim() !== '' &&
-           curso.url_video.trim() !== '';
+      curso.descripcion.trim() !== '' &&
+      curso.categoria.trim() !== '' &&
+      curso.nivel.trim() !== '' &&
+      curso.url_video.trim() !== '';
   }
 
   verCurso(id: string): void {

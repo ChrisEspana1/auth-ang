@@ -50,6 +50,7 @@ export const routes: Routes = [
           { path: 'courses', component: CoursesComponent },
           { path: 'providers', component: ProvidersComponent },
           {path: 'content/:id', loadComponent: () => import('./pages/admin/content/content.component').then(m => m.ContentComponent) },
+          { path: 'keywords/:id', loadComponent: () => import('./pages/admin/keywords/keywords.component').then(m => m.KeywordsComponent) },
           { path: '', redirectTo: 'users', pathMatch: 'full' },
         ],
       },
