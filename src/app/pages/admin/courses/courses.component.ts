@@ -75,7 +75,8 @@ cambiarPagina(pagina: number): void {
       descripcion: '',
       categoria: '',
       nivel: '',
-      url_video: ''
+      url_video: '',
+      estado: ''
     };
   }
 
@@ -86,18 +87,24 @@ irAGestionContenido(id: string): void {
     this.cursoEditando = { ...curso };
     this.mostrarFormularioEdicion = true;
   }
-
-  guardarEdicion(): void {
-    if (this.cursoEditando && this.validarCurso(this.cursoEditando)) {
-      this.cursoService.updateCurso(this.cursoEditando.id, this.cursoEditando).subscribe(() => {
+guardarEdicion(): void {
+  if (this.cursoEditando && this.validarCurso(this.cursoEditando)) {
+    this.cursoService.updateCurso(this.cursoEditando.id, this.cursoEditando).subscribe({
+      next: () => {
         this.obtenerCursos();
         this.cursoEditando = null;
         this.mostrarFormularioEdicion = false;
-      });
-    } else {
-      alert('Por favor completa todos los campos obligatorios.');
-    }
+        alert('Curso actualizado correctamente');
+      },
+      error: (err) => {
+        console.error('Error al actualizar curso:', err);
+        alert('No se pudo actualizar el curso. Verifica la conexión o el servidor.');
+      }
+    });
+  } else {
+    alert('Por favor completa todos los campos obligatorios.');
   }
+}
 
   cancelarEdicion(): void {
     this.cursoEditando = null;

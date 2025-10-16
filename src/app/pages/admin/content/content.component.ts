@@ -22,7 +22,7 @@ export class ContentComponent implements OnInit {
     curso_id: '',
     titulo: '',
     descripcion: '',
-    url_recurso: ''
+    url_recurso: '',
   };
 
   constructor(private route: ActivatedRoute, private cursoService: CursoService) {}
@@ -58,7 +58,7 @@ agregarContenido(): void {
       console.log('Contenido agregado:', res);
       alert('Contenido agregado correctamente');
       this.cargarContenidos();
-      this.nuevoContenido = { id: 0, curso_id: this.cursoId, titulo: '', descripcion: '', url_recurso: '' };
+      this.nuevoContenido = { id: 0, curso_id: this.cursoId, titulo: '', descripcion: '', url_recurso: ''};
       this.mostrarFormularioNuevo = false;
     },
     error: (err) => console.error('Error al agregar contenido', err)

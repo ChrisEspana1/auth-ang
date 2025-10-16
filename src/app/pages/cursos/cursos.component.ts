@@ -30,7 +30,7 @@ export class CursosComponent implements OnInit {
 
   ngOnInit(): void {
     this.cursoService.getCursos().subscribe(data => {
-      this.cursos = data;
+      this.cursos = data.filter(curso => curso.estado === 'activo'); // Filtra activos
       this.generarPaginas();
       this.aplicarFiltros();
       this.actualizarCursosPaginados();

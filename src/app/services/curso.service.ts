@@ -7,7 +7,7 @@ import { Proveedor } from '../models/proveedor.model';
 
 @Injectable({ providedIn: 'root' })
 export class CursoService {
-  private apiUrl = 'http://192.168.1.218:3000/api/cursos';
+  private apiUrl = 'http://192.168.1.234:3000/api/cursos';
 
   constructor(private http: HttpClient) {}
 
@@ -32,7 +32,7 @@ createCurso(curso: Curso): Observable<Curso> {
 updateCurso(id: string, curso: Curso): Observable<Curso> {
   return this.http.put<Curso>(`${this.apiUrl}/${id}`, curso);
 }
-actualizarContenido(cursoId: string, contenidoId: number, contenido: Contenido): Observable<any> {
+actualizarContenido(cursoId: string, contenidoId: number, contenido: Partial<Contenido>): Observable<any> {
   return this.http.put(`${this.apiUrl}/${cursoId}/contenidos/${contenidoId}`, contenido);
 }
 

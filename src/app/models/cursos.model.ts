@@ -5,4 +5,5 @@ export interface Curso {
   categoria: string;
   nivel: string;
   url_video: string;
+  estado: 'activo' | 'inactivo' | '';
 }
