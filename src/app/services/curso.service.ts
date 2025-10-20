@@ -8,7 +8,7 @@ import { Keyword } from '../models/keyword.model';
 
 @Injectable({ providedIn: 'root' })
 export class CursoService {
-  private apiUrl = 'http://192.168.1.234:3000/api/cursos';
+  private apiUrl = 'http://localhost:3000/api/cursos';
 
   constructor(private http: HttpClient) {}
 

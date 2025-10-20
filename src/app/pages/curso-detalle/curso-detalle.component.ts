@@ -56,6 +56,9 @@ abrirWhatsapp(numero: string): void {
   const url = `https://wa.me/${numero}`;
   window.open(url, '_blank');
 }
+darFeedback(): void {
+this.router.navigate([`${this.curso?.id}/feedback`]);
+}
 
 enviarEmail(correo: string): void {
   const url = `mailto:${correo}`;

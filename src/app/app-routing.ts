@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { adminGuard, authGuard, publicGuard } from './core/guards';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Componentes cargados directamente
 import { CursosComponent } from './pages/cursos/cursos.component';
@@ -10,6 +11,8 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { ProvidersComponent } from './pages/admin/providers/providers.component';
 import { CoursesComponent } from './pages/admin/courses/courses.component';
 import { UsersComponent } from './pages/admin/users/users.component';
+import { FeedbackComponent } from './pages/feedback/feedback.component';
+
 
 // Layout principal
 import HomeComponent from './pages/home/home.component';
@@ -40,6 +43,10 @@ export const routes: Routes = [
       {
         path: 'curso/:id',
         component: CursoDetalleComponent,
+      },
+      {
+        path: ':id/feedback',
+        component: FeedbackComponent
       },
       {
         path: 'admin',
@@ -75,7 +82,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), ReactiveFormsModule],
   exports: [RouterModule],
 })
 export class AppRouting {}
