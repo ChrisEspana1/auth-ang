@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class KeywordsComponent implements OnInit {
   cursoId!: string;
+  cursoNombre!: string;
   keywords: Keyword[] = [];
   mostrarFormularioNuevo = false;
   editandoIndice: number | null = null;
@@ -26,6 +27,12 @@ export class KeywordsComponent implements OnInit {
   ngOnInit(): void {
     this.cursoId = this.route.snapshot.paramMap.get('id')!;
     this.nuevaKeyword.curso_id = this.cursoId;
+    this.cursoService.getCursoPorId(this.cursoId).subscribe({
+      next: (curso) => {
+      this.cursoNombre = curso.titulo;
+},
+    error: (err) => console.error('Error al obtener el curso', err)
+  });
     this.cargarKeywords();
   }
 

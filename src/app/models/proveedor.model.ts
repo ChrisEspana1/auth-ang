@@ -5,4 +5,5 @@ export interface Proveedor {
   contacto: string;
   servicio: string;
   tipo_contacto: 'whatsapp' | 'email';
+  activo: 1 | 0;
 }

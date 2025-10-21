@@ -12,45 +12,79 @@ export class CursoService {
 
   constructor(private http: HttpClient) {}
 
+  // ============================
+  // 📘 CURSOS
+  // ============================
+
   getCursos(): Observable<Curso[]> {
     return this.http.get<Curso[]>(this.apiUrl);
   }
+
   getCursoPorId(id: string): Observable<Curso> {
-  return this.http.get<Curso>(`${this.apiUrl}/${id}`);
-}
-getContenidosPorCurso(id: string): Observable<Contenido[]> {
-  return this.http.get<Contenido[]>(`${this.apiUrl}/${id}/contenidos`);
+    return this.http.get<Curso>(`${this.apiUrl}/${id}`);
+  }
+
+  createCurso(curso: Curso): Observable<Curso> {
+    return this.http.post<Curso>(this.apiUrl, curso);
+  }
+
+  updateCurso(id: string, curso: Curso): Observable<Curso> {
+    return this.http.put<Curso>(`${this.apiUrl}/${id}`, curso);
+  }
+
+  // ============================
+  // 📄 CONTENIDOS
+  // ============================
+
+  getContenidosPorCurso(id: string): Observable<Contenido[]> {
+    return this.http.get<Contenido[]>(`${this.apiUrl}/${id}/contenidos`);
+  }
+
+  crearContenido(cursoId: string, contenido: Partial<Contenido>): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${cursoId}/contenidos`, contenido);
+  }
+
+  actualizarContenido(cursoId: string, contenidoId: number, contenido: Partial<Contenido>): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${cursoId}/contenidos/${contenidoId}`, contenido);
+  }
+
+  // ============================
+  // 🧑‍💼 PROVEEDORES
+  // ============================
+
+  getProveedoresPorCurso(id: string): Observable<Proveedor[]> {
+    return this.http.get<Proveedor[]>(`${this.apiUrl}/${id}/proveedores`);
+  }
+
+  crearProveedor(cursoId: string, proveedor: Partial<Proveedor>): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${cursoId}/proveedores`, proveedor);
+  }
+
+  actualizarProveedor(cursoId: string, proveedorId: number, proveedor: Partial<Proveedor>): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${cursoId}/proveedores/${proveedorId}`, proveedor);
+  }
+
+  inhabilitarProveedor(cursoId: string, proveedorId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${cursoId}/proveedores/${proveedorId}`);
+  }
+
+  cambiarEstadoProveedor(cursoId: string, proveedorId: number, activo: number): Observable<any> {
+  return this.http.patch(`${this.apiUrl}/${cursoId}/proveedores/${proveedorId}/estado`, { activo });
 }
 
-getProveedoresPorCurso(id: string): Observable<Proveedor[]> {
-  return this.http.get<Proveedor[]>(`${this.apiUrl}/${id}/proveedores`);
-}
+  // ============================
+  // 🏷️ PALABRAS CLAVE (KEYWORDS)
+  // ============================
 
-createCurso(curso: Curso): Observable<Curso> {
-  return this.http.post<Curso>(this.apiUrl, curso);
-}
+  getKeywordsPorCurso(id: string): Observable<Keyword[]> {
+    return this.http.get<Keyword[]>(`${this.apiUrl}/${id}/keywords`);
+  }
 
-updateCurso(id: string, curso: Curso): Observable<Curso> {
-  return this.http.put<Curso>(`${this.apiUrl}/${id}`, curso);
-}
-actualizarContenido(cursoId: string, contenidoId: number, contenido: Partial<Contenido>): Observable<any> {
-  return this.http.put(`${this.apiUrl}/${cursoId}/contenidos/${contenidoId}`, contenido);
-}
+  crearKeyword(cursoId: string, keyword: Partial<Keyword>): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${cursoId}/keywords`, keyword);
+  }
 
-crearContenido(cursoId: string, contenido: Partial<Contenido>): Observable<any> {
-  return this.http.post(`${this.apiUrl}/${cursoId}/contenidos`, contenido);
-}
-
-getKeywordsPorCurso(id: string): Observable<Keyword[]> {
-  return this.http.get<Keyword[]>(`${this.apiUrl}/${id}/keywords`);
-}
-
-crearKeyword(cursoId: string, keyword: Partial<Keyword>): Observable<any> {
-  return this.http.post(`${this.apiUrl}/${cursoId}/keywords`, keyword);
-}
-
-actualizarKeyword(cursoId: string, keywordId: number, keyword: Partial<Keyword>): Observable<any> {
-  return this.http.put(`${this.apiUrl}/${cursoId}/keywords/${keywordId}`, keyword);
-}
-
+  actualizarKeyword(cursoId: string, keywordId: number, keyword: Partial<Keyword>): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${cursoId}/keywords/${keywordId}`, keyword);
+  }
 }

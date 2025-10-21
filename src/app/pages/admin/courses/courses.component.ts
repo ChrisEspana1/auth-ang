@@ -89,6 +89,10 @@ export class CoursesComponent implements OnInit {
     this.router.navigate(['/admin/keywords', id]);
   }
 
+  irAGestionProveedores(id: string): void {
+    this.router.navigate(['/admin/providers', id]);
+  }
+
   editarCurso(curso: Curso): void {
     this.cursoEditando = { ...curso };
     this.mostrarFormularioEdicion = true;

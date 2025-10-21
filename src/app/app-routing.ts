@@ -8,11 +8,10 @@ import { CursosComponent } from './pages/cursos/cursos.component';
 import { ForosComponent } from './pages/foros/foros.component';
 import { CursoDetalleComponent } from './pages/curso-detalle/curso-detalle.component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { ProvidersComponent } from './pages/admin/providers/providers.component';
 import { CoursesComponent } from './pages/admin/courses/courses.component';
 import { UsersComponent } from './pages/admin/users/users.component';
 import { FeedbackComponent } from './pages/feedback/feedback.component';
-
+import { ManProvidersComponent } from './pages/admin/man-providers/man-providers.component';
 
 // Layout principal
 import HomeComponent from './pages/home/home.component';
@@ -55,9 +54,10 @@ export const routes: Routes = [
         children: [
           { path: 'users', component: UsersComponent },
           { path: 'courses', component: CoursesComponent },
-          { path: 'providers', component: ProvidersComponent },
-          {path: 'content/:id', loadComponent: () => import('./pages/admin/content/content.component').then(m => m.ContentComponent) },
+          { path: 'man-providers', component: ManProvidersComponent },
+          { path: 'content/:id', loadComponent: () => import('./pages/admin/content/content.component').then(m => m.ContentComponent) },
           { path: 'keywords/:id', loadComponent: () => import('./pages/admin/keywords/keywords.component').then(m => m.KeywordsComponent) },
+          { path: 'providers/:id', loadComponent: () => import('./pages/admin/providers/providers.component').then(m => m.ProvidersComponent) },
           { path: '', redirectTo: 'users', pathMatch: 'full' },
         ],
       },

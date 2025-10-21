@@ -1,2 +1,76 @@
-<h2>Gestión de Proveedores</h2>
-<p>Visualiza y gestiona los proveedores registrados, vincúlalos a cursos y valida sus datos.</p>
+<div class="cabecera">
+  <h2>Gestión de Proveedores</h2>
+  <div class="botones-acciones">
+    <button class="boton-principal" (click)="toggleFormularioNuevo()">
+      {{ mostrarFormularioNuevo ? 'Ocultar formulario' : 'Agregar nuevo proveedor' }}
+    </button>
+    <button class="boton-principal" (click)="volverEdicionCurso()">
+      Regresar a la edición del curso
+    </button>
+  </div>
+</div>
+<p>Esta es la lista de proveedores del curso: <strong>{{ cursoId }}-{{ cursoNombre }}</strong></p>
+
+<!-- Formulario para nuevo proveedor -->
+<div *ngIf="mostrarFormularioNuevo" class="formulario-curso">
+  <p>Añadiendo proveedor al curso: <strong>{{ cursoId }}</strong></p>
+  <form (ngSubmit)="agregarProveedor()">
+    <label>Nombre:</label>
+    <input [(ngModel)]="nuevoProveedor.nombre" name="nombre" required />
+
+    <label>Contacto:</label>
+    <input [(ngModel)]="nuevoProveedor.contacto" name="contacto" required />
+
+    <label>Servicio:</label>
+    <input [(ngModel)]="nuevoProveedor.servicio" name="servicio" required />
+
+    <label>Tipo de contacto:</label>
+    <select [(ngModel)]="nuevoProveedor.tipo_contacto" name="tipo_contacto" required>
+      <option value="whatsapp">WhatsApp</option>
+      <option value="email">Email</option>
+    </select>
+
+    <button type="submit" class="boton-principal">Guardar</button>
+  </form>
+</div>
+
+<!-- Lista de proveedores -->
+<div *ngIf="!mostrarFormularioNuevo">
+  <div *ngIf="proveedores.length > 0; else sinProveedores">
+    <div *ngFor="let proveedor of proveedores; let i = index" class="contenido-card">
+      <ng-container *ngIf="editandoIndice === i; else vistaProveedor">
+        <form (ngSubmit)="guardarCambios(i)">
+          <label>Nombre:</label>
+          <input [(ngModel)]="proveedor.nombre" name="nombre{{i}}" required />
+
+          <label>Contacto:</label>
+          <input [(ngModel)]="proveedor.contacto" name="contacto{{i}}" required />
+
+          <label>Servicio:</label>
+          <input [(ngModel)]="proveedor.servicio" name="servicio{{i}}" required />
+
+          <label>Tipo de contacto:</label>
+          <select [(ngModel)]="proveedor.tipo_contacto" name="tipo_contacto{{i}}" required>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="email">Email</option>
+          </select>
+
+          <button type="submit" class="boton-principal">Guardar</button>
+          <button type="button" class="boton-secundario" (click)="cancelarEdicion()">Cancelar</button>
+        </form>
+      </ng-container>
+      <ng-template #vistaProveedor>
+        <p><strong>Nombre:</strong> {{ proveedor.nombre }}</p>
+        <p><strong>Contacto:</strong> {{ proveedor.contacto }}</p>
+        <p><strong>Servicio:</strong> {{ proveedor.servicio }}</p>
+        <p><strong>Tipo:</strong> {{ proveedor.tipo_contacto }}</p>
+        <button class="boton-secundario" (click)="modificarProveedor(i)">Modificar</button>
+        <button class="boton-secundario"
+        (click)="alternarEstadoProveedor(proveedor)">{{ proveedor.activo ? 'Inhabilitar' : 'Habilitar' }}</button>
+      </ng-template>
+    </div>
+  </div>
+  <ng-template #sinProveedores>
+    <p>No hay proveedores registrados para este curso.</p>
+  </ng-template>
+</div>
