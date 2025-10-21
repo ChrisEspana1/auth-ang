@@ -10,6 +10,7 @@ import { Keyword } from '../models/keyword.model';
 export class CursoService {
   private apiUrl = 'http://localhost:3000/api/cursos';
 
+
   constructor(private http: HttpClient) {}
 
   // ============================
@@ -51,6 +52,10 @@ export class CursoService {
   // ============================
   // 🧑‍💼 PROVEEDORES
   // ============================
+
+  getTodosLosProveedores(): Observable<Proveedor[]> {
+    return this.http.get<Proveedor[]>(`${this.apiUrl}/proveedores`);
+  }
 
   getProveedoresPorCurso(id: string): Observable<Proveedor[]> {
     return this.http.get<Proveedor[]>(`${this.apiUrl}/${id}/proveedores`);
