@@ -1,10 +1,11 @@
 <div class="cabecera">
   <h2>Gestión de Cursos</h2>
+  <div class="boton-nuevocurso">
+    <button class="boton-principal" (click)="mostrarFormularioNuevo = true">(+) Nuevo curso</button>
+</div>
 </div>
 
-<div class="boton-nuevocurso">
-    <button class="boton-principal" (click)="mostrarFormularioNuevo = true">Nuevo curso</button>
-</div>
+
 
 <!-- Formulario de creación -->
 <div *ngIf="mostrarFormularioNuevo" class="formulario-curso">

@@ -20,7 +20,6 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
   transition: background-color 0.3s ease;
 }
 
@@ -38,7 +37,6 @@ li button {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 0.5rem;
 }
 
 li button:hover {
@@ -56,20 +54,17 @@ select {
   color: #333;
 }
 
-/* Botones principales */
+/* Botón de asignar */
 button {
   background-color: #809671;
   color: #fff;
-  padding: 0.8rem 1.2rem;
+  padding: 0.6rem 1.2rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s ease;
   margin-top: 0.5rem;
-  width: 100%; /* ← ocupa todo el ancho disponible */
-  max-width: 100%;
-  box-sizing: border-box;
 }
 
 button:hover {
@@ -86,24 +81,4 @@ hr {
   border: none;
   border-top: 1px solid #e5d2bb;
   margin: 2rem 0;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  li {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  li button {
-    width: 100%;
-  }
-
-  select {
-    font-size: 1rem;
-  }
-
-  button {
-    font-size: 1rem;
-  }
 }
