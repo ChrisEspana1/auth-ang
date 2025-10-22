@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthService, Credential } from '../../../core/services/auth.service';
 import { ButtonProviders } from '../components/button-providers/button-providers.component';
+import { UserFormDialogComponent } from "src/app/components/user-form-dialog/user-form-dialog.component";
 
 interface LogInForm {
   email: FormControl<string>;
@@ -32,7 +33,8 @@ interface LogInForm {
     ReactiveFormsModule,
     RouterModule,
     MatSnackBarModule,
-    ButtonProviders
+    ButtonProviders,
+    UserFormDialogComponent
 ],
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
