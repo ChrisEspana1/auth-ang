@@ -7,7 +7,7 @@ import { Proveedor } from '../models/proveedor.model';
 export class ProveedoresService {
     private apiUrl = 'http://192.168.1.213:3000/api/proveedores';
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
     getTodosLosProveedores(): Observable<Proveedor[]> {
         return this.http.get<Proveedor[]>(this.apiUrl);
@@ -16,19 +16,15 @@ export class ProveedoresService {
         return this.http.get<Proveedor[]>(`${this.apiUrl}/${cursoId}/proveedores`);
     }
 
-    actualizarProveedor(cursoId: string, proveedorId: number, datos: Partial<Proveedor>): Observable<any> {
-        return this.http.put(`${this.apiUrl}/${cursoId}/proveedores/${proveedorId}`, datos);
+    crearProveedor(datos: Partial<Proveedor>): Observable<any> {
+        return this.http.post(this.apiUrl, datos);
     }
 
-    crearProveedor(cursoId: string, datos: Partial<Proveedor>): Observable<any> {
-        return this.http.post(`${this.apiUrl}/${cursoId}/proveedores`, datos);
+    actualizarProveedor(id: number, datos: Partial<Proveedor>): Observable<any> {
+        return this.http.put(`${this.apiUrl}/${id}`, datos);
     }
 
-    cambiarEstadoProveedor(cursoId: string, proveedorId: number, nuevoEstado: number): Observable<any> {
-        return this.http.patch(`${this.apiUrl}/${cursoId}/proveedores/${proveedorId}/estado`, { activo: nuevoEstado });
-    }
-
-    inhabilitarProveedor(cursoId: string, proveedorId: number): Observable<any> {
-        return this.http.delete(`${this.apiUrl}/${cursoId}/proveedores/${proveedorId}`);
+    eliminarProveedor(id: number): Observable<any> {
+        return this.http.delete(`${this.apiUrl}/${id}`);
     }
 }
