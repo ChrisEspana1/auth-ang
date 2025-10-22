@@ -7,7 +7,7 @@ import { Feedback } from '../models/feedback.model';
 })
 export class FeedbackService {
 
-  private apiUrl = 'http://192.168.1.214:3000/api/feedback'; // Ajusta según tu backend
+  private apiUrl = 'http://192.168.1.213:3000/api/feedback'; // Ajusta según tu backend
 
   constructor(private http: HttpClient) { }
 

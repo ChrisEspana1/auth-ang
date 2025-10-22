@@ -1,116 +1,109 @@
-/* Cabecera */
-.cabecera {
+/* Títulos */
+h2, h3 {
+  color: #725c3a;
+  margin-bottom: 1rem;
+}
+
+/* Lista de proveedores asignados */
+ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+li {
+  background-color: #d2a880;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  color: #333;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
-}
-
-.cabecera h2 {
-  color: #006400;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-p {
-  color: #006400;
-  font-weight: 600;
-}
-
-/* Botones */
-.botones-acciones {
-  display: flex;
-  gap: 8px;
-}
-
-.boton-principal {
-  background-color: #006400;
-  color: #fff;
-  border: none;
-  padding: 0.6rem 1rem;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
+  flex-wrap: wrap;
   transition: background-color 0.3s ease;
 }
 
-.boton-principal:hover {
-  background-color: #004d00;
+li:hover {
+  background-color: #809671;
+  color: #fff;
 }
 
-.boton-secundario {
-  background-color: #f5f5f5;
-  color: #006400;
-  border: 1px solid #ccc;
-  padding: 0.6rem 1rem;
+/* Botón de eliminar asignación */
+li button {
+  background-color: #838792;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
   border-radius: 4px;
-  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 0.5rem;
 }
 
-.boton-secundario:hover {
-  background-color: #e0e0e0;
+li button:hover {
+  background-color: #725c3a;
 }
 
-/* Formulario */
-.formulario-curso {
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 100, 0, 0.1);
-}
-
-.formulario-curso label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #006400;
-}
-
-.formulario-curso input,
-.formulario-curso select {
+/* Select de proveedores disponibles */
+select {
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #838792;
   border-radius: 4px;
-  font-size: 16px;
+  background-color: #fff;
+  color: #333;
 }
 
-/* Lista de proveedores */
-.contenido-card {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  padding: 15px;
-  margin-bottom: 10px;
+/* Botones principales */
+button {
+  background-color: #809671;
+  color: #fff;
+  padding: 0.8rem 1.2rem;
+  border: none;
   border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 0.5rem;
+  width: 100%; /* ← ocupa todo el ancho disponible */
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-.contenido-card p {
-  margin: 5px 0;
-  color: #006400;
-  font-weight: 500;
+button:hover {
+  background-color: #725c3a;
 }
 
-/* Responsive: Ajustes para pantallas pequeñas */
+button:disabled {
+  background-color: #a9b89a;
+  cursor: not-allowed;
+}
+
+/* Separadores */
+hr {
+  border: none;
+  border-top: 1px solid #e5d2bb;
+  margin: 2rem 0;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .cabecera {
+  li {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .botones-acciones {
-    flex-direction: column;
+  li button {
     width: 100%;
   }
 
-  .boton-principal,
-  .boton-secundario {
-    width: 100%;
-    margin-bottom: 0.5rem;
-    text-align: center;
+  select {
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 1rem;
   }
 }

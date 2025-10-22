@@ -8,7 +8,7 @@ import { Keyword } from '../models/keyword.model';
 
 @Injectable({ providedIn: 'root' })
 export class CursoService {
-  private apiUrl = 'http://192.168.1.214:3000/api/cursos';
+  private apiUrl = 'http://192.168.1.213:3000/api/cursos';
 
 
   constructor(private http: HttpClient) {}
@@ -75,6 +75,13 @@ export class CursoService {
 
   cambiarEstadoProveedor(cursoId: string, proveedorId: number, activo: number): Observable<any> {
   return this.http.patch(`${this.apiUrl}/${cursoId}/proveedores/${proveedorId}/estado`, { activo });
+}
+asignarProveedorACurso(cursoId: string, proveedorId: number): Observable<any> {
+  return this.http.post(`${this.apiUrl}/${cursoId}/proveedores/asignar`, { proveedorId });
+}
+
+eliminarAsignacionPorId(asignacionId: number): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/proveedores/asignacion/${asignacionId}`);
 }
 
   // ============================

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CursoService } from 'src/app/services/curso.service';
+import { ProveedoresService } from 'src/app/services/proveedores.service';
 import { Proveedor } from 'src/app/models/proveedor.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -16,107 +17,85 @@ export class ProvidersComponent implements OnInit {
 
   cursoId!: string;
   cursoNombre!: string;
-  proveedores: Proveedor[] = [];
-  mostrarFormularioNuevo = false;
-  editandoIndice: number | null = null;
-  nuevoProveedor: Proveedor = {
-    id: 0,
-    curso_id: '',
-    nombre: '',
-    contacto: '',
-    servicio: '',
-    tipo_contacto: 'whatsapp',
-    activo: 1
-  };
 
-  constructor(private route: ActivatedRoute, private cursoService: CursoService) {}
+  proveedoresAsignados: Proveedor[] = [];
+  proveedoresDisponibles: Proveedor[] = [];
 
-  ngOnInit(): void {
-    this.cursoId = this.route.snapshot.paramMap.get('id')!;
-    this.nuevoProveedor.curso_id = this.cursoId;
-    
-    this.cursoService.getCursoPorId(this.cursoId).subscribe({
-      next: (curso) => {
-      this.cursoNombre = curso.titulo;
-},
-    error: (err) => console.error('Error al obtener el curso', err)
-  });
+  proveedorSeleccionadoId: number | null = null;
 
-    this.cargarProveedores();
-  }
-  
-  cargarProveedores(): void {
-    this.cursoService.getProveedoresPorCurso(this.cursoId).subscribe({
-      next: (data) => this.proveedores = data,
-      error: (err) => console.error('Error al cargar proveedores', err)
-    });
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private cursoService: CursoService,
+    private proveedoresService: ProveedoresService
+  ) {}
 
-  agregarProveedor(): void {
-    this.cursoService.crearProveedor(this.cursoId, this.nuevoProveedor).subscribe({
-      next: () => {
-        alert('Proveedor agregado correctamente');
-        this.cargarProveedores();
-        this.nuevoProveedor = {
-          id: 0,
-          curso_id: this.cursoId,
-          nombre: '',
-          contacto: '',
-          servicio: '',
-          tipo_contacto: 'whatsapp',
-          activo: 1
-        };
-        this.mostrarFormularioNuevo = false;
-      },
-      error: () => alert('Error al agregar proveedor')
-    });
-  }
+ngOnInit(): void {
+  this.cursoId = this.route.snapshot.paramMap.get('id')!;
+  this.cargarCurso();
 
-  modificarProveedor(indice: number): void {
-    this.editandoIndice = indice;
-  }
-
-  guardarCambios(indice: number): void {
-    const proveedor = this.proveedores[indice];
-    this.cursoService.actualizarProveedor(this.cursoId, proveedor.id, proveedor).subscribe({
-      next: () => {
-        alert('Proveedor actualizado correctamente');
-        this.editandoIndice = null;
-      },
-      error: () => alert('Error al actualizar proveedor')
-    });
-  }
-  alternarEstadoProveedor(proveedor: Proveedor): void {
-  const nuevoEstado = proveedor.activo ? 0 : 1;
-
-  this.cursoService.cambiarEstadoProveedor(this.cursoId, proveedor.id, nuevoEstado).subscribe({
-    next: () => {
-      alert(`Proveedor ${nuevoEstado ? 'habilitado' : 'inhabilitado'} correctamente`);
-      this.cargarProveedores();
+  this.cursoService.getProveedoresPorCurso(this.cursoId).subscribe({
+    next: (asignados) => {
+      this.proveedoresAsignados = asignados;
+      this.cargarProveedoresDisponibles(); // Se llama después de tener los asignados
     },
-    error: () => alert('Error al cambiar el estado del proveedor')
+    error: (err) => console.error('Error al cargar proveedores asignados, ', err)
   });
 }
 
-  inhabilitarProveedor(id: number): void {
-    this.cursoService.inhabilitarProveedor(this.cursoId, id).subscribe({
-      next: () => {
-        alert('Proveedor inhabilitado');
-        this.cargarProveedores();
-      },
-      error: () => alert('Error al inhabilitar proveedor')
+  cargarCurso(): void {
+    this.cursoService.getCursoPorId(this.cursoId).subscribe({
+      next: (curso) => this.cursoNombre = curso.titulo,
+      error: (err) => console.error('Error al obtener el curso', err)
     });
   }
 
-  cancelarEdicion(): void {
-    this.editandoIndice = null;
+  cargarProveedoresAsignados(): void {
+    this.proveedoresService.getProveedoresPorCurso(this.cursoId).subscribe({
+      next: (data) => this.proveedoresAsignados = data,
+      error: (err) => console.error('Error al cargar proveedores asignados', err)
+    });
   }
+
+cargarProveedoresDisponibles(): void {
+  this.proveedoresService.getTodosLosProveedores().subscribe({
+    next: (todos) => {
+      // Filtrar proveedores que NO están asignados al curso
+      const asignadosIds = this.proveedoresAsignados.map(p => p.id);
+      this.proveedoresDisponibles = todos.filter(p => !asignadosIds.includes(p.id));
+    },
+    error: (err) => console.error('Error al cargar proveedores disponibles', err)
+  });
+}
+
+  asignarProveedor(): void {
+    if (this.proveedorSeleccionadoId) {
+      this.cursoService.asignarProveedorACurso(this.cursoId, this.proveedorSeleccionadoId).subscribe({
+        next: () => {
+          alert('Proveedor asignado correctamente');
+          this.proveedorSeleccionadoId = null;
+          this.cargarProveedoresAsignados();
+          this.cargarProveedoresDisponibles();
+          this.ngOnInit();
+        },
+        error: () => alert('Error al asignar proveedor al curso, ya existe una asignación')
+      });
+    }
+  }
+
+eliminarAsignacion(asignacionId: number): void {
+  this.ngOnInit();
+  this.cursoService.eliminarAsignacionPorId(asignacionId).subscribe({
+    next: () => {
+      alert('Asignación eliminada');
+      this.cargarProveedoresAsignados();
+      this.cargarProveedoresDisponibles();
+       this.ngOnInit();
+    },
+    error: () => alert('Error al eliminar asignación')
+  });
+}
 
   volverEdicionCurso(): void {
     window.history.back();
-  }
-
-  toggleFormularioNuevo(): void {
-    this.mostrarFormularioNuevo = !this.mostrarFormularioNuevo;
   }
 }
