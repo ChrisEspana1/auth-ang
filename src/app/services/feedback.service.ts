@@ -17,6 +17,8 @@ export class FeedbackService {
   validarAcceso(data: { cursoId: number; correo: string }) {
     return this.http.post(`${this.apiUrl}/validar-acceso`, data);
   }
-
+  getFeedback(): Observable<Feedback[]> {
+    return this.http.get<Feedback[]>(this.apiUrl);
+  }
 
 }
