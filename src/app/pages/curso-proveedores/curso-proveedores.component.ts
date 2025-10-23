@@ -6,11 +6,10 @@ import { ProveedorChatService } from '../../services/proveedor-chat.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  standalone: true,
-  selector: 'app-curso-proveedores',
-  templateUrl: './curso-proveedores.component.html',
-  styleUrls: ['./curso-proveedores.component.css'],
-  imports: [CommonModule]
+    selector: 'app-curso-proveedores',
+    templateUrl: './curso-proveedores.component.html',
+    styleUrls: ['./curso-proveedores.component.css'],
+    imports: [CommonModule]
 })
 export class CursoProveedoresComponent implements OnInit {
   proveedores: Proveedor[] = [];

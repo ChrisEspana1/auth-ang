@@ -8,11 +8,10 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
-  selector: 'app-feedback',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './feedback.component.html',
-  styleUrls: ['./feedback.component.css']
+    selector: 'app-feedback',
+    imports: [CommonModule, ReactiveFormsModule],
+    templateUrl: './feedback.component.html',
+    styleUrls: ['./feedback.component.css']
 })
 export class FeedbackComponent {
   feedbackForm: FormGroup;

@@ -6,11 +6,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
-  selector: 'app-keywords',
-  templateUrl: './keywords.component.html',
-  styleUrls: ['./keywords.component.css'],
-  imports: [CommonModule, FormsModule]
+    selector: 'app-keywords',
+    templateUrl: './keywords.component.html',
+    styleUrls: ['./keywords.component.css'],
+    imports: [CommonModule, FormsModule]
 })
 export class KeywordsComponent implements OnInit {
   cursoId!: string;

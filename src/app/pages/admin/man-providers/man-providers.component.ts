@@ -5,11 +5,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
-  selector: 'app-man-providers',
-  templateUrl: './man-providers.component.html',
-  styleUrls: ['./man-providers.component.css'],
-  imports: [CommonModule, FormsModule]
+    selector: 'app-man-providers',
+    templateUrl: './man-providers.component.html',
+    styleUrls: ['./man-providers.component.css'],
+    imports: [CommonModule, FormsModule]
 })
 export class ManProvidersComponent implements OnInit {
   proveedores: Proveedor[] = [];

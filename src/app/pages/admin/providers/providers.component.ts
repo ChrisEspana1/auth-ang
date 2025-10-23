@@ -7,11 +7,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
-  selector: 'app-providers',
-  templateUrl: './providers.component.html',
-  styleUrls: ['./providers.component.css'],
-  imports: [CommonModule, FormsModule]
+    selector: 'app-providers',
+    templateUrl: './providers.component.html',
+    styleUrls: ['./providers.component.css'],
+    imports: [CommonModule, FormsModule]
 })
 export class ProvidersComponent implements OnInit {
 

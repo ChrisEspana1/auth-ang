@@ -24,22 +24,21 @@ interface LogInForm {
 }
 
 @Component({
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    MatSnackBarModule,
-    ButtonProviders,
-    UserFormDialogComponent
-],
-  selector: 'app-log-in',
-  templateUrl: './log-in.component.html',
-  styleUrls: ['./log-in.component.css'],
-  providers: [],
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        RouterModule,
+        MatSnackBarModule,
+        ButtonProviders,
+        UserFormDialogComponent
+    ],
+    selector: 'app-log-in',
+    templateUrl: './log-in.component.html',
+    styleUrls: ['./log-in.component.css'],
+    providers: []
 })
 export default class LogInComponent {
   hide = true;

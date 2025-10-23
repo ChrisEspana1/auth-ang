@@ -7,11 +7,10 @@ import { AuthService } from '../../../../core/services/auth.service';
 export type Provider = 'github' | 'google';
 
 @Component({
-  standalone: true,
-  imports: [NgOptimizedImage],
-  selector: 'app-button-providers',
-  templateUrl: './button-providers.component.html',
-  styleUrls: ['./button-providers.component.scss'],
+    imports: [NgOptimizedImage],
+    selector: 'app-button-providers',
+    templateUrl: './button-providers.component.html',
+    styleUrls: ['./button-providers.component.scss']
 })
 export class ButtonProviders {
   @Input() isLogin = false;

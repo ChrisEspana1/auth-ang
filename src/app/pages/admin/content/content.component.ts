@@ -6,11 +6,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: true,
-  selector: 'app-content',
-  templateUrl: './content.component.html',
-  styleUrls: ['./content.component.css'],
-  imports: [CommonModule, FormsModule]
+    selector: 'app-content',
+    templateUrl: './content.component.html',
+    styleUrls: ['./content.component.css'],
+    imports: [CommonModule, FormsModule]
 })
 export class ContentComponent implements OnInit {
   mostrarFormularioNuevo: boolean = false;

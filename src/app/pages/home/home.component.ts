@@ -10,18 +10,17 @@ import { Firestore, doc, getDoc } from '@angular/fire/firestore';
 import { NgIf } from '@angular/common';
 
 @Component({
-  standalone: true,
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./style.css'],
-  imports: [
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSidenavModule,
-    RouterOutlet,
-    NgIf
-  ]
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./style.css'],
+    imports: [
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatSidenavModule,
+        RouterOutlet,
+        NgIf
+    ]
 })
 export default class HomeComponent implements OnInit {
   isAdmin: boolean = false;
