@@ -15,6 +15,10 @@ import { ManProvidersComponent } from './pages/admin/man-providers/man-providers
 
 // Layout principal
 import HomeComponent from './pages/home/home.component';
+import { ReporteComponent } from './reportes/reporte/reporte.component';
+import { ClaridadVsContenidoComponent } from './reportes/claridad-vs-contenido/claridad-vs-contenido.component';
+import { RecomendacionesComponent } from './reportes/recomendaciones/recomendaciones.component';
+import { PromedioCalificacionesComponent } from './reportes/promedio-calificaciones/promedio-calificaciones.component';
 export const routes: Routes = [
   {
     path: '',
@@ -61,6 +65,17 @@ export const routes: Routes = [
           { path: '', redirectTo: 'users', pathMatch: 'full' },
         ],
       },
+      {
+        path: 'reportes',
+        component: ReporteComponent,
+        canActivate: [adminGuard],
+        children: [
+          { path: '', redirectTo: 'promedio-calificaciones', pathMatch: 'full' },
+          { path: 'promedio-calificaciones', component: PromedioCalificacionesComponent },
+          { path: 'recomendaciones', component: RecomendacionesComponent },
+          { path: 'claridad-vs-contenido', component: ClaridadVsContenidoComponent },
+        ]
+      }
     ],
   },
   {

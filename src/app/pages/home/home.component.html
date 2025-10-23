@@ -28,6 +28,7 @@
 
     <!-- Botón visible solo para administradores -->
     <button *ngIf="isAdmin" mat-button (click)="redirectToAdmin()">Panel de Administración</button>
+    <button *ngIf="isAdmin" mat-button (click)="redirectToReportes()">Reportes</button>
 
     <button mat-button (click)="logOut()">Log out</button>
   </mat-sidenav>

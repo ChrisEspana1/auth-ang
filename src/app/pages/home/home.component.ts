@@ -62,6 +62,9 @@ ngOnInit(): void {
   redirectToAdmin() {
   this._router.navigate(['/admin']);
 }
+  redirectToReportes() {
+    this._router.navigate(['/reportes']);
+  }
 
   async logOut(): Promise<void> {
     try {
