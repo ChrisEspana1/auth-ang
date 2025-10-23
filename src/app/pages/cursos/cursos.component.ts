@@ -3,18 +3,19 @@ import { CursoService } from '../../services/curso.service';
 import { Curso } from '../../models/cursos.model';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-    imports: [CommonModule,
-        // TODO: `HttpClientModule` should not be imported into a component directly.
-        // Please refactor the code to add `provideHttpClient()` call to the provider list in the
-        // application bootstrap logic and remove the `HttpClientModule` import from this component.
-        HttpClientModule, FormsModule],
-    selector: 'app-cursos',
-    templateUrl: './cursos.component.html',
-    styleUrls: ['./cursos.component.css']
+  selector: 'app-cursos',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    NgFor
+],
+  templateUrl: './cursos.component.html',
+  styleUrls: ['./cursos.component.css']
 })
 export class CursosComponent implements OnInit {
   cursos: Curso[] = [];
@@ -33,14 +34,14 @@ export class CursosComponent implements OnInit {
 
   ngOnInit(): void {
     this.cursoService.getCursos().subscribe(data => {
-      this.cursos = data.filter(curso => curso.estado === 'activo'); // Filtra activos
+      this.cursos = data.filter(curso => curso.estado === 'activo');
       this.generarPaginas();
       this.aplicarFiltros();
       this.actualizarCursosPaginados();
     });
   }
-  
-aplicarFiltros(): void {
+
+  aplicarFiltros(): void {
     this.paginaActual = 1;
     this.cursosFiltrados = this.cursos.filter(curso => {
       const coincideCategoria = this.filtroCategoria === 'todos' || curso.categoria === this.filtroCategoria;
@@ -48,14 +49,13 @@ aplicarFiltros(): void {
       const coincideTexto = this.filtroTexto.trim() === '' || curso.titulo.toLowerCase().includes(this.filtroTexto.toLowerCase()) || curso.descripcion.toLowerCase().includes(this.filtroTexto.toLowerCase());
       return coincideCategoria && coincideNivel && coincideTexto;
     });
-    
+
     this.generarPaginas();
     this.actualizarCursosPaginados();
   }
 
-
   generarPaginas(): void {
-    const totalPaginas = Math.ceil(this.cursos.length / this.cursosPorPagina);
+    const totalPaginas = Math.ceil(this.cursosFiltrados.length / this.cursosPorPagina);
     this.paginas = Array.from({ length: totalPaginas }, (_, i) => i + 1);
   }
 
@@ -73,6 +73,4 @@ aplicarFiltros(): void {
   verCurso(id: string): void {
     this.router.navigate(['/curso', id]);
   }
-
-
 }

@@ -1,13 +1,11 @@
-import { NgOptimizedImage } from '@angular/common';
+
 import { Component, Input, inject } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { AuthService } from '../../../../core/services/auth.service';
-
 export type Provider = 'github' | 'google';
 
 @Component({
-    imports: [NgOptimizedImage],
+    standalone: true,
     selector: 'app-button-providers',
     templateUrl: './button-providers.component.html',
     styleUrls: ['./button-providers.component.scss']
