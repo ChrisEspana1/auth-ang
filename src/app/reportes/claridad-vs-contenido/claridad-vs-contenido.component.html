@@ -1,1 +1,16 @@
-<p>claridad-vs-contenido works!</p>
+<div class="grafica-container">
+  <div class="filter">
+    <label for="curso">Filtrar por curso:</label>
+    <select id="curso" [value]="selectedCurso" (change)="onCursoChange($event)">
+      <option value="todos">Todos</option>
+      <option *ngFor="let curso of cursos" [value]="curso.curso_id">{{ curso.nombre_curso }}</option>
+    </select>
+    <button (click)="updateChart()" class="btn-refresh">Actualizar</button>
+  </div>
+
+  <canvas baseChart
+    [data]="scatterChartData"
+    [options]="scatterChartOptions"
+    [type]="'scatter'">
+  </canvas>
+</div>

@@ -21,4 +21,7 @@ export class ReportesService {
   getClaridadVsContenido(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/claridad-vs-contenido`);
   }
+  getClaridadVsContenidoById(id: number): Observable<any[]> {
+  return this.http.get<any[]>(`${this.baseUrl}/${id}/claridad-vs-contenido`);
+}
 }
