@@ -4,7 +4,7 @@ import { Curso } from 'src/app/models/cursos.model';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {} from '@angular/common/http';
 import { NgIf } from '@angular/common';
 
 
@@ -13,7 +13,11 @@ import { NgIf } from '@angular/common';
   selector: 'app-courses',
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css'],
-  imports: [CommonModule, FormsModule, HttpClientModule, NgIf]
+  imports: [CommonModule, FormsModule, 
+// TODO: `HttpClientModule` should not be imported into a component directly.
+// Please refactor the code to add `provideHttpClient()` call to the provider list in the
+// application bootstrap logic and remove the `HttpClientModule` import from this component.
+HttpClientModule, NgIf]
 })
 export class CoursesComponent implements OnInit {
   cursos: Curso[] = [];
