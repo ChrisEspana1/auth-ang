@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartData, ChartOptions } from 'chart.js';
 import { ReportesService } from '../../services/reportes.service';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { Chart } from 'chart.js';
+
+Chart.register(ChartDataLabels);
+
 
 @Component({
   selector: 'app-promedio-calificaciones',
@@ -26,8 +31,12 @@ export class PromedioCalificacionesComponent implements OnInit {
         callbacks: {
           label: (context) => `Promedio: ${context.parsed.x}`
         }
+      },
+      datalabels: {
+        display: false
       }
     },
+
     scales: {
       x: {
         beginAtZero: true,

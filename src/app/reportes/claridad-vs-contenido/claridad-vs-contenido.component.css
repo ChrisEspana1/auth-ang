@@ -6,15 +6,17 @@
   max-width: 100%;
   margin: 0 auto;
 }
-
-.filter {
-  margin-bottom: 12px;
+.titulo {
   text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #333333;
 }
-
-canvas {
-  width: 100% !important;
-  height: auto !important;
+.selector {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
 }
 .filter {
   display: flex;
@@ -34,6 +36,11 @@ canvas {
 
 .btn-refresh:hover {
   background-color: #FBC02D;
+}
+
+canvas {
+  width: 100% !important;
+  height: auto !important;
 }
 
 @media (max-width: 768px) {

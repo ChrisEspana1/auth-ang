@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartData, ChartOptions } from 'chart.js';
 import { ReportesService } from '../../services/reportes.service';
+import DataLabelsPlugin from 'chartjs-plugin-datalabels';
+import { Chart } from 'chart.js';
+
+Chart.register(DataLabelsPlugin);
 
 @Component({
   selector: 'app-claridad-vs-contenido',
@@ -27,80 +31,80 @@ export class ClaridadVsContenidoComponent implements OnInit {
       tooltip: {
         callbacks: {
           label: (context) => {
-            const raw = context.raw as { curso?: string; x?: number; y?: number } | any;
-            const curso = raw?.curso ?? '';
-            return `${curso}: Contenido ${raw?.x}, Claridad ${raw?.y}`;
+            const raw = context.raw as { curso?: string; x?: number; y?: number };
+            return `${raw.curso}: Contenido ${raw.x}, Claridad ${raw.y}`;
           }
         }
+      },
+      datalabels: {
+        align: 'top',
+        color: '#6D4C41',
+        font: { size: 12, weight: 'bold' },
+        formatter: (value: any) => value.curso
       }
     },
     scales: {
-      x: {
-        title: { display: true, text: 'Contenido' },
-        min: 0,
-        max: 5
-      },
-      y: {
-        title: { display: true, text: 'Claridad' },
-        min: 0,
-        max: 5
-      }
+      x: { title: { display: true, text: 'Contenido' }, min: 0, max: 5 },
+      y: { title: { display: true, text: 'Claridad' }, min: 0, max: 5 }
     }
   };
 
   scatterChartData: ChartData<'scatter'> = {
+    datasets: [{ label: 'Cursos', data: [], backgroundColor: '#FFCC80' }]
+  };
+
+  constructor(private reportesService: ReportesService) {}
+
+  ngOnInit(): void {
+    this.loadCursos();
+    this.loadData();
+  }
+
+  loadCursos(): void {
+    this.reportesService.getClaridadVsContenido().subscribe((data: any[]) => {
+      this.cursos = data; 
+    });
+  }
+
+  loadData(): void {
+    console.log('Cargando datos para:', this.selectedCurso);
+    if (this.selectedCurso === 'todos') {
+      this.reportesService.getClaridadVsContenido().subscribe((data: any[]) => {
+        console.log('Datos recibidos (todos):', data);
+        this.graficarDatos(data);
+      });
+    } else {
+      this.reportesService.getClaridadVsContenidoById(+this.selectedCurso).subscribe((data: any[]) => {
+        console.log('Datos recibidos (curso específico):', data);
+        this.graficarDatos(data);
+      });
+    }
+  }
+
+graficarDatos(data: any[]): void {
+  const puntos = data.map(item => ({
+    x: Number(item.promedio_contenido),
+    y: Number(item.promedio_claridad),
+    curso: item.nombre_curso
+  }));
+
+  this.scatterChartData = {
     datasets: [
       {
         label: 'Cursos',
-        data: [],
+        data: puntos,
         backgroundColor: '#FFCC80'
       }
     ]
   };
 
-  constructor(private reportesService: ReportesService) { }
-
-  ngOnInit(): void {
-    this.loadData();
-  }
-
-  loadData(): void {
-    this.reportesService.getClaridadVsContenido().subscribe((data: any[]) => {
-      this.cursos = data;
-      this.updateChart();
-    });
-  }
-
-  updateChart(): void {
-  // Agrupar por curso_id y calcular promedios
-  const agrupado: { [key: number]: { nombre: string; contenido: number[]; claridad: number[] } } = {};
-
-  this.cursos.forEach(item => {
-    if (!agrupado[item.curso_id]) {
-      agrupado[item.curso_id] = { nombre: item.nombre_curso, contenido: [], claridad: [] };
-    }
-    agrupado[item.curso_id].contenido.push(item.contenido);
-    agrupado[item.curso_id].claridad.push(item.claridad);
-  });
-
-  const promedios = Object.entries(agrupado).map(([id, curso]) => ({
-    x: curso.contenido.reduce((a, b) => a + b, 0) / curso.contenido.length,
-    y: curso.claridad.reduce((a, b) => a + b, 0) / curso.claridad.length,
-    curso: curso.nombre
-  }));
-
-  // Filtrar si se selecciona un curso específico
-  const filtered = this.selectedCurso === 'todos'
-    ? promedios
-    : promedios.filter(c => c.curso === agrupado[+this.selectedCurso].nombre);
-
-  // Actualizar dataset
-  this.scatterChartData.datasets[0].data = filtered;
+  console.log('Dataset actualizado:', this.scatterChartData);
 }
 
 onCursoChange(event: Event): void {
   const selectElement = event.target as HTMLSelectElement;
   this.selectedCurso = selectElement.value;
+  this.loadData();
+  console.log('Curso seleccionado (ID):', this.selectedCurso);
 }
-
 }
