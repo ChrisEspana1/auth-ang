@@ -5,6 +5,8 @@ import { ChartData, ChartOptions } from 'chart.js';
 import { ReportesService } from '../../services/reportes.service';
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 import { Chart } from 'chart.js';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 Chart.register(DataLabelsPlugin);
 
@@ -62,49 +64,62 @@ export class ClaridadVsContenidoComponent implements OnInit {
 
   loadCursos(): void {
     this.reportesService.getClaridadVsContenido().subscribe((data: any[]) => {
-      this.cursos = data; 
+      this.cursos = data;
     });
   }
 
   loadData(): void {
-    console.log('Cargando datos para:', this.selectedCurso);
     if (this.selectedCurso === 'todos') {
       this.reportesService.getClaridadVsContenido().subscribe((data: any[]) => {
-        console.log('Datos recibidos (todos):', data);
         this.graficarDatos(data);
       });
     } else {
       this.reportesService.getClaridadVsContenidoById(+this.selectedCurso).subscribe((data: any[]) => {
-        console.log('Datos recibidos (curso específico):', data);
         this.graficarDatos(data);
       });
     }
   }
 
-graficarDatos(data: any[]): void {
-  const puntos = data.map(item => ({
-    x: Number(item.promedio_contenido),
-    y: Number(item.promedio_claridad),
-    curso: item.nombre_curso
-  }));
+  graficarDatos(data: any[]): void {
+    const puntos = data.map(item => ({
+      x: Number(item.promedio_contenido),
+      y: Number(item.promedio_claridad),
+      curso: item.nombre_curso
+    }));
 
-  this.scatterChartData = {
-    datasets: [
-      {
-        label: 'Cursos',
-        data: puntos,
-        backgroundColor: '#FFCC80'
-      }
-    ]
-  };
+    this.scatterChartData = {
+      datasets: [
+        {
+          label: 'Cursos',
+          data: puntos,
+          backgroundColor: '#FFCC80'
+        }
+      ]
+    };
+  }
 
-  console.log('Dataset actualizado:', this.scatterChartData);
-}
+  onCursoChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedCurso = selectElement.value;
+    this.loadData();
+  }
 
-onCursoChange(event: Event): void {
-  const selectElement = event.target as HTMLSelectElement;
-  this.selectedCurso = selectElement.value;
-  this.loadData();
-  console.log('Curso seleccionado (ID):', this.selectedCurso);
-}
+  exportarPDF(): void {
+    const element = document.getElementById('grafico-claridad');
+    if (!element) return;
+
+    html2canvas(element, { scale: 1 }).then((canvas: HTMLCanvasElement) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF({
+        orientation: 'landscape',
+        unit: 'px',
+        format: [canvas.width, canvas.height]
+      });
+
+      pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+      pdf.save('claridad-vs-contenido.pdf');
+    }).catch(err => {
+      console.error('Error al generar PDF:', err);
+    });
+  }
 }
