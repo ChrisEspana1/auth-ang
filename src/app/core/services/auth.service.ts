@@ -10,7 +10,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from '@angular/fire/auth';
-import { Firestore, doc, setDoc, getDoc } from '@angular/fire/firestore';
+import { Firestore, doc, setDoc, getDoc, Timestamp } from '@angular/fire/firestore';
 
 export interface Credential {
   email: string;
@@ -82,7 +82,8 @@ export class AuthService {
           name: user.displayName || '',
           email: user.email || '',
           rol: 'estudiante', // rol por defecto
-          activo: false // estado por defecto
+          activo: false, // estado por defecto
+          fecha_creacion: Timestamp.fromDate(new Date())
         });
       }
 
