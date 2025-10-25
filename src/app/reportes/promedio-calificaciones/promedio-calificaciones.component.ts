@@ -5,9 +5,10 @@ import { ChartData, ChartOptions } from 'chart.js';
 import { ReportesService } from '../../services/reportes.service';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Chart } from 'chart.js';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 Chart.register(ChartDataLabels);
-
 
 @Component({
   selector: 'app-promedio-calificaciones',
@@ -19,7 +20,7 @@ Chart.register(ChartDataLabels);
 export class PromedioCalificacionesComponent implements OnInit {
   barChartOptions: ChartOptions<'bar'> = {
     responsive: true,
-    indexAxis: 'y', // ✅ Horizontal
+    indexAxis: 'y',
     plugins: {
       legend: { display: false },
       title: {
@@ -36,11 +37,10 @@ export class PromedioCalificacionesComponent implements OnInit {
         display: false
       }
     },
-
     scales: {
       x: {
         beginAtZero: true,
-        title: { display: true, text: 'Calificacion Promedio' }
+        title: { display: true, text: 'Calificación Promedio' }
       },
       y: {
         title: { display: true, text: 'Curso' }
@@ -79,6 +79,25 @@ export class PromedioCalificacionesComponent implements OnInit {
           }
         ]
       };
+    });
+  }
+
+  exportarPDF(): void {
+    const element = document.getElementById('grafico-promedio');
+    if (!element) return;
+
+    html2canvas(element, { scale: 1 }).then((canvas: HTMLCanvasElement) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF({
+        orientation: 'landscape',
+        unit: 'px',
+        format: [canvas.width, canvas.height]
+      });
+
+      pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+      pdf.save('promedio-calificaciones.pdf');
+    }).catch(err => {
+      console.error('Error al generar PDF:', err);
     });
   }
 }
