@@ -7,7 +7,7 @@ import { Feedback } from '../models/feedback.model';
 })
 export class FeedbackService {
 
-  private apiUrl = 'http://192.168.1.213:3000/api/feedback'; // Ajusta según tu backend
+  private apiUrl = 'http://192.168.137.141:3000/api/feedback'; // Ajusta según tu backend
 
   constructor(private http: HttpClient) { }
 
@@ -20,5 +20,8 @@ export class FeedbackService {
   getFeedback(): Observable<Feedback[]> {
     return this.http.get<Feedback[]>(this.apiUrl);
   }
+  getCursosRecomendados(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/cursos-recomendados`);
+}
 
 }
