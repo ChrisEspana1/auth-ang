@@ -10,3 +10,16 @@ canvas {
   border-radius: 8px;       /* Opcional: bordes redondeados */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Opcional: sombra ligera */
 }
+button {
+  margin-bottom: 15px;
+  padding: 8px 16px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1565c0;
+}
