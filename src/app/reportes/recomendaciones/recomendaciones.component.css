@@ -1,0 +1,12 @@
+.recomendaciones-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+canvas {
+  max-width: 100%;
+  background-color: white; /* Fondo blanco */
+  border-radius: 8px;       /* Opcional: bordes redondeados */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Opcional: sombra ligera */
+}
