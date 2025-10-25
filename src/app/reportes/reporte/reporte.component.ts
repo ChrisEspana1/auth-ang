@@ -4,7 +4,7 @@ import { PromedioCalificacionesComponent } from '../promedio-calificaciones/prom
 import { RecomendacionesComponent } from '../recomendaciones/recomendaciones.component';
 import { ClaridadVsContenidoComponent } from '../claridad-vs-contenido/claridad-vs-contenido.component';
 import { EvolucionTemporalComponent } from '../evolucion-temporal/evolucion-temporal.component';
-
+import { UsuariosReporteComponent } from '../usuarios-reporte/usuarios-reporte.component';
 
 @Component({
   selector: 'app-reporte',
@@ -14,7 +14,8 @@ import { EvolucionTemporalComponent } from '../evolucion-temporal/evolucion-temp
     PromedioCalificacionesComponent,
     RecomendacionesComponent,
     ClaridadVsContenidoComponent,
-    EvolucionTemporalComponent
+    EvolucionTemporalComponent,
+    UsuariosReporteComponent
   ],
   templateUrl: './reporte.component.html',
   styleUrls: ['./reporte.component.css']
