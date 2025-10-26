@@ -5,7 +5,7 @@ import { Proveedor } from '../models/proveedor.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProveedoresService {
-    private apiUrl = 'http://192.168.1.213:3000/api/proveedores';
+    private apiUrl = 'https://api.agroconecta.site/api/proveedores';
 
     constructor(private http: HttpClient) { }
 

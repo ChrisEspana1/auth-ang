@@ -7,7 +7,7 @@ import { Feedback } from '../models/feedback.model';
 })
 export class FeedbackService {
 
-  private apiUrl = 'http://192.168.137.141:3000/api/feedback'; // Ajusta según tu backend
+  private apiUrl = 'https://api.agroconecta.site/api/feedback'; // Ajusta según tu backend
 
   constructor(private http: HttpClient) { }
 
