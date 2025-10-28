@@ -12,6 +12,7 @@ import { FeedbackService } from 'src/app/services/feedback.service';
 })
 export class MainPageComponent implements OnInit {
   cursosDestacados: any[] = [];
+  noticias: any[] = [];
 
   constructor(private feedbackService: FeedbackService, private router: Router) {}
 

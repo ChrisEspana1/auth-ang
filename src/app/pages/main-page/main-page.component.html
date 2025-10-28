@@ -1,14 +1,35 @@
 <section class="hero">
-  <h1>Bienvenido a AgroConecta</h1>
-  <p>Conectando el conocimiento agropecuario con innovación y tecnología.</p>
+  <div class="hero-content">
+    <h2>Bienvenido a AgroConecta</h2>
+    <p>Conectando el conocimiento agropecuario con innovación y tecnología.</p>
+  </div>
 </section>
 
 <div class="container">
+  <!-- Sobre la Plataforma -->
   <section class="section">
     <h2>Sobre la Plataforma</h2>
-    <p>AgroConecta es una plataforma digital orientada a fortalecer la educación agropecuaria en comunidades locales. A través de cursos estructurados por categorías de cultivos, se promueve la formación técnica y el intercambio de experiencias entre productores, estudiantes y proveedores. La solución se fundamenta en el uso de entornos gratuitos y de herramientas de código abierto, asegurando que el acceso al conocimiento no esté limitado por barreras económicas.</p>
+    <div class="card">
+      <p>AgroConecta es una plataforma digital orientada a fortalecer la educación agropecuaria en comunidades locales...</p>
+    </div>
   </section>
 
+  <!-- Misión y Visión -->
+  <section class="section mission-vision">
+    <h2>Misión y Visión</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Misión</h3>
+        <p>Promover la educación agropecuaria mediante tecnología accesible.</p>
+      </div>
+      <div class="card">
+        <h3>Visión</h3>
+        <p>Ser la plataforma líder en formación agropecuaria en Latinoamérica.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cursos Destacados -->
   <section class="section">
     <h2>Cursos Destacados</h2>
     <div class="grid">
@@ -20,9 +41,25 @@
     </div>
   </section>
 
-  <section class="section">
-    <h2>Foro y Comunicación</h2>
-    <p>La plataforma promueve la interacción a través de foros de discusión y chats privados, donde estudiantes y proveedores pueden intercambiar experiencias, resolver dudas y establecer conexiones estratégicas que impulsen el desarrollo agropecuario.</p>
+  <!-- Noticias -->
+  <section class="section news">
+    <h2>Noticias</h2>
+    <div class="grid">
+      <div class="card" *ngFor="let noticia of noticias">
+        <h3>{{ noticia.titulo }}</h3>
+        <p>{{ noticia.resumen }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contáctanos -->
+  <section class="section contact">
+    <h2>Contáctanos</h2>
+    <form>
+      <input type="text" placeholder="Nombre" required>
+      <input type="email" placeholder="Correo" required>
+      <textarea placeholder="Mensaje" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
   </section>
 </div>
-``
