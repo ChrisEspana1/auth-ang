@@ -11,6 +11,7 @@ import {
   signInWithPopup,
 } from '@angular/fire/auth';
 import { Firestore, doc, setDoc, getDoc, Timestamp } from '@angular/fire/firestore';
+import { MailerService } from 'src/app/services/mailer.service';
 
 export interface Credential {
   email: string;
@@ -25,6 +26,7 @@ export class AuthService {
   private firestore: Firestore = inject(Firestore);
   readonly authState$ = authState(this.auth);
   private usuarioActual: { nombre: string; correo: string } | null = null;
+  private mailerService: MailerService = inject(MailerService);
 
   getUsuarioActual(): { nombre: string; correo: string } | null {
     return this.usuarioActual;
@@ -69,11 +71,12 @@ export class AuthService {
 
       const userRef = doc(this.firestore, `usuarios/${user.uid}`);
       const snapshot = await getDoc(userRef);
-      
+
       this.usuarioActual = {
         nombre: user.displayName || '',
         correo: user.email || ''
       };
+
 
       if (!snapshot.exists()) {
         console.log('[AuthService] Creando documento en Firestore para nuevo usuario:', user.uid);
@@ -81,11 +84,22 @@ export class AuthService {
           uid: user.uid,
           name: user.displayName || '',
           email: user.email || '',
-          rol: 'estudiante', // rol por defecto
-          activo: false, // estado por defecto
+          rol: 'estudiante',
+          activo: false,
           fecha_creacion: Timestamp.fromDate(new Date())
         });
+
+        try {
+          await this.mailerService.enviarNotificacion(user.email || '', user.displayName || '');
+          console.log('[AuthService] Notificación enviada para el usuario:', user.email);
+          alert('Bienvenido a AgroConecta! Tu cuenta ha sido creada exitosamente.');
+          alert('Se ha enviado una notificación a tu correo electrónico.');
+        } catch (error) {
+          console.error('[AuthService] Error al enviar notificación:', error);
+          alert('Tu cuenta fue creada, pero hubo un error al enviar el correo de notificación.');
+        }
       }
+
 
       return result;
     } catch (error: any) {
