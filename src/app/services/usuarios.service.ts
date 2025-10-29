@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, collectionData, doc, updateDoc, setDoc } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, updateDoc, setDoc, Timestamp } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AuthService } from '../core/services/auth.service'; // Ajusta la ruta si es necesario
 import { UserCredential } from '@angular/fire/auth';
@@ -47,8 +47,8 @@ export class UsuariosService {
   }
 
   // Actualizar múltiples campos de un usuario
-  actualizarUsuario(uid: string, datos: { name?: string; rol?: string; activo?: boolean }): Promise<void> {
+  actualizarUsuario(uid: string, datos: { name?: string; rol?: string; activo?: boolean, estado?: string }): Promise<void> {
     const userRef = doc(this.firestore, `usuarios/${uid}`);
-    return updateDoc(userRef, datos);
+    return updateDoc(userRef, { ...datos, fecha_modificacion: Timestamp.fromDate(new Date()) });
   }
 }

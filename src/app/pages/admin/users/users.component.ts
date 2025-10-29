@@ -8,16 +8,20 @@ import { UserFormDialogComponent } from 'src/app/components/user-form-dialog/use
 import { MatDialogModule } from '@angular/material/dialog';
 
 @Component({
-    selector: 'app-users',
-    templateUrl: './users.component.html',
-    styleUrls: ['./users.component.css'],
-    imports: [CommonModule, FormsModule, MatDialogModule]
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css'],
+  imports: [CommonModule, FormsModule, MatDialogModule]
 })
 
 export class UsersComponent implements OnInit {
   usuarios$!: Observable<any[]>;
   roles = ['admin', 'proveedor', 'estudiante'];
-  ediciones: { [uid: string]: { name: string; rol: string; activo: boolean } } = {};
+  ediciones: {
+    [uid: string]: {
+      estado: string; name: string; rol: string; activo: boolean
+    }
+  } = {};
   editando: { [uid: string]: boolean } = {};
 
   mostrarFormularioNuevoUsuario = false;
@@ -26,7 +30,8 @@ export class UsersComponent implements OnInit {
     email: '',
     password: '',
     rol: 'estudiante',
-    activo: true
+    activo: true,
+    estado: 'pendiente'
   };
 
 
@@ -43,7 +48,8 @@ export class UsersComponent implements OnInit {
         this.ediciones[user.id] = {
           name: user.name || '',
           rol: user.rol || 'estudiante',
-          activo: user.activo ?? true
+          activo: user.activo ?? true,
+          estado: user.estado || 'pendiente'
         };
         this.editando[user.id] = false;
       });
@@ -58,45 +64,46 @@ export class UsersComponent implements OnInit {
     this.editando[uid] = false;
   }
 
-mensajeExito: string | null = null;
+  mensajeExito: string | null = null;
 
-guardarCambios(uid: string) {
-  const datos = this.ediciones[uid];
-  this.usuariosService.actualizarUsuario(uid, datos)
-    .then(() => {
-      this.mensajeExito = 'Cambios guardados correctamente';
-      this.cancelarEdicion(uid);
-      setTimeout(() => {
-        this.mensajeExito = null;
-      }, 3000);
-    })
-    .catch(err => console.error('Error al actualizar usuario', err));
-}
-  
-crearUsuario() {
-  this.usuariosService.crearUsuario(this.nuevoUsuario)
-    .then(() => {
-      console.log('Usuario creado');
-      this.mostrarFormularioNuevoUsuario = false;
-      this.nuevoUsuario = {
-        name: '',
-        email: '',
-        password: '',
-        rol: 'estudiante',
-        activo: true
-      };
-    })
-    .catch(err => console.error('Error al crear usuario', err));
-}
+  guardarCambios(uid: string) {
+    const datos = this.ediciones[uid];
+    this.usuariosService.actualizarUsuario(uid, datos)
+      .then(() => {
+        this.mensajeExito = 'Cambios guardados correctamente';
+        this.cancelarEdicion(uid);
+        setTimeout(() => {
+          this.mensajeExito = null;
+        }, 3000);
+      })
+      .catch(err => console.error('Error al actualizar usuario', err));
+  }
 
-abrirModalNuevoUsuario() {
-  const dialogRef = this.dialog.open(UserFormDialogComponent);
+  crearUsuario() {
+    this.usuariosService.crearUsuario(this.nuevoUsuario)
+      .then(() => {
+        console.log('Usuario creado');
+        this.mostrarFormularioNuevoUsuario = false;
+        this.nuevoUsuario = {
+          name: '',
+          email: '',
+          password: '',
+          rol: 'estudiante',
+          activo: true,
+          estado: 'pendiente'
+        };
+      })
+      .catch(err => console.error('Error al crear usuario', err));
+  }
 
-  dialogRef.afterClosed().subscribe(resultado => {
-    if (resultado) {
-      this.mensajeExito = 'Usuario creado correctamente';
-      setTimeout(() => this.mensajeExito = null, 3000);
-    }
-  });
-}
+  abrirModalNuevoUsuario() {
+    const dialogRef = this.dialog.open(UserFormDialogComponent);
+
+    dialogRef.afterClosed().subscribe(resultado => {
+      if (resultado) {
+        this.mensajeExito = 'Usuario creado correctamente';
+        setTimeout(() => this.mensajeExito = null, 3000);
+      }
+    });
+  }
 }
