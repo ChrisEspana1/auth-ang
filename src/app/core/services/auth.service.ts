@@ -79,7 +79,6 @@ export class AuthService {
 
 
       if (!snapshot.exists()) {
-        console.log('[AuthService] Creando documento en Firestore para nuevo usuario:', user.uid);
         await setDoc(userRef, {
           uid: user.uid,
           name: user.displayName || '',
@@ -91,11 +90,9 @@ export class AuthService {
 
         try {
           await this.mailerService.enviarNotificacion(user.email || '', user.displayName || '');
-          console.log('[AuthService] Notificación enviada para el usuario:', user.email);
           alert('Bienvenido a AgroConecta! Tu cuenta ha sido creada exitosamente.');
           alert('Se ha enviado una notificación a tu correo electrónico.');
         } catch (error) {
-          console.error('[AuthService] Error al enviar notificación:', error);
           alert('Tu cuenta fue creada, pero hubo un error al enviar el correo de notificación.');
         }
       }
