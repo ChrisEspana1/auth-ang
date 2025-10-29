@@ -25,6 +25,7 @@ export const authGuard: CanActivateFn = () => {
 
           if (activo === false) {
             alert('Tu cuenta está inactiva. Por favor contacta al administrador.');
+            authService.logOut();
             router.navigateByUrl('/auth/log-in');
             return false;
           }
