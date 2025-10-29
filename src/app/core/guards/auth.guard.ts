@@ -22,9 +22,20 @@ export const authGuard: CanActivateFn = () => {
         map(snapshot => {
           const data = snapshot.data();
           const activo = data?.['activo']; // o usa 'estado' === 'activo' si así lo tienes
+          const estado = data?.['estado'];
 
-          if (activo === false) {
+          if (activo === false && estado == 'pendiente') {
             alert('Tu cuenta está inactiva. Por favor contacta al administrador.');
+            authService.logOut();
+            router.navigateByUrl('/auth/log-in');
+            return false;
+          }else if (activo === false && estado == 'inactivo') {
+            alert('Tu cuenta ha sido desactivada. Por favor contacta al administrador.');
+            authService.logOut();
+            router.navigateByUrl('/auth/log-in');
+            return false;
+          }else if (estado === 'pendiente') {
+            alert('Tu cuenta está pendiente de activación. Por favor espera a que un administrador la active.');
             authService.logOut();
             router.navigateByUrl('/auth/log-in');
             return false;
@@ -70,6 +81,7 @@ export const adminGuard: CanActivateFn = () => {
           const data = snapshot.data();
           const role = data?.['rol'];
           const activo = data?.['activo'];
+          const estado = data?.['estado'];
 
           if (role === 'admin' && activo !== false) {
             return true;
@@ -82,4 +94,3 @@ export const adminGuard: CanActivateFn = () => {
     })
   );
 };
-``
