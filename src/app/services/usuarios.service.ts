@@ -3,12 +3,14 @@ import { Firestore, collection, collectionData, doc, updateDoc, setDoc, Timestam
 import { Observable } from 'rxjs';
 import { AuthService } from '../core/services/auth.service'; // Ajusta la ruta si es necesario
 import { UserCredential } from '@angular/fire/auth';
+import { MailerService } from './mailer.service';
 
 @Injectable({ providedIn: 'root' })
 export class UsuariosService {
   constructor(
     private firestore: Firestore,
-    private authService: AuthService
+    private authService: AuthService,
+    private mailerService: MailerService
   ) {}
 
   // Obtener todos los usuarios
@@ -33,6 +35,9 @@ export class UsuariosService {
         estado: datos.estado,
         fecha_creacion: Timestamp.fromDate(new Date()),
         fecha_modificacion: Timestamp.fromDate(new Date())
+      }).then(() => {
+        // Enviar correo de bienvenida
+        this.mailerService.enviarCorreoBienvenida(datos.email, datos.name, 'admin');
       });
     });
   }
