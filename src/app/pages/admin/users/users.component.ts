@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { UserFormDialogComponent } from 'src/app/components/user-form-dialog/user-form-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { Timestamp } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-users',
@@ -31,7 +32,9 @@ export class UsersComponent implements OnInit {
     password: '',
     rol: 'estudiante',
     activo: true,
-    estado: 'pendiente'
+    estado: 'pendiente',
+    fecha_creacion: Timestamp.fromDate(new Date()),
+    fecha_modificacion: Timestamp.fromDate(new Date()),
   };
 
 
@@ -90,7 +93,9 @@ export class UsersComponent implements OnInit {
           password: '',
           rol: 'estudiante',
           activo: true,
-          estado: 'pendiente'
+          estado: '',
+          fecha_creacion: Timestamp.fromDate(new Date()),
+          fecha_modificacion: Timestamp.fromDate(new Date()),
         };
       })
       .catch(err => console.error('Error al crear usuario', err));

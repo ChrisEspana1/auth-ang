@@ -18,7 +18,7 @@ export class UsuariosService {
   }
 
   // Crear nuevo usuario con email y contraseña
-  crearUsuario(datos: { name: string; email: string; password: string; rol: string; activo: boolean }) {
+  crearUsuario(datos: { name: string; email: string; password: string; rol: string; activo: boolean; estado: string }): Promise<void> {
     return this.authService.signUpWithEmailAndPassword({
       email: datos.email,
       password: datos.password
@@ -29,7 +29,10 @@ export class UsuariosService {
         name: datos.name,
         email: datos.email,
         rol: datos.rol,
-        activo: datos.activo
+        activo: datos.activo,
+        estado: datos.estado,
+        fecha_creacion: Timestamp.fromDate(new Date()),
+        fecha_modificacion: Timestamp.fromDate(new Date())
       });
     });
   }

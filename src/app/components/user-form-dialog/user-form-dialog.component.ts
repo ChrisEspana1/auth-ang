@@ -20,7 +20,11 @@ export class UserFormDialogComponent {
     email: '',
     password: '',
     rol: 'estudiante',
-    activo: true
+    activo: true,
+    estado: '',
+    fecha_creacion: null,
+    fecha_modificacion: null,
+
   };
 
   nombreSocial = '';

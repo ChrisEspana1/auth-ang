@@ -26,6 +26,13 @@
     <label>Activo:</label>
     <input type="checkbox" [(ngModel)]="nuevoUsuario.activo" name="activo" />
 
+    <label>Estado:</label>
+    <select [(ngModel)]="nuevoUsuario.estado" name="estado">
+      <option value="pendiente">Pendiente</option>
+      <option value="activo">Activo</option>
+      <option value="inactivo">Inactivo</option>
+    </select>
+
     <button type="submit" class="boton-principal">Guardar</button>
     <button type="button" class="boton-secundario" (click)="mostrarFormularioNuevoUsuario = false">Cancelar</button>
   </form>
