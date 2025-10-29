@@ -84,8 +84,10 @@ export class AuthService {
           name: user.displayName || '',
           email: user.email || '',
           rol: 'estudiante',
-          activo: false,
-          fecha_creacion: Timestamp.fromDate(new Date())
+          estado: 'pendiente',
+          activo: true,
+          fecha_creacion: Timestamp.fromDate(new Date()),
+          fecha_modificacion: Timestamp.fromDate(new Date()),
         });
 
         try {
