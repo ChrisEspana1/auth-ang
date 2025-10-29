@@ -36,6 +36,13 @@ export class UsersComponent implements OnInit {
     fecha_creacion: Timestamp.fromDate(new Date()),
     fecha_modificacion: Timestamp.fromDate(new Date()),
   };
+  todosLosUsuarios: any[] = [];
+  usuariosFiltrados: any[] = [];
+  usuariosPaginados: any[] = [];
+  paginaActual = 1;
+  usuariosPorPagina = 6;
+  estadoFiltro = 'todos';
+  Math: Math = Math;
 
 
   constructor(
@@ -47,6 +54,8 @@ export class UsersComponent implements OnInit {
     this.usuarios$ = this.usuariosService.getUsuarios();
 
     this.usuarios$.subscribe(usuarios => {
+      this.todosLosUsuarios = usuarios;
+      this.filtrarYPaginarUsuarios();
       usuarios.forEach(user => {
         this.ediciones[user.id] = {
           name: user.name || '',
@@ -57,6 +66,31 @@ export class UsersComponent implements OnInit {
         this.editando[user.id] = false;
       });
     });
+
+  }
+
+
+  filtrarYPaginarUsuarios() {
+    if (this.estadoFiltro === 'todos') {
+      this.usuariosFiltrados = this.todosLosUsuarios;
+    } else {
+      this.usuariosFiltrados = this.todosLosUsuarios.filter(u => u.estado === this.estadoFiltro);
+    }
+
+    const inicio = (this.paginaActual - 1) * this.usuariosPorPagina;
+    const fin = inicio + this.usuariosPorPagina;
+    this.usuariosPaginados = this.usuariosFiltrados.slice(inicio, fin);
+  }
+
+  cambiarPagina(pagina: number) {
+    this.paginaActual = pagina;
+    this.filtrarYPaginarUsuarios();
+  }
+
+  cambiarFiltroEstado(nuevoEstado: string) {
+    this.estadoFiltro = nuevoEstado;
+    this.paginaActual = 1;
+    this.filtrarYPaginarUsuarios();
   }
 
   activarEdicion(uid: string) {

@@ -4,7 +4,7 @@
 <div class="cabecera">
   <h2>Creacion de Usuarios</h2>
 
-<button class="boton-principal" (click)="mostrarFormularioNuevoUsuario = true">Nuevo usuario</button>
+  <button class="boton-principal" (click)="mostrarFormularioNuevoUsuario = true">Nuevo usuario</button>
 </div>
 
 <div *ngIf="mostrarFormularioNuevoUsuario" class="formulario-nuevo-usuario">
@@ -38,8 +38,19 @@
   </form>
 </div>
 
+
 <div class="tabla-usuarios" *ngIf="!mostrarFormularioNuevoUsuario">
   <h2>Lista de Usuarios</h2>
+  <div class="filtro-estado">
+ <label>Filtrar por estado:</label>
+  <select [(ngModel)]="estadoFiltro" (change)="cambiarFiltroEstado(estadoFiltro)">
+    <option value="todos">Todos</option>
+    <option value="activo">Activo</option>
+    <option value="inactivo">Inactivo</option>
+    <option value="pendiente">Pendiente</option>
+  </select>
+ 
+  </div>
   <table>
     <thead>
       <tr>
@@ -52,7 +63,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of usuarios$ | async">
+<tr *ngFor="let user of usuariosPaginados">
         <td>
           <span *ngIf="!editando[user.id]">{{ user.name || 'Sin nombre' }}</span>
           <input *ngIf="editando[user.id]" [(ngModel)]="ediciones[user.id].name" />
@@ -86,4 +97,16 @@
       </tr>
     </tbody>
   </table>
+   
+<div class="paginacion">
+  <button
+    *ngFor="let pagina of [].constructor(Math.ceil(usuariosFiltrados.length / usuariosPorPagina)); let i = index"
+    (click)="cambiarPagina(i + 1)"
+    [class.activa]="paginaActual === i + 1"
+    class="boton-secundario"
+  >
+    {{ i + 1 }}
+  </button>
+</div>
+
 </div>
