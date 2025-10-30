@@ -10,8 +10,9 @@
   <section class="section">
     <h2>Sobre la Plataforma</h2>
     <div class="card">
-      <p>AgroConecta es una plataforma digital orientada a fortalecer la educación agropecuaria en comunidades
-        locales...</p>
+      <p>
+        AgroConecta es una plataforma digital orientada a fortalecer la educación agropecuaria en comunidades locales, proveyendo acceso a cursos de alta calidad, noticias relevantes y una comunidad de apoyo para agricultores y entusiastas del campo.
+      </p>
     </div>
   </section>
 
@@ -21,11 +22,11 @@
     <div class="grid">
       <div class="card">
         <h3>Misión</h3>
-        <p>Promover la educación agropecuaria mediante tecnología accesible.</p>
+        <p>Promover la educación agropecuaria mediante tecnología accesible, capacitando a las nuevas generaciones de agricultores con conocimientos prácticos y sostenibles.</p>
       </div>
       <div class="card">
         <h3>Visión</h3>
-        <p>Ser la plataforma líder en formación agropecuaria en Latinoamérica.</p>
+        <p>Ser la plataforma líder en formación agropecuaria en Latinoamérica, reconocida por su impacto en la productividad y sostenibilidad del sector agrícola.</p>
       </div>
     </div>
   </section>
@@ -42,19 +43,18 @@
     </div>
   </section>
 
-  <!-- Noticias -->
+  <!-- Noticias recientes en carrusel -->
   <section class="section news">
     <h2>Noticias</h2>
-    <!-- Carrusel de noticias/eventos recientes -->
     <section class="section carrusel">
       <h2>Lo más reciente</h2>
       <div class="carrusel-container">
         <div class="carrusel-wrapper">
           <div class="carrusel-item" *ngFor="let noticia of noticiasRecientes">
-            <img *ngIf="noticia.imagen_url" [src]="noticia.imagen_url" alt="Imagen" />
+            <img *ngIf="noticia.imagen_url" [src]="noticia.imagen_url" alt="Imagen de la noticia" />
             <h3>{{ noticia.titulo }}</h3>
             <p>{{ noticia.descripcion }}</p>
-            <a [routerLink]="['/noticias', noticia.id]">Ver más</a>
+            <a [routerLink]="['/noticias', noticia.id]">Ver más →</a>
           </div>
         </div>
       </div>
@@ -65,8 +65,8 @@
   <section class="section contact">
     <h2>Contáctanos</h2>
     <form>
-      <input type="text" placeholder="Nombre" required>
-      <input type="email" placeholder="Correo" required>
+      <input type="text" placeholder="Nombre" required />
+      <input type="email" placeholder="Correo" required />
       <textarea placeholder="Mensaje" required></textarea>
       <button type="submit">Enviar</button>
     </form>
