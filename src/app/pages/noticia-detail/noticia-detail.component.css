@@ -116,6 +116,44 @@
   height: auto;
 }
 
+.detalle-noticia {
+  margin-bottom: 2rem;
+}
+
+.noticia-imagen img {
+  width: 450px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+.noticia-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.noticia-titulo {
+  font-size: 1.6rem;
+  margin: 0;
+  flex: 1;
+}
+
+.usuario-info {
+  font-size: 0.85rem;
+  max-width: 200px;
+  padding: 0.5rem;
+  text-align: right;
+}
+
+.usuario-info img {
+  max-width: 60px;
+  height: auto;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+}
+
 @media (max-width: 768px) {
   .noticia-container {
     padding: 1rem;

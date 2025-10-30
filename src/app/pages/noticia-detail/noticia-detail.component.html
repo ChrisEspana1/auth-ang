@@ -1,11 +1,21 @@
 <div class="noticia-container">
-<div></div>
-  <!-- Información del usuario -->
-  <div *ngIf="usuario" class="usuario-info">
-    <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
-    <p><strong>Correo:</strong> {{ usuario.correo }}</p>
-    <img *ngIf="usuario.foto" [src]="usuario.foto" alt="Foto de perfil" width="80" height="80">
+
+
+  <!-- Detalles de la noticia/evento -->
+<div *ngIf="noticia" class="detalle-noticia">
+  <h2 class="noticia-titulo">{{ noticia.titulo }}</h2>
+  <p class="noticia-descripcion">{{ noticia.descripcion }}</p>
+  <p><strong>Publicado el:</strong> {{ noticia.fecha_publicacion | date:'medium' }}</p>
+<p *ngIf="noticia.tipo === 'evento'">
+  <strong>Fecha del evento:</strong> {{ noticia.fecha_evento | date:'medium' }}
+</p>
+  <p><strong>Autor:</strong> {{ noticia.autor_uid }}</p>
+  <p><strong>Etiquetas:</strong> {{ noticia.etiquetas }}</p>
+
+  <div *ngIf="noticia.imagen_url" class="noticia-imagen">
+    <img [src]="noticia.imagen_url" alt="Imagen de la noticia" width="450" height="300" />
   </div>
+</div>
 
   <!-- Sección de comentarios -->
   <div class="comentarios-section" *ngIf="noticia">
