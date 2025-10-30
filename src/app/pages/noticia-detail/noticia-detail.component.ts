@@ -7,10 +7,11 @@ import { UserSessionService, UsuarioSession } from 'src/app/services/user-sessio
 import { ComentariosService } from 'src/app/services/comentarios.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,RouterModule],
   selector: 'app-noticia-detail',
   templateUrl: './noticia-detail.component.html',
   styleUrls: ['./noticia-detail.component.css']

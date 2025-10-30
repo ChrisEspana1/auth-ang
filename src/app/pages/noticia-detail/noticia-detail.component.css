@@ -1,188 +1,179 @@
 :host {
   display: block;
+  font-family: 'Sora', sans-serif;
+  background-color: #F8F9FA;
+  color: #1C1C1E;
   padding: 1rem;
-  background-color: #f9f9f9;
-  color: #333;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.noticia-container {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.noticia-titulo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.noticia-descripcion {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.comentarios-section {
-  margin-top: 2rem;
-}
-
-.comentario {
-  background-color: #eef2f5;
-  border-left: 4px solid #007bff;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-}
-
-.comentario small {
-  display: block;
-  margin-top: 0.5rem;
-  color: #666;
-}
-
-.comentario-form {
-  margin-top: 2rem;
-  background-color: #fff;
-  padding: 1rem;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
-
-.comentario-form textarea {
-  width: 100%;
-  min-height: 80px;
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-.comentario-form button {
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.comentario-form button:hover {
-  background-color: #0056b3;
-}
-.comentario-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.9rem;
-  color: #555;
-  margin-bottom: 0.3rem;
-}
-
-.comentario-header .autor {
-  font-weight: bold;
-}
-
-.comentario-header .fecha {
-  font-style: italic;
-  color: #888;
-}
-
-.mensaje-login {
-  margin-top: 1rem;
-  color: #d9534f;
-  font-style: italic;
-}
-.usuario-info {
-  text-align: right;
-  background-color: #ffffff;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem;
-  max-width: 300px;
-  margin-left: auto; /* Esto lo alinea a la derecha */
-}
-
-.usuario-info img {
-  border-radius: 50%;
-  margin-top: 0.5rem;
-  max-width: 80px;
-  height: auto;
-}
-
-.detalle-noticia {
-  margin-bottom: 2rem;
-}
-
-.noticia-imagen img {
-  width: 450px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 6px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
-}
+/* Encabezado */
 .noticia-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  background-color: #6A994E;
+  color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
 }
 
-.noticia-titulo {
-  font-size: 1.6rem;
+.noticia-header h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
   margin: 0;
-  flex: 1;
 }
 
-.usuario-info {
-  font-size: 0.85rem;
-  max-width: 200px;
-  padding: 0.5rem;
-  text-align: right;
+/* Título y descripción */
+.noticia-titulo {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
-.usuario-info img {
-  max-width: 60px;
-  height: auto;
+.noticia-descripcion {
+  font-size: 1.1rem;
+  color: #6C757D;
+  margin-bottom: 1rem;
+}
+
+/* Autor y fecha */
+.autor-fecha {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: #6C757D;
+}
+
+.autor-fecha img {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  margin-top: 0.5rem;
+  object-fit: cover;
 }
 
-@media (max-width: 768px) {
-  .noticia-container {
-    padding: 1rem;
-  }
+/* Imagen principal */
+.noticia-imagen img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
 
-  .usuario-info {
-    text-align: center;
-  }
+/* Etiquetas */
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
 
-  .usuario-info img {
-    display: block;
+.etiquetas span {
+  background-color: rgba(106, 153, 78, 0.1);
+  color: #6A994E;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Comentarios */
+.comentarios-section {
+  border-top: 1px solid #E9ECEF;
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+}
+
+.comentarios-section h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.comentario {
+  background-color: #FFFFFF;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1rem;
+}
+
+.comentario-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #6C757D;
+  margin-bottom: 0.5rem;
+}
+
+.comentario-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #E9ECEF;
+  border-radius: 12px;
+  font-size: 1rem;
+  resize: vertical;
+  margin-bottom: 1rem;
+}
+
+.comentario-form button {
+  width: 100%;
+  background-color: #6A994E;
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comentario-form button:hover {
+  background-color: #5a8642;
+}
+
+.mensaje-login {
+  text-align: center;
+  font-style: italic;
+  color: #6C757D;
+  margin-top: 1rem;
+}
+.noticia-imagen img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.volver-listado {
+  margin-bottom: 1rem;
+}
+
+.btn-volver {
+  display: inline-block;
+  background-color: #6A994E;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.btn-volver:hover {
+  background-color: #5a8642;
+}
+
+/* Versión escritorio: limitar tamaño */
+@media (min-width: 768px) {
+  .noticia-imagen img {
+    max-width: 600px;
     margin: 0 auto;
-  }
-
-  .comentario-form textarea {
-    font-size: 0.95rem;
-  }
-
-  .comentario {
-    font-size: 0.95rem;
-  }
-  .usuario-info {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .usuario-info img {
     display: block;
-    margin: 0 auto;
   }
+  
 }

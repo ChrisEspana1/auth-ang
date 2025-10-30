@@ -1,5 +1,11 @@
 <div class="noticia-container">
 
+<div class="volver-listado">
+  <a [routerLink]="['/noticias']" class="btn-volver">
+    ← Volver al listado
+  </a>
+</div>
+
 
   <!-- Detalles de la noticia/evento -->
 <div *ngIf="noticia" class="detalle-noticia">
