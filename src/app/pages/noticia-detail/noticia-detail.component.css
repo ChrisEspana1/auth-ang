@@ -1,0 +1,150 @@
+:host {
+  display: block;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.noticia-container {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.noticia-titulo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.noticia-descripcion {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.comentarios-section {
+  margin-top: 2rem;
+}
+
+.comentario {
+  background-color: #eef2f5;
+  border-left: 4px solid #007bff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.comentario small {
+  display: block;
+  margin-top: 0.5rem;
+  color: #666;
+}
+
+.comentario-form {
+  margin-top: 2rem;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comentario-form textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.comentario-form button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.comentario-form button:hover {
+  background-color: #0056b3;
+}
+.comentario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.3rem;
+}
+
+.comentario-header .autor {
+  font-weight: bold;
+}
+
+.comentario-header .fecha {
+  font-style: italic;
+  color: #888;
+}
+
+.mensaje-login {
+  margin-top: 1rem;
+  color: #d9534f;
+  font-style: italic;
+}
+.usuario-info {
+  text-align: right;
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  max-width: 300px;
+  margin-left: auto; /* Esto lo alinea a la derecha */
+}
+
+.usuario-info img {
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  max-width: 80px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .noticia-container {
+    padding: 1rem;
+  }
+
+  .usuario-info {
+    text-align: center;
+  }
+
+  .usuario-info img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .comentario-form textarea {
+    font-size: 0.95rem;
+  }
+
+  .comentario {
+    font-size: 0.95rem;
+  }
+  .usuario-info {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .usuario-info img {
+    display: block;
+    margin: 0 auto;
+  }
+}

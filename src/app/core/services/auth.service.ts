@@ -25,10 +25,10 @@ export class AuthService {
   private auth: Auth = inject(Auth);
   private firestore: Firestore = inject(Firestore);
   readonly authState$ = authState(this.auth);
-  private usuarioActual: { nombre: string; correo: string } | null = null;
+  private usuarioActual: { nombre: string; correo: string; uid: string; foto: string | null } | null = null;
   private mailerService: MailerService = inject(MailerService);
 
-  getUsuarioActual(): { nombre: string; correo: string } | null {
+  getUsuarioActual(): { nombre: string; correo: string; uid: string; foto: string | null } | null {
     return this.usuarioActual;
   }
   signUpWithEmailAndPassword(credential: Credential): Promise<UserCredential> {
@@ -73,11 +73,13 @@ export class AuthService {
       const snapshot = await getDoc(userRef);
 
       this.usuarioActual = {
+        uid: user.uid,
         nombre: user.displayName || '',
-        correo: user.email || ''
+        correo: user.email || '',
+        foto: user.photoURL || ''
       };
-
-
+      localStorage.setItem('usuario', JSON.stringify(this.usuarioActual));
+      
       if (!snapshot.exists()) {
         await setDoc(userRef, {
           uid: user.uid,

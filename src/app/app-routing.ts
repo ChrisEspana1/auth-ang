@@ -19,6 +19,7 @@ import { ReporteComponent } from './reportes/reporte/reporte.component';
 import { ClaridadVsContenidoComponent } from './reportes/claridad-vs-contenido/claridad-vs-contenido.component';
 import { RecomendacionesComponent } from './reportes/recomendaciones/recomendaciones.component';
 import { PromedioCalificacionesComponent } from './reportes/promedio-calificaciones/promedio-calificaciones.component';
+import { NoticiaDetailComponent } from './pages/noticia-detail/noticia-detail.component';
 export const routes: Routes = [
   {
     path: '',
@@ -50,6 +51,10 @@ export const routes: Routes = [
       {
         path: ':id/feedback',
         component: FeedbackComponent
+      },
+      {
+        path:'news/:id',
+        component: NoticiaDetailComponent
       },
       {
         path: 'admin',

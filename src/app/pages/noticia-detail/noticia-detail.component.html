@@ -1,0 +1,53 @@
+<div class="noticia-container">
+<div></div>
+  <!-- Información del usuario -->
+  <div *ngIf="usuario" class="usuario-info">
+    <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+    <p><strong>Correo:</strong> {{ usuario.correo }}</p>
+    <img *ngIf="usuario.foto" [src]="usuario.foto" alt="Foto de perfil" width="80" height="80">
+  </div>
+
+  <!-- Sección de comentarios -->
+  <div class="comentarios-section" *ngIf="noticia">
+    <h3>Comentarios</h3>
+
+    <!-- Lista de comentarios -->
+    <div *ngIf="comentarios.length > 0; else sinComentarios">
+      <div class="comentario" *ngFor="let comentario of comentarios">
+        <div class="comentario-header">
+          <span class="autor">{{ comentario.autor_nombre }}</span>
+          <span class="fecha">{{ comentario.fecha_creacion | date:'short' }}</span>
+        </div>
+        <p class="contenido">{{ comentario.contenido }}</p>
+      </div>
+    </div>
+
+    <!-- Mensaje si no hay comentarios -->
+    <ng-template #sinComentarios>
+      <p>No hay comentarios aún.</p>
+    </ng-template>
+
+    <!-- Formulario para comentar -->
+    <div *ngIf="usuario" class="comentario-form mt-4">
+      <form (ngSubmit)="comentar(nuevoComentarioTexto)" #nuevoComentario="ngForm">
+        <textarea
+          name="contenido"
+          [(ngModel)]="nuevoComentarioTexto"
+          required
+          placeholder="Escribe tu comentario..."
+          rows="3"
+          class="form-control"
+        ></textarea>
+        <button type="submit" [disabled]="!nuevoComentario.valid" class="btn btn-primary mt-2">
+          Comentar
+        </button>
+      </form>
+    </div>
+
+    <!-- Mensaje si no ha iniciado sesión -->
+    <div *ngIf="!usuario" class="comentario-login-info mt-3">
+      <p class="mensaje-login">Inicia sesión para comentar.</p>
+    </div>
+  </div>
+
+</div>
