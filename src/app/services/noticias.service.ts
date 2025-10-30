@@ -22,4 +22,5 @@ export class NoticiasService {
   crearNoticia(data: any): Observable<any> {
     return this.http.post(this.apiUrl, data);
   }
+  
 }
