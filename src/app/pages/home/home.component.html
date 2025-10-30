@@ -10,6 +10,7 @@
 
   <div class="toolbar-buttons desktop-only">
     <button mat-flat-button (click)="redirectToInicio()">Inicio</button>
+    <button mat-flat-button (click)="redirectoNoticias()">Noticias / Eventos</button>
     <button mat-flat-button (click)="redirectToCursos()">Ingreso de Cursos</button>
     <button mat-flat-button (click)="redirectToForos()">Foros</button>
 
@@ -25,6 +26,7 @@
     <button mat-button (click)="redirectToInicio()">Inicio</button>
     <button mat-button (click)="redirectToCursos()">Ingreso de Cursos</button>
     <button mat-button (click)="redirectToForos()">Foros</button>
+    <button mat-button (click)="redirectoNoticias()">Noticias / Eventos</button>
 
     <!-- Botón visible solo para administradores -->
     <button *ngIf="isAdmin" mat-button (click)="redirectToAdmin()">Panel de Administración</button>
