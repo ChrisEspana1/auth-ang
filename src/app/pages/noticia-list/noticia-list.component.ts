@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 })
 export class NoticiaListComponent implements OnInit {
   noticias: NoticiaEvento[] = [];
+  noticiasTodas: NoticiaEvento[] = [];
   tipoSeleccionado: 'noticia' | 'evento' = 'noticia';
   paginaActual: number = 1;
   totalPaginas: number = 1;
@@ -22,13 +23,19 @@ export class NoticiaListComponent implements OnInit {
   ngOnInit(): void {
     this.cargarNoticias();
   }
+actualizarVista(): void {
+  const inicio = (this.paginaActual - 1) * 3;
+  const fin = inicio + 3;
+  this.noticias = this.noticiasTodas.slice(inicio, fin);
+}
 
-  cargarNoticias(): void {
-    this.noticiasService.getNoticias(this.tipoSeleccionado, this.paginaActual).subscribe(data => {
-      this.noticias = data;
-      this.totalPaginas = Math.ceil(data.length / 10); // ajusta si el backend devuelve total
-    });
-  }
+cargarNoticias(): void {
+  this.noticiasService.getNoticias(this.tipoSeleccionado, 1).subscribe(data => {
+    this.noticiasTodas = data;
+    this.totalPaginas = Math.ceil(this.noticiasTodas.length / 3);
+    this.actualizarVista();
+  });
+}
 
   cambiarTipo(tipo: 'noticia' | 'evento'): void {
     this.tipoSeleccionado = tipo;
@@ -37,16 +44,16 @@ export class NoticiaListComponent implements OnInit {
   }
 
   siguientePagina(): void {
-    if (this.paginaActual < this.totalPaginas) {
-      this.paginaActual++;
-      this.cargarNoticias();
-    }
+  if (this.paginaActual < this.totalPaginas) {
+    this.paginaActual++;
+    this.actualizarVista();
   }
+}
 
-  paginaAnterior(): void {
-    if (this.paginaActual > 1) {
-      this.paginaActual--;
-      this.cargarNoticias();
-    }
+paginaAnterior(): void {
+  if (this.paginaActual > 1) {
+    this.paginaActual--;
+    this.actualizarVista();
   }
+}
 }
