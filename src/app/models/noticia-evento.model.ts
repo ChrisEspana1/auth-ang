@@ -4,7 +4,7 @@ export interface NoticiaEvento {
   descripcion: string;
   fecha_publicacion?: string; // ISO string, asignado por el backend
   autor_uid: string; // UID de Firebase Auth
-  imagen_url?: string; // URL de la imagen destacada
+  imagen_url: string; // URL de la imagen destacada
   etiquetas?: string[]; // Lista de palabras clave
   tipo: 'noticia' | 'evento';
   fecha_evento?: string; // ISO string, solo si es evento

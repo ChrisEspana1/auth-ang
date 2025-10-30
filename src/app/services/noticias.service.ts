@@ -11,9 +11,9 @@ export class NoticiasService {
 
   constructor(private http: HttpClient) {}
 
-  getNoticias(): Observable<NoticiaEvento[]> {
-    return this.http.get<NoticiaEvento[]>(this.apiUrl);
-  }
+ getNoticias(tipo: string, pagina: number): Observable<NoticiaEvento[]> {
+  return this.http.get<NoticiaEvento[]>(`${this.apiUrl}?tipo=${tipo}&pagina=${pagina}`);
+}
 
   getNoticiaPorId(id: number): Observable<NoticiaEvento> {
     return this.http.get<NoticiaEvento>(`${this.apiUrl}/${id}`);
