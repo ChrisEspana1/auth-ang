@@ -21,6 +21,7 @@ import { ReporteComponent } from './reportes/reporte/reporte.component';
 import { ClaridadVsContenidoComponent } from './reportes/claridad-vs-contenido/claridad-vs-contenido.component';
 import { RecomendacionesComponent } from './reportes/recomendaciones/recomendaciones.component';
 import { PromedioCalificacionesComponent } from './reportes/promedio-calificaciones/promedio-calificaciones.component';
+import { NewsManagerComponent } from './pages/admin/news-manager/news-manager.component';
 
 export const routes: Routes = [
   {
@@ -73,6 +74,7 @@ export const routes: Routes = [
           { path: 'content/:id', loadComponent: () => import('./pages/admin/content/content.component').then(m => m.ContentComponent) },
           { path: 'keywords/:id', loadComponent: () => import('./pages/admin/keywords/keywords.component').then(m => m.KeywordsComponent) },
           { path: 'providers/:id', loadComponent: () => import('./pages/admin/providers/providers.component').then(m => m.ProvidersComponent) },
+          { path: 'newsManager', component: NewsManagerComponent},
           { path: '', redirectTo: 'users', pathMatch: 'full' },
         ],
       },

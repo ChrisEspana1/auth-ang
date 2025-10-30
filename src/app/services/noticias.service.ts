@@ -22,5 +22,16 @@ export class NoticiasService {
   crearNoticia(data: any): Observable<any> {
     return this.http.post(this.apiUrl, data);
   }
+
+  eliminarNoticia(id: number): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/${id}`);
+}
+getNoticiasFiltradas(tipo: string, mes: string | null, pagina: number): Observable<NoticiaEvento[]> {
+  let url = `${this.apiUrl}?tipo=${tipo}&pagina=${pagina}`;
+  if (mes) {
+    url += `&mes=${mes}`; // mes en formato 'YYYY-MM'
+  }
+  return this.http.get<NoticiaEvento[]>(url);
+}
   
 }

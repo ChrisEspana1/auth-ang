@@ -1,5 +1,5 @@
 export interface NoticiaEvento {
-  id?: number; // Opcional, asignado por el backend
+  id: number; // Opcional, asignado por el backend
   titulo: string;
   descripcion: string;
   fecha_publicacion?: string; // ISO string, asignado por el backend

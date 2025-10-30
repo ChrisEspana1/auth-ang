@@ -1,0 +1,41 @@
+
+<div class="new-manager-container">
+  <h2>Gestión de Noticias y Eventos</h2>
+
+  <!-- Filtros -->
+  <div class="filtros">
+    <label>Filtrar por tipo:</label>
+    <button (click)="cambiarTipo('todos')" [disabled]="tipoSeleccionado === 'todos'">Todos</button>
+    <button (click)="cambiarTipo('noticia')" [disabled]="tipoSeleccionado === 'noticia'">Noticias</button>
+    <button (click)="cambiarTipo('evento')" [disabled]="tipoSeleccionado === 'evento'">Eventos</button>
+
+    <label>Filtrar por mes:</label>
+    <button (click)="filtrarPorMesActual()">Mes Actual</button>
+    <button (click)="verTodas()">Ver Todas</button>
+  </div>
+
+  <!-- Lista de noticias en formato grid -->
+  <div *ngIf="noticias.length > 0; else sinNoticias" class="lista-noticias">
+    <div class="noticia-card" *ngFor="let noticia of noticias">
+      <div class="noticia-imagen" *ngIf="noticia.imagen_url">
+        <img [src]="noticia.imagen_url" alt="Imagen de la noticia" />
+      </div>
+      <h3>{{ noticia.titulo }}</h3>
+      <p><strong>Tipo:</strong> {{ noticia.tipo }}</p>
+      <p><strong>Autor:</strong> {{ noticia.autor_uid }}</p>
+      <p><strong>Fecha:</strong> {{ noticia.fecha_evento || (noticia.created_at | date:'short') }}</p>
+      <button class="btn-eliminar" (click)="eliminarNoticia(noticia.id)">Eliminar</button>
+    </div>
+  </div>
+
+  <!-- Paginación -->
+  <div class="paginacion">
+    <button (click)="paginaAnterior()" [disabled]="paginaActual === 1">Anterior</button>
+    <span>Página {{ paginaActual }}</span>
+    <button (click)="siguientePagina()" [disabled]="paginaActual === totalPaginas">Siguiente</button>
+  </div>
+
+  <ng-template #sinNoticias>
+    <p>No hay {{ tipoSeleccionado }} disponibles.</p>
+  </ng-template>
+</div>
