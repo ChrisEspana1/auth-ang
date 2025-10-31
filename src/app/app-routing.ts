@@ -1,6 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { adminGuard, authGuard, publicGuard } from './core/guards';
+import { adminGuard, authGuard, proveedorGuard, publicGuard } from './core/guards';
 import { ReactiveFormsModule } from '@angular/forms';
 
 // Componentes cargados directamente
@@ -54,6 +54,11 @@ export const routes: Routes = [
       {
         path: ':id/feedback',
         component: FeedbackComponent
+      },
+      {
+        path: 'crear-noticia',
+        loadComponent: () => import('./pages/crear-noticia/crear-noticia.component').then(m => m.CrearNoticiaComponent),
+        canActivate:[proveedorGuard]
       },
       {
         path:'noticias',

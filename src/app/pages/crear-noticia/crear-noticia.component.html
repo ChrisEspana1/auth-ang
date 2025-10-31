@@ -1,0 +1,30 @@
+<div class="crear-noticia-container">
+  <h2>Crear Noticia o Evento</h2>
+  <p>Comparte información relevante con la comunidad agrícola</p>
+
+  <form [formGroup]="formCrear" (ngSubmit)="publicar()">
+    <label>Tipo de Contenido</label>
+    <div class="tipo-opciones">
+      <label><input type="radio" formControlName="tipo" value="noticia" /> Noticia</label>
+      <label><input type="radio" formControlName="tipo" value="evento" /> Evento</label>
+    </div>
+
+    <label>Título</label>
+    <input type="text" formControlName="titulo" placeholder="Ingresa el título" />
+
+    <label>Descripción</label>
+    <textarea formControlName="descripcion" placeholder="Escribe la descripción"></textarea>
+
+    <label>Imagen Destacada</label>
+    <div class="upload-area">
+      <input type="file" (change)="onFileSelected($event)" accept=".png,.jpg,.jpeg,.gif" />
+      <p>Sube un archivo o arrastra y suelta</p>
+      <small>PNG, JPG, GIF hasta 10MB</small>
+    </div>
+
+    <label>Etiquetas</label>
+    <input type="text" formControlName="etiquetas" placeholder="Separa las etiquetas con comas" />
+
+    <button type="submit" [disabled]="formCrear.invalid">Publicar Contenido</button>
+  </form>
+</div>

@@ -24,22 +24,30 @@ import { NgIf } from '@angular/common';
 })
 export default class HomeComponent implements OnInit {
   isAdmin: boolean = false;
+  isProv: boolean = false;
   constructor(
     private _router: Router, 
     private authservice: AuthService,
     private firestore: Firestore
     ) {}
 
+
 ngOnInit(): void {
-    this.authservice.authState$.subscribe(async user => {
-      if (user) {
-        const userDocRef = doc(this.firestore, `usuarios/${user.uid}`);
-        const snapshot = await getDoc(userDocRef);
-        const data = snapshot.data();
-        this.isAdmin = data?.['rol'] === 'admin';
-      }
-    });
-  }
+  this.authservice.authState$.subscribe(async user => {
+    if (user) {
+      const userDocRef = doc(this.firestore, `usuarios/${user.uid}`);
+      const snapshot = await getDoc(userDocRef);
+      const data = snapshot.data();
+      const rol = data?.['rol'];
+      this.isAdmin = rol === 'admin';
+      this.isProv = rol === 'proveedor';
+    } else {
+      this.isAdmin = false;
+      this.isProv = false;
+    }
+  });
+}
+
 
   redirectTo(url: string): void {
     this._router.navigateByUrl(url);
@@ -68,6 +76,9 @@ ngOnInit(): void {
   redirectoNoticias(){
     this._router.navigate(['/noticias'])
   }
+    redirectToCrearNoticiaProveedor() {
+    this._router.navigate(['/crear-noticia']);
+}
 
   async logOut(): Promise<void> {
     try {

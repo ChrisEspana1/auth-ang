@@ -16,6 +16,8 @@
 
     <!-- Botón visible solo para administradores -->
     <button *ngIf="isAdmin" mat-flat-button (click)="redirectToAdmin()">Panel de Administración</button>
+    <!-- Botón visible solo para proveedores -->
+    <button *ngIf="isProv" mat-flat-button (click)="redirectToCrearNoticiaProveedor()">Crear Noticia/Evento</button>
 
     <button mat-flat-button (click)="logOut()">Log out</button>
   </div>
@@ -31,6 +33,8 @@
     <!-- Botón visible solo para administradores -->
     <button *ngIf="isAdmin" mat-button (click)="redirectToAdmin()">Panel de Administración</button>
     <button *ngIf="isAdmin" mat-button (click)="redirectToReportes()">Reportes</button>
+
+    <button *ngIf="isProv" mat-button (click)="redirectToCrearNoticiaProveedor()">Crear Noticia/Evento</button>
 
     <button mat-button (click)="logOut()">Log out</button>
   </mat-sidenav>

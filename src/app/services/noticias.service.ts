@@ -33,6 +33,10 @@ export class NoticiasService {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
+  eliminarNoticiaPropia(id: number): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/mine/${id}`);
+}
+
   // ✅ Obtener noticias filtradas con total (usa endpoint principal)
   getNoticiasFiltradas(
     tipo: string,

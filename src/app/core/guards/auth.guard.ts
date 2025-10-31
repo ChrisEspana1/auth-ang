@@ -94,3 +94,34 @@ export const adminGuard: CanActivateFn = () => {
     })
   );
 };
+
+export const proveedorGuard: CanActivateFn = () => {
+  const router = inject(Router);
+  const authService = inject(AuthService);
+  const firestore = inject(Firestore);
+
+  return authService.authState$.pipe(
+    switchMap(user => {
+      if (!user) {
+        router.navigateByUrl('/auth/log-in');
+        return of(false);
+      }
+
+      const userDocRef = doc(firestore, `usuarios/${user.uid}`);
+      return from(getDoc(userDocRef)).pipe(
+        map(snapshot => {
+          const data = snapshot.data();
+          const role = data?.['rol'];
+          const activo = data?.['activo'];
+
+          if ((role === 'proveedor' || role === 'admin') && activo !== false) {
+            return true;
+          } else {
+            router.navigateByUrl('/');
+            return false;
+          }
+        })
+      );
+    })
+  );
+};
