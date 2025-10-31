@@ -16,8 +16,9 @@ export class NewsManagerComponent implements OnInit {
   mesSeleccionado: string | null = null;
   paginaActual: number = 1;
   totalPaginas: number = 1;
-  readonly registrosPorPagina = 3;
+  readonly registrosPorPagina = 4;
   noticiasBackend: NoticiaEvento[] = [];
+  noticiasTodas: NoticiaEvento[] = [];
 
 
   constructor(private noticiasService: NoticiasService) {}
@@ -26,20 +27,21 @@ export class NewsManagerComponent implements OnInit {
     this.cargarNoticias();
   }
 
-
 actualizarVista(): void {
   const inicio = (this.paginaActual - 1) * this.registrosPorPagina;
   const fin = inicio + this.registrosPorPagina;
-  this.noticias = this.noticiasBackend.slice(inicio, fin);
+  this.noticias = this.noticiasTodas.slice(inicio, fin);
 }
 
 cargarNoticias(): void {
   const tipo = this.tipoSeleccionado === 'todos' ? '' : this.tipoSeleccionado;
-  this.noticiasService.getNoticiasFiltradas(tipo, this.mesSeleccionado, this.paginaActual)
+
+  // Cargar todas las noticias sin paginación del backend
+  this.noticiasService.getNoticiasFiltradas(tipo, this.mesSeleccionado, 1)
     .subscribe({
       next: (data: NoticiaEvento[]) => {
-        this.noticiasBackend = data;
-        this.totalPaginas = Math.ceil(data.length / this.registrosPorPagina);
+        this.noticiasTodas = data;
+        this.totalPaginas = Math.ceil(this.noticiasTodas.length / this.registrosPorPagina);
         this.actualizarVista();
       },
       error: (error) => {
@@ -70,19 +72,18 @@ cargarNoticias(): void {
   }
 
   paginaAnterior(): void {
-    if (this.paginaActual > 1) {
-      this.paginaActual--;
-      this.cargarNoticias();
-    }
+  if (this.paginaActual > 1) {
+    this.paginaActual--;
+    this.actualizarVista();
   }
+}
 
-  siguientePagina(): void {
-    if (this.paginaActual < this.totalPaginas) {
-      this.paginaActual++;
-      this.cargarNoticias();
-    }
+siguientePagina(): void {
+  if (this.paginaActual < this.totalPaginas) {
+    this.paginaActual++;
+    this.actualizarVista();
   }
-
+}
   eliminarNoticia(id: number): void {
     if (confirm('¿Estás seguro de que deseas eliminar esta noticia?')) {
       this.noticiasService.eliminarNoticia(id).subscribe({
