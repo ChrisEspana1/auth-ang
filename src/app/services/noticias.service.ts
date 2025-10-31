@@ -8,30 +8,45 @@ import { NoticiaEvento } from '../models/noticia-evento.model';
 })
 export class NoticiasService {
   private apiUrl = 'http://localhost:3000/api/news-events';
+  private apiUrlFilter = 'http://localhost:3000/api/news-events/filter';
+  private apiUrlId = 'http://localhost:3000/api/news-events';
 
   constructor(private http: HttpClient) {}
 
- getNoticias(tipo: string, pagina: number): Observable<NoticiaEvento[]> {
-  return this.http.get<NoticiaEvento[]>(`${this.apiUrl}?tipo=${tipo}&pagina=${pagina}`);
-}
-
-  getNoticiaPorId(id: number): Observable<NoticiaEvento> {
-    return this.http.get<NoticiaEvento>(`${this.apiUrl}/${id}`);
+  // ✅ Obtener noticias paginadas simples (filter)
+  getNoticias(tipo: string, pagina: number): Observable<NoticiaEvento[]> {
+    return this.http.get<NoticiaEvento[]>(`${this.apiUrlFilter}?tipo=${tipo}&pagina=${pagina}`);
   }
 
+  // ✅ Obtener noticia por ID
+  getNoticiaPorId(id: number): Observable<NoticiaEvento> {
+    return this.http.get<NoticiaEvento>(`${this.apiUrlId}/${id}/event`);
+  }
+
+  // ✅ Crear noticia
   crearNoticia(data: any): Observable<any> {
     return this.http.post(this.apiUrl, data);
   }
 
+  // ✅ Eliminar noticia
   eliminarNoticia(id: number): Observable<any> {
-  return this.http.delete(`${this.apiUrl}/${id}`);
-}
-getNoticiasFiltradas(tipo: string, mes: string | null, pagina: number): Observable<NoticiaEvento[]> {
-  let url = `${this.apiUrl}?tipo=${tipo}&pagina=${pagina}`;
-  if (mes) {
-    url += `&mes=${mes}`; // mes en formato 'YYYY-MM'
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
-  return this.http.get<NoticiaEvento[]>(url);
-}
-  
+
+  // ✅ Obtener noticias filtradas con total (usa endpoint principal)
+  getNoticiasFiltradas(
+    tipo: string,
+    mes: string | null,
+    pagina: number
+  ): Observable<{ registros: NoticiaEvento[], total: number }> {
+    let url = `${this.apiUrl}?pagina=${pagina}`;
+    if (tipo) url += `&tipo=${tipo}`;
+    if (mes) url += `&mes=${mes}`;
+    return this.http.get<{ registros: NoticiaEvento[], total: number }>(url);
+  }
+
+  // ✅ Actualizar noticia
+  actualizarNoticia(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, data);
+  }
 }

@@ -1,4 +1,3 @@
-
 <div class="new-manager-container">
   <h2>Gestión de Noticias y Eventos</h2>
 
@@ -14,7 +13,7 @@
     <button (click)="verTodas()">Ver Todas</button>
   </div>
 
-  <!-- Lista de noticias en formato grid -->
+  <!-- Lista de noticias -->
   <div *ngIf="noticias.length > 0; else sinNoticias" class="lista-noticias">
     <div class="noticia-card" *ngFor="let noticia of noticias">
       <div class="noticia-imagen" *ngIf="noticia.imagen_url">
@@ -24,6 +23,7 @@
       <p><strong>Tipo:</strong> {{ noticia.tipo }}</p>
       <p><strong>Autor:</strong> {{ noticia.autor_uid }}</p>
       <p><strong>Fecha:</strong> {{ noticia.fecha_evento || (noticia.created_at | date:'short') }}</p>
+      <button class="btn-modificar" (click)="editarNoticia(noticia)">Modificar</button>
       <button class="btn-eliminar" (click)="eliminarNoticia(noticia.id)">Eliminar</button>
     </div>
   </div>
@@ -31,11 +31,42 @@
   <!-- Paginación -->
   <div class="paginacion">
     <button (click)="paginaAnterior()" [disabled]="paginaActual === 1">Anterior</button>
-    <span>Página {{ paginaActual }}</span>
+    <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
     <button (click)="siguientePagina()" [disabled]="paginaActual === totalPaginas">Siguiente</button>
   </div>
 
   <ng-template #sinNoticias>
     <p>No hay {{ tipoSeleccionado }} disponibles.</p>
   </ng-template>
+</div>
+
+<!-- Modal -->
+<div class="modal" *ngIf="noticiaSeleccionada">
+  <div class="modal-content">
+    <h3>Editar Noticia</h3>
+    <form [formGroup]="formEdicion" (ngSubmit)="guardarCambios()">
+      <label>Tipo de Contenido</label>
+      <select formControlName="tipo">
+        <option value="noticia">Noticia</option>
+        <option value="evento">Evento</option>
+      </select>
+
+      <label>Título *</label>
+      <input type="text" formControlName="titulo" />
+
+      <label>Descripción *</label>
+      <textarea formControlName="descripcion"></textarea>
+
+      <label>URL Imagen</label>
+      <input type="text" formControlName="imagen_url" />
+
+      <label>Etiquetas</label>
+      <input type="text" formControlName="etiquetas" />
+
+      <div class="modal-actions">
+        <button type="submit" [disabled]="formEdicion.invalid">Guardar Cambios</button>
+        <button type="button" (click)="cerrarModal()">Cancelar</button>
+      </div>
+    </form>
+  </div>
 </div>
