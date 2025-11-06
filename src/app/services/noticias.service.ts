@@ -60,4 +60,5 @@ getMisNoticias(uid: string, pagina: number): Observable<{ registros: NoticiaEven
   actualizarNoticia(id: number, data: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, data);
   }
+  
 }

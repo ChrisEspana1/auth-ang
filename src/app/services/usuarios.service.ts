@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../core/services/auth.service'; // Ajusta la ruta si es necesario
 import { UserCredential } from '@angular/fire/auth';
 import { MailerService } from './mailer.service';
+import { getDoc } from '@angular/fire/firestore';
 
 @Injectable({ providedIn: 'root' })
 export class UsuariosService {
@@ -59,4 +60,20 @@ export class UsuariosService {
     const userRef = doc(this.firestore, `usuarios/${uid}`);
     return updateDoc(userRef, { ...datos, fecha_modificacion: Timestamp.fromDate(new Date()) });
   }
+
+async obtenerNombrePorUid(uid: string): Promise<string> {
+  try {
+    const userRef = doc(this.firestore, `usuarios/${uid}`);
+    const snapshot = await getDoc(userRef);
+    if (snapshot.exists()) {
+      const data = snapshot.data();
+      return data['name'] || 'Sin nombre';
+    } else {
+      return 'Desconocido';
+    }
+  } catch (error) {
+    console.error('Error al obtener nombre del usuario:', error);
+    return 'Error';
+  }
+}
 }
