@@ -35,6 +35,7 @@
     <button *ngIf="isAdmin" mat-button (click)="redirectToReportes()">Reportes</button>
 
     <button *ngIf="isProv" mat-button (click)="redirectToCrearNoticiaProveedor()">Crear Noticia/Evento</button>
+    <button *ngIf="isProv" mat-button (click)="redirectToMisNoticias()"> Mis Noticias/Eventos</button>
 
     <button mat-button (click)="logOut()">Log out</button>
   </mat-sidenav>

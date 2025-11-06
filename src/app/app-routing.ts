@@ -71,7 +71,8 @@ export const routes: Routes = [
       },
       {
         path: 'mis-noticias',
-        component: MisNoticiasComponent
+        loadComponent: () => import('./pages/mis-noticias/mis-noticias.component').then(m => m.MisNoticiasComponent),
+        canActivate:[proveedorGuard]
       },
       {
         path: 'admin',

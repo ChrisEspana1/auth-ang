@@ -76,9 +76,14 @@ ngOnInit(): void {
   redirectoNoticias(){
     this._router.navigate(['/noticias'])
   }
+  
+    redirectToMisNoticias(){
+      this._router.navigate(['mis-noticias']);
+    }
     redirectToCrearNoticiaProveedor() {
     this._router.navigate(['/crear-noticia']);
-}
+  }
+  
 
   async logOut(): Promise<void> {
     try {
