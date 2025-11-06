@@ -18,6 +18,13 @@ export class NoticiasService {
     return this.http.get<NoticiaEvento[]>(`${this.apiUrlFilter}?tipo=${tipo}&pagina=${pagina}`);
   }
 
+getMisNoticias(uid: string, pagina: number): Observable<{ registros: NoticiaEvento[], total: number }> {
+  return this.http.get<{ registros: NoticiaEvento[], total: number }>(
+    `${this.apiUrl}/mine?uid=${uid}&pagina=${pagina}`
+  );
+}
+
+
   // ✅ Obtener noticia por ID
   getNoticiaPorId(id: number): Observable<NoticiaEvento> {
     return this.http.get<NoticiaEvento>(`${this.apiUrlId}/${id}/event`);

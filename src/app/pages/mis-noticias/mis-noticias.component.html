@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>Mis Noticias y Eventos</h2>
+
+  <div *ngIf="registros.length === 0">
+    <p>No has creado ninguna noticia o evento aún.</p>
+  </div>
+
+  <div *ngFor="let item of registros" class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">{{ item.titulo }}</h5>
+      <p class="card-text">{{ item.descripcion }}</p>
+      <p><strong>Tipo:</strong> {{ item.tipo }}</p>
+      <p><strong>Fecha evento:</strong> {{ item.fecha_evento || 'N/A' }}</p>
+      <p><strong>Creado:</strong> {{ item.created_at | date:'medium' }}</p>
+
+      <button class="btn btn-primary me-2" (click)="editar(item.id)">Editar</button>
+      <button class="btn btn-danger" (click)="eliminar(item.id)">Eliminar</button>
+    </div>
+  </div>
+
+  <nav *ngIf="total > porPagina">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="pagina === 1">
+        <button class="page-link" (click)="cambiarPagina(pagina - 1)">Anterior</button>
+      </li>
+      <li class="page-item" [class.disabled]="pagina * porPagina >= total">
+        <button class="page-link" (click)="cambiarPagina(pagina + 1)">Siguiente</button>
+      </li>
+    </ul>
+  </nav>
+</div>

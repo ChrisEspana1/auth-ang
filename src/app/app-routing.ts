@@ -22,6 +22,7 @@ import { ClaridadVsContenidoComponent } from './reportes/claridad-vs-contenido/c
 import { RecomendacionesComponent } from './reportes/recomendaciones/recomendaciones.component';
 import { PromedioCalificacionesComponent } from './reportes/promedio-calificaciones/promedio-calificaciones.component';
 import { NewsManagerComponent } from './pages/admin/news-manager/news-manager.component';
+import { MisNoticiasComponent } from './pages/mis-noticias/mis-noticias.component';
 
 export const routes: Routes = [
   {
@@ -67,6 +68,10 @@ export const routes: Routes = [
       {
         path:'noticias/:id',
         component: NoticiaDetailComponent
+      },
+      {
+        path: 'mis-noticias',
+        component: MisNoticiasComponent
       },
       {
         path: 'admin',
