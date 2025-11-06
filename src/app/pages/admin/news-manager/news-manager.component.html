@@ -21,7 +21,7 @@
       </div>
       <h3>{{ noticia.titulo }}</h3>
       <p><strong>Tipo:</strong> {{ noticia.tipo }}</p>
-      <p><strong>Autor:</strong> {{ noticia.autor_uid }}</p>
+      <p><strong>Autor:</strong> {{ nombresAutores[noticia.autor_uid] || 'Cargando...' }}</p>
       <p><strong>Fecha:</strong> {{ noticia.fecha_evento || (noticia.created_at | date:'short') }}</p>
       <button class="btn-modificar" (click)="editarNoticia(noticia)">Modificar</button>
       <button class="btn-eliminar" (click)="eliminarNoticia(noticia.id)">Eliminar</button>

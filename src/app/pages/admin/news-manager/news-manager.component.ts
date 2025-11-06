@@ -4,6 +4,7 @@ import { NoticiaEvento } from 'src/app/models/noticia-evento.model';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
   standalone: true,
@@ -22,8 +23,9 @@ export class NewsManagerComponent implements OnInit {
   noticiasTodas: NoticiaEvento[] = [];
   noticiaSeleccionada: NoticiaEvento | null = null;
   formEdicion!: FormGroup;
+  nombresAutores:{[uid: string]:string}={};
 
-  constructor(private noticiasService: NoticiasService, private fb: FormBuilder) {}
+  constructor(private noticiasService: NoticiasService, private fb: FormBuilder, private usuariosService: UsuariosService) {}
 
   ngOnInit(): void {
     this.inicializarFormulario();
@@ -46,6 +48,15 @@ export class NewsManagerComponent implements OnInit {
     } while (todas.length < total);
 
     this.noticiasTodas = todas;
+    
+ // Obtener nombres de autores
+  for (const noticia of todas) {
+    if (!this.nombresAutores[noticia.autor_uid]) {
+      const nombre = await this.usuariosService.obtenerNombrePorUid(noticia.autor_uid);
+      this.nombresAutores[noticia.autor_uid] = nombre;
+    }
+  }
+
     this.totalPaginas = Math.ceil(todas.length / this.registrosPorPagina);
     this.actualizarVista();
   }
