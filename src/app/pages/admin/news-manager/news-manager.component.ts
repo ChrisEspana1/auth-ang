@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -14,6 +15,7 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
   imports: [CommonModule, ReactiveFormsModule]
 })
 export class NewsManagerComponent implements OnInit {
+
   noticias: NoticiaEvento[] = [];
   tipoSeleccionado: 'noticia' | 'evento' | 'todos' = 'todos';
   mesSeleccionado: string | null = null;
@@ -25,7 +27,7 @@ export class NewsManagerComponent implements OnInit {
   formEdicion!: FormGroup;
   nombresAutores:{[uid: string]:string}={};
 
-  constructor(private noticiasService: NoticiasService, private fb: FormBuilder, private usuariosService: UsuariosService) {}
+  constructor(private noticiasService: NoticiasService, private fb: FormBuilder, private usuariosService: UsuariosService,  private _router: Router) {}
 
   ngOnInit(): void {
     this.inicializarFormulario();
@@ -140,6 +142,9 @@ export class NewsManagerComponent implements OnInit {
       this.paginaActual++;
       this.actualizarVista();
     }
+  }
+  RedirectToCrearNoticia() {
+  this._router.navigate(['/crear-noticia']);
   }
 
   eliminarNoticia(id: number): void {
