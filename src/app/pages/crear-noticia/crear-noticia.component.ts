@@ -1,52 +1,93 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { NoticiasService } from 'src/app/services/noticias.service';
+import { NoticiasService } from '../../services/noticias.service';
+import { AuthService } from '../../core/services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { Location } from '@angular/common';
 
 @Component({
-  standalone: true,
   selector: 'app-crear-noticia',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './crear-noticia.component.html',
-  styleUrls: ['./crear-noticia.component.css'],
-  imports: [CommonModule, ReactiveFormsModule]
+  styleUrls: ['./crear-noticia.component.css']
 })
-export class CrearNoticiaComponent {
+export class CrearNoticiaComponent implements OnInit {
   formCrear!: FormGroup;
-  imagenSeleccionada: File | null = null;
+  publicando = false;
+  mensaje = '';
+  error = '';
+  uid: string = '';
 
-  constructor(private fb: FormBuilder, private noticiasService: NoticiasService) {
+  constructor(
+    private fb: FormBuilder,
+    private noticiasService: NoticiasService,
+    private authService: AuthService,
+    private location: Location
+  ) {}
+
+  ngOnInit(): void {
+    const usuario = this.authService.getUsuarioActual() || JSON.parse(localStorage.getItem('usuario') || 'null');
+    if (usuario) {
+      this.uid = usuario.uid;
+    }
+
     this.formCrear = this.fb.group({
-      tipo: ['', Validators.required],
-      titulo: ['', [Validators.required, Validators.minLength(3)]],
-      descripcion: ['', Validators.required],
+      tipo: ['noticia', Validators.required],
+      titulo: ['', [Validators.required, Validators.minLength(5)]],
+      descripcion: ['', [Validators.required, Validators.minLength(10)]],
+      imagen_url: ['', [Validators.required, Validators.pattern(/^https?:\/\/.+\.(jpg|jpeg|png|webp)$/i)]],
       etiquetas: [''],
-      imagen_url: ['']
+      fecha_evento: ['']
     });
   }
 
-  onFileSelected(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.imagenSeleccionada = file;
-    }
-  }
-
   publicar(): void {
-    if (this.formCrear.valid) {
-      const formData = new FormData();
-      formData.append('tipo', this.formCrear.value.tipo);
-      formData.append('titulo', this.formCrear.value.titulo);
-      formData.append('descripcion', this.formCrear.value.descripcion);
-      formData.append('etiquetas', this.formCrear.value.etiquetas);
-      if (this.imagenSeleccionada) {
-        formData.append('imagen', this.imagenSeleccionada);
-      }
-
-      this.noticiasService.crearNoticia(formData).subscribe({
-        next: () => alert('Noticia creada correctamente'),
-        error: (err) => console.error('Error al crear noticia:', err)
-      });
+    if (this.formCrear.invalid || !this.uid) {
+      this.error = 'No se puede publicar sin autenticación.';
+      return;
     }
+
+    this.publicando = true;
+    this.mensaje = '';
+    this.error = '';
+
+    const formData = this.formCrear.value;
+
+    const etiquetasArray = formData.etiquetas
+      ? formData.etiquetas.split(',').map((e: string) => e.trim()).filter((e: string) => e)
+      : [];
+
+    const payload: any = {
+      titulo: formData.titulo,
+      descripcion: formData.descripcion,
+      imagen_url: formData.imagen_url,
+      etiquetas: etiquetasArray,
+      tipo: formData.tipo,
+      autor_uid: this.uid
+    };
+
+    if (formData.tipo === 'evento' && formData.fecha_evento) {
+      payload.fecha_evento = formData.fecha_evento;
+    }
+
+    this.noticiasService.crearNoticia(payload).subscribe({
+      next: (res: any) => {
+        this.mensaje = res.message || 'Contenido publicado exitosamente.';
+        this.formCrear.reset({ tipo: 'noticia' });
+        this.publicando = false;
+
+        // Recargar el componente
+        setTimeout(() => {
+          this.location.go(this.location.path());
+          window.location.reload();
+        }, 1000);
+      },
+      error: (err) => {
+        this.error = err.error?.error || 'Ocurrió un error al publicar.';
+        this.publicando = false;
+      }
+    });
   }
 }

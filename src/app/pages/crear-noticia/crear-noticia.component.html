@@ -15,16 +15,29 @@
     <label>Descripción</label>
     <textarea formControlName="descripcion" placeholder="Escribe la descripción"></textarea>
 
-    <label>Imagen Destacada</label>
-    <div class="upload-area">
-      <input type="file" (change)="onFileSelected($event)" accept=".png,.jpg,.jpeg,.gif" />
-      <p>Sube un archivo o arrastra y suelta</p>
-      <small>PNG, JPG, GIF hasta 10MB</small>
-    </div>
+    <label>Imagen (URL)</label>
+    <input type="text" formControlName="imagen_url" placeholder="https://ejemplo.com/imagen.jpg" />
 
     <label>Etiquetas</label>
     <input type="text" formControlName="etiquetas" placeholder="Separa las etiquetas con comas" />
 
-    <button type="submit" [disabled]="formCrear.invalid">Publicar Contenido</button>
+    <div *ngIf="formCrear.get('tipo')?.value === 'evento'">
+      <label>Fecha del Evento</label>
+      <input type="datetime-local" formControlName="fecha_evento" />
+    </div>
+
+    <button type="submit" [disabled]="formCrear.invalid || publicando">
+      {{ publicando ? 'Publicando...' : 'Publicar Contenido' }}
+    </button>
   </form>
+
+  <!-- Mensaje de éxito -->
+  <div *ngIf="mensaje" class="alert success">
+    {{ mensaje }}
+  </div>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="error" class="alert error">
+    {{ error }}
+  </div>
 </div>
