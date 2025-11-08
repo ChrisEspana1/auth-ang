@@ -7,9 +7,9 @@ import { NoticiaEvento } from '../models/noticia-evento.model';
   providedIn: 'root'
 })
 export class NoticiasService {
-  private apiUrl = 'http://localhost:3000/api/news-events';
-  private apiUrlFilter = 'http://localhost:3000/api/news-events/filter';
-  private apiUrlId = 'http://localhost:3000/api/news-events';
+  private apiUrl = 'https://api.agroconecta.site/api/news-events';
+  private apiUrlFilter = 'https://api.agroconecta.site/api/news-events/filter';
+  private apiUrlId = 'https://api.agroconecta.site/api/news-events';
 
   constructor(private http: HttpClient) {}
 

@@ -7,7 +7,7 @@ import { Comentario } from '../models/comentario.model';
   providedIn: 'root'
 })
 export class ComentariosService {
-  private apiUrl = 'http://localhost:3000/api/comentarios';
+  private apiUrl = 'https://api.agroconecta.site/api/comentarios';
 
   constructor(private http: HttpClient) {}
 
